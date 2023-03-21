@@ -1,6 +1,0 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/test/vga_test/vga_test.sim/sim_1/impl/func/xsim/top_module_tb_func_impl.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'pixel_info_generator'
-INFO: [VRFC 10-3107] analyzing entity 'timing_signal_generator'
-INFO: [VRFC 10-3107] analyzing entity '\vga_clock_generator__vga_clock_generator_clk_wiz\'
-INFO: [VRFC 10-3107] analyzing entity 'vga_clock_generator'
-INFO: [VRFC 10-3107] analyzing entity 'top_module'

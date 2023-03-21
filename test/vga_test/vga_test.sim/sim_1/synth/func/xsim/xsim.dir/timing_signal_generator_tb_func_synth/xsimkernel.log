@@ -1,7 +1,0 @@
-Running: xsim.dir/timing_signal_generator_tb_func_synth/xsimk.exe -simmode gui -wdb timing_signal_generator_tb_func_synth.wdb -simrunnum 0 -socket 60022
-Design successfully loaded
-Design Loading Memory Usage: 8764 KB (Peak: 8764 KB)
-Design Loading CPU Usage: 234 ms
-Simulation completed
-Simulation Memory Usage: 17432 KB (Peak: 17432 KB)
-Simulation CPU Usage: 546 ms

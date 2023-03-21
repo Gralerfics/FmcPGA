@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Tue Mar  7 00:56:24 2023
+# Process ID: 9048
+# Current directory: C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/test/ram_test/ram_test.runs/clk_wiz_synth_1
+# Command line: vivado.exe -log clk_wiz.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source clk_wiz.tcl
+# Log file: C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/test/ram_test/ram_test.runs/clk_wiz_synth_1/clk_wiz.vds
+# Journal file: C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/test/ram_test/ram_test.runs/clk_wiz_synth_1\vivado.jou
+#-----------------------------------------------------------
+source clk_wiz.tcl -notrace

@@ -1,0 +1,19 @@
+Vivado Simulator 2019.2
+Copyright 1986-1999, 2001-2019 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2019.2/bin/unwrapped/win64.o/xelab.exe -wto e11fca9aaeca43b19a777577e8438698 --incr --debug typical --relax --mt 32 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip -L xpm --snapshot vga_timing_generator_tb_behav xil_defaultlib.vga_timing_generator_tb xil_defaultlib.glbl -log elaborate.log 
+Using 32 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_unsigned
+Compiling module xil_defaultlib.glbl
+Compiling architecture behavioral of entity xil_defaultlib.vga_timing_generator [vga_timing_generator_default]
+Compiling architecture behavioral of entity xil_defaultlib.vga_timing_generator_tb
+Built simulation snapshot vga_timing_generator_tb_behav

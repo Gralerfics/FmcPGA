@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../../src/hdl/vga/vga_timing_generator.vhd" \
+"../../../../../src/tb/vga_timing_generator_tb.vhd" \
+
+# Do not sort compile order
+nosort

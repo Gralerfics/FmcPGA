@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"top_module_tb_func_impl.vhd" \
+"../../../../../vga_test.srcs/sim_1/new/top_module_tb.vhd" \
+
+# Do not sort compile order
+nosort

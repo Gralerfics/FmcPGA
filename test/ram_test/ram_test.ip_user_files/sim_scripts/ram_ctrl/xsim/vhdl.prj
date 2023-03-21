@@ -1,0 +1,6 @@
+vhdl xil_defaultlib  \
+"../../../../ram_test.srcs/sources_1/ip/ram_ctrl/ram_ctrl/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_top.vhd" \
+"../../../../ram_test.srcs/sources_1/ip/ram_ctrl/ram_ctrl/user_design/rtl/ram_ctrl_mig_sim.vhd" \
+"../../../../ram_test.srcs/sources_1/ip/ram_ctrl/ram_ctrl/user_design/rtl/ram_ctrl.vhd" \
+
+nosort

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated   -->
+<!--     by the Xilinx ISE software.  Any direct editing or        -->
+<!--     changes made to this file may result in unpredictable     -->
+<!--     behavior or data corruption.  It is strongly advised that -->
+<!--     users do not edit the contents of this file.              -->
+<!--                                                               -->
+<!-- Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.    -->
+
+<messages>
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/clocking/mig_7series_v1_9_clk_ibuf.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/clocking/mig_7series_v1_9_infrastructure.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/clocking/mig_7series_v1_9_iodelay_ctrl.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/clocking/mig_7series_v1_9_tempmon.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/controller/mig_7series_v1_9_arb_mux.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/controller/mig_7series_v1_9_arb_row_col.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/controller/mig_7series_v1_9_arb_select.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/controller/mig_7series_v1_9_bank_cntrl.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/controller/mig_7series_v1_9_bank_common.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/controller/mig_7series_v1_9_bank_compare.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/controller/mig_7series_v1_9_bank_mach.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/controller/mig_7series_v1_9_bank_queue.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/controller/mig_7series_v1_9_bank_state.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/controller/mig_7series_v1_9_col_mach.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/controller/mig_7series_v1_9_mc.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/controller/mig_7series_v1_9_rank_cntrl.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/controller/mig_7series_v1_9_rank_common.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/controller/mig_7series_v1_9_rank_mach.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/controller/mig_7series_v1_9_round_robin_arb.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1061" ><arg fmt="%s" index="1">Parsing VHDL file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/ddr.vhd&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/ecc/mig_7series_v1_9_ecc_buf.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/ecc/mig_7series_v1_9_ecc_dec_fix.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/ecc/mig_7series_v1_9_ecc_gen.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/ecc/mig_7series_v1_9_ecc_merge_enc.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/ip_top/mig_7series_v1_9_mem_intfc.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/ip_top/mig_7series_v1_9_memc_ui_top_std.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_byte_group_io.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_byte_lane.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_calib_top.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_if_post_fifo.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_mc_phy.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_mc_phy_wrapper.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_of_pre_fifo.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_phy_4lanes.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_phy_dqs_found_cal.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_phy_dqs_found_cal_hr.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_phy_init.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_phy_oclkdelay_cal.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_phy_prbs_rdlvl.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_phy_rdlvl.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_phy_tempmon.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1061" ><arg fmt="%s" index="1">Parsing VHDL file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_phy_top.vhd&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_phy_wrcal.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_phy_wrlvl_off_delay.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v1_9_ddr_prbs_gen.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/ui/mig_7series_v1_9_ui_cmd.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/ui/mig_7series_v1_9_ui_rd_data.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/ui/mig_7series_v1_9_ui_top.v&quot; into library work</arg>
+</msg>
+
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;C:/Users/nagy/Documents/Work/ISE_Projects/DDRConv/Ram2DdrXadc_RefComp/ipcore_dir/ddr/user_design/rtl/ui/mig_7series_v1_9_ui_wr_data.v&quot; into library work</arg>
+</msg>
+
+</messages>
+

@@ -14,7 +14,6 @@ end disp_get_pixel;
 
 
 architecture Behavioral of disp_get_pixel is
-    -- constants.
     constant H_MAX: integer := 640;
     constant V_MAX: integer := 480;
 begin

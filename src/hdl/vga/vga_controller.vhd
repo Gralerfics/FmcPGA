@@ -15,7 +15,7 @@ end vga_controller;
 
 
 architecture Behavioral of vga_controller is
-    -- 25.175 MHz vga_clk generator from 100 MHz clk_sys. (ip)
+    -- 25.175 MHz clk_vga generator from 100 MHz clk_sys. (ip)
 	component vga_clk_generator
 		port (
 			clk_sys, reset: in std_logic;
@@ -33,7 +33,7 @@ architecture Behavioral of vga_controller is
         );
     end component;
 
-    -- intermediate signals.
+
     signal clk_vga, clk_locked, ready: std_logic;
 begin
     clk_gen: vga_clk_generator

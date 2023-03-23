@@ -15,7 +15,6 @@ end vga_timing_generator;
 
 
 architecture Behavioral of vga_timing_generator is
-    -- constants.
     constant H_SYNC_PULSE: integer := 96;
     constant H_BACK_PORCH: integer := 48;
     constant H_ACTIVE: integer := 640;
@@ -27,7 +26,7 @@ architecture Behavioral of vga_timing_generator is
     constant V_FRONT_PORCH: integer := 10;
     constant V_FRAME_PERIOD: integer := V_SYNC_PULSE + V_BACK_PORCH + V_ACTIVE + V_FRONT_PORCH;
     
-    -- intermediate signals.
+    
 	signal h_cnt, h_cnt_next: integer;
 	signal v_cnt, v_cnt_next: integer;
 begin

@@ -33,10 +33,10 @@ architecture Behavioral of top_module is
         );
     end component;
 
-    -- constants.
+
     constant ACTIVE: std_logic := '1';
 
-    -- intermediate signals.
+
     signal scan_x, scan_y: integer range 0 to 1023;
     signal scan_valid: std_logic;
     signal vga_color: std_logic_vector(11 downto 0);

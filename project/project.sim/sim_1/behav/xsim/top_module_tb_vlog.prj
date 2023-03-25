@@ -1,0 +1,11 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../../ips/display/vga_clk_generator" \
+"../../../../../ips/ram/bram_disp/sim/bram_disp.v" \
+"../../../../../ips/display/vga_clk_generator/vga_clk_generator_clk_wiz.v" \
+"../../../../../ips/display/vga_clk_generator/vga_clk_generator.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

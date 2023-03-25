@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Fri Mar 24 23:14:27 2023
+# Process ID: 11428
+# Current directory: C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/bram_wall_synth_1
+# Command line: vivado.exe -log bram_wall.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source bram_wall.tcl
+# Log file: C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/bram_wall_synth_1/bram_wall.vds
+# Journal file: C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/bram_wall_synth_1\vivado.jou
+#-----------------------------------------------------------
+source bram_wall.tcl -notrace

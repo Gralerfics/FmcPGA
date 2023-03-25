@@ -56,5 +56,6 @@ set_property PACKAGE_PIN B4 [get_ports {vga_r[1]}]
 set_property PACKAGE_PIN A3 [get_ports {vga_r[0]}]
 set_property PACKAGE_PIN E3 [get_ports clk_sys]
 set_property PACKAGE_PIN B11 [get_ports hsync_n]
-set_property PACKAGE_PIN N17 [get_ports rst]
+set_property PACKAGE_PIN P18 [get_ports rst]
 set_property PACKAGE_PIN B12 [get_ports vsync_n]
+

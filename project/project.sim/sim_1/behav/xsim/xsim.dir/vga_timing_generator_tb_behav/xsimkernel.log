@@ -1,7 +1,0 @@
-Running: xsim.dir/vga_timing_generator_tb_behav/xsimk.exe -simmode gui -wdb vga_timing_generator_tb_behav.wdb -simrunnum 0 -socket 56814
-Design successfully loaded
-Design Loading Memory Usage: 8840 KB (Peak: 8840 KB)
-Design Loading CPU Usage: 311 ms
-Simulation completed
-Simulation Memory Usage: 12548 KB (Peak: 12548 KB)
-Simulation CPU Usage: 343 ms

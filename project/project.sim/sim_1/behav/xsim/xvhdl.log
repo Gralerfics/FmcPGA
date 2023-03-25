@@ -1,4 +1,0 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/vga/vga_timing_generator.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'vga_timing_generator'
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/src/tb/vga_timing_generator_tb.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'vga_timing_generator_tb'

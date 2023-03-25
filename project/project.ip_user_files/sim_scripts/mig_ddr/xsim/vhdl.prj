@@ -1,6 +1,0 @@
-vhdl xil_defaultlib  \
-"../../../../project.srcs/sources_1/ip/mig_ddr/mig_ddr/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_top.vhd" \
-"../../../../project.srcs/sources_1/ip/mig_ddr/mig_ddr/user_design/rtl/mig_ddr_mig_sim.vhd" \
-"../../../../project.srcs/sources_1/ip/mig_ddr/mig_ddr/user_design/rtl/mig_ddr.vhd" \
-
-nosort

@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date         : Wed Mar 22 02:23:44 2023
+| Date         : Sat Mar 25 13:30:59 2023
 | Host         : DESKTOP-6BOE7R7 running 64-bit major release  (build 9200)
 | Command      : report_utilization -file top_module_utilization_synth.rpt -pb top_module_utilization_synth.pb
 | Design       : top_module
@@ -30,8 +30,8 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             |  130 |     0 |     63400 |  0.21 |
-|   LUT as Logic          |  130 |     0 |     63400 |  0.21 |
+| Slice LUTs*             |  245 |     0 |     63400 |  0.39 |
+|   LUT as Logic          |  245 |     0 |     63400 |  0.39 |
 |   LUT as Memory         |    0 |     0 |     19000 |  0.00 |
 | Slice Registers         |   64 |     0 |    126800 |  0.05 |
 |   Register as Flip Flop |   64 |     0 |    126800 |  0.05 |
@@ -77,11 +77,12 @@ Table of Contents
 3. DSP
 ------
 
-+-----------+------+-------+-----------+-------+
-| Site Type | Used | Fixed | Available | Util% |
-+-----------+------+-------+-----------+-------+
-| DSPs      |    0 |     0 |       240 |  0.00 |
-+-----------+------+-------+-----------+-------+
++----------------+------+-------+-----------+-------+
+|    Site Type   | Used | Fixed | Available | Util% |
++----------------+------+-------+-----------+-------+
+| DSPs           |    1 |     0 |       240 |  0.42 |
+|   DSP48E1 only |    1 |       |           |       |
++----------------+------+-------+-----------+-------+
 
 
 4. IO and GT Specific
@@ -146,15 +147,17 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| LUT5     |   71 |                 LUT |
+| LUT2     |  155 |                 LUT |
+| LUT5     |  100 |                 LUT |
 | FDCE     |   64 |        Flop & Latch |
-| LUT2     |   53 |                 LUT |
-| CARRY4   |   29 |          CarryLogic |
+| CARRY4   |   45 |          CarryLogic |
 | OBUF     |   14 |                  IO |
-| LUT4     |    6 |                 LUT |
-| LUT6     |    4 |                 LUT |
-| LUT1     |    3 |                 LUT |
+| LUT1     |   11 |                 LUT |
+| LUT6     |    8 |                 LUT |
+| LUT4     |    8 |                 LUT |
+| LUT3     |    4 |                 LUT |
 | IBUF     |    1 |                  IO |
+| DSP48E1  |    1 |    Block Arithmetic |
 +----------+------+---------------------+
 
 
@@ -165,6 +168,7 @@ Table of Contents
 |      Ref Name     | Used |
 +-------------------+------+
 | vga_clk_generator |    1 |
+| bram_disp         |    1 |
 +-------------------+------+
 
 

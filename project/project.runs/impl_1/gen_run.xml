@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1679422986">
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1679722214">
   <File Type="BITSTR-BMM" Name="top_module_bd.bmm"/>
   <File Type="OPT-METHODOLOGY-DRC" Name="top_module_methodology_drc_opted.rpt"/>
   <File Type="INIT-TIMING" Name="top_module_timing_summary_init.rpt"/>
@@ -84,7 +84,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PPRDIR/../src/hdl/display/disp_get_pixel.vhd">
+    <File Path="$PPRDIR/../src/hdl/global/constants.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../src/hdl/storage/bram_disp_controller.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -103,6 +109,12 @@
       </FileInfo>
     </File>
     <File Path="$PPRDIR/../src/hdl/top_module.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../res/coe/vga_test.coe">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -147,4 +159,5 @@
     <Step Id="post_route_phys_opt_design"/>
     <Step Id="write_bitstream"/>
   </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="bram_disp"/>
 </GenRun>

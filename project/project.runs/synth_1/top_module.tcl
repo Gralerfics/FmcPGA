@@ -19,6 +19,7 @@ proc create_report { reportName command } {
 }
 set_param general.maxThreads 32
 set_param chipscope.maxJobs 3
+set_param synth.incrementalSynthesisCache C:/Users/glver/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-16852-DESKTOP-6BOE7R7/incrSyn
 set_param xicom.use_bs_reader 1
 set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {Synth 8-256} -limit 10000
@@ -31,13 +32,15 @@ set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/project/project.cache/wt [current_project]
 set_property parent.project_path C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/project/project.xpr [current_project]
-set_property XPM_LIBRARIES XPM_CDC [current_project]
+set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
 set_property ip_output_repo c:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/project/project.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
+add_files C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/res/coe/vga_test.coe
 read_vhdl -library xil_defaultlib {
-  C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/disp_get_pixel.vhd
+  C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/global/constants.vhd
+  C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/storage/bram_disp_controller.vhd
   C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/vga/vga_controller.vhd
   C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/vga/vga_timing_generator.vhd
   C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd
@@ -46,6 +49,9 @@ read_ip -quiet C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/ips/d
 set_property used_in_implementation false [get_files -all c:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/ips/display/vga_clk_generator/vga_clk_generator_board.xdc]
 set_property used_in_implementation false [get_files -all c:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/ips/display/vga_clk_generator/vga_clk_generator.xdc]
 set_property used_in_implementation false [get_files -all c:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/ips/display/vga_clk_generator/vga_clk_generator_ooc.xdc]
+
+read_ip -quiet C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/ips/ram/bram_disp/bram_disp.xci
+set_property used_in_implementation false [get_files -all c:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/ips/ram/bram_disp/bram_disp_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

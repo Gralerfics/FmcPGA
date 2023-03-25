@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date         : Wed Mar 22 02:24:23 2023
+| Date         : Sat Mar 25 13:31:52 2023
 | Host         : DESKTOP-6BOE7R7 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_module_control_sets_placed.rpt
 | Design       : top_module
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |     2 |
-|    Minimum number of control sets                        |     2 |
+| Total control sets                                       |     3 |
+|    Minimum number of control sets                        |     3 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |     0 |
+| Unused register locations in slices containing registers |     3 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,9 +39,9 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |     2 |
+| Total control sets |     3 |
 | >= 0 to < 4        |     0 |
-| >= 4 to < 6        |     0 |
+| >= 4 to < 6        |     1 |
 | >= 6 to < 8        |     0 |
 | >= 8 to < 10       |     0 |
 | >= 10 to < 12      |     0 |
@@ -58,11 +58,11 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               0 |            0 |
+| No           | No                    | No                     |               5 |            5 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |               0 |            0 |
 | Yes          | No                    | No                     |               0 |            0 |
-| Yes          | No                    | Yes                    |              64 |           23 |
+| Yes          | No                    | Yes                    |              64 |           24 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -73,8 +73,9 @@ Table of Contents
 +--------------------------------+------------------------------+------------------+------------------+----------------+
 |          Clock Signal          |         Enable Signal        | Set/Reset Signal | Slice Load Count | Bel Load Count |
 +--------------------------------+------------------------------+------------------+------------------+----------------+
+|  vga_ctrl/clk_gen/inst/clk_vga |                              |                  |                5 |              5 |
+|  vga_ctrl/clk_gen/inst/clk_vga | vga_ctrl/timing_gen/v_cnt0   | rst_IBUF         |               12 |             32 |
 |  vga_ctrl/clk_gen/inst/clk_vga | vga_ctrl/clk_gen/inst/locked | rst_IBUF         |               12 |             32 |
-|  vga_ctrl/clk_gen/inst/clk_vga | vga_ctrl/timing_gen/v_cnt0   | rst_IBUF         |               11 |             32 |
 +--------------------------------+------------------------------+------------------+------------------+----------------+
 
 

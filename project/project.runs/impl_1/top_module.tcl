@@ -70,6 +70,7 @@ set rc [catch {
   create_msg_db init_design.pb
   set_param general.maxThreads 32
   set_param chipscope.maxJobs 3
+  set_param synth.incrementalSynthesisCache C:/Users/glver/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-16852-DESKTOP-6BOE7R7/incrSyn
   set_param xicom.use_bs_reader 1
   create_project -in_memory -part xc7a100tcsg324-1
   set_property design_mode GateLvl [current_fileset]
@@ -78,9 +79,10 @@ set rc [catch {
   set_property parent.project_path C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/project/project.xpr [current_project]
   set_property ip_output_repo C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/project/project.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
-  set_property XPM_LIBRARIES XPM_CDC [current_project]
+  set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
   add_files -quiet C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/top_module.dcp
   read_ip -quiet C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/ips/display/vga_clk_generator/vga_clk_generator.xci
+  read_ip -quiet C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/ips/ram/bram_disp/bram_disp.xci
   read_xdc C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/src/xdc/top_module.xdc
   link_design -top top_module -part xc7a100tcsg324-1
   close_msg_db -file init_design.pb
@@ -177,7 +179,7 @@ start_step write_bitstream
 set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
-  set_property XPM_LIBRARIES XPM_CDC [current_project]
+  set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
   catch { write_mem_info -force top_module.mmi }
   write_bitstream -force top_module.bit 
   catch {write_debug_probes -quiet -force top_module}

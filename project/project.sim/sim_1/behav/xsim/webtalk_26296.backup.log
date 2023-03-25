@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Webtalk v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Sat Mar 25 12:49:28 2023
+# Process ID: 26296
+# Current directory: C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/project/project.sim/sim_1/behav/xsim
+# Command line: wbtcv.exe -mode batch -source C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/project/project.sim/sim_1/behav/xsim/xsim.dir/top_module_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+# Log file: C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/project/project.sim/sim_1/behav/xsim/webtalk.log
+# Journal file: C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/project/project.sim/sim_1/behav/xsim\webtalk.jou
+#-----------------------------------------------------------
+source C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/project/project.sim/sim_1/behav/xsim/xsim.dir/top_module_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+INFO: [Common 17-186] 'C:/Workplace/SUSTech-EE332-Digital-System-Designing-Project/project/project.sim/sim_1/behav/xsim/xsim.dir/top_module_tb_behav/webtalk/usage_statistics_ext_xsim.xml' has been successfully sent to Xilinx on Sat Mar 25 12:49:31 2023. For additional details about this file, please refer to the WebTalk help file at C:/Xilinx/Vivado/2019.2/doc/webtalk_introduction.html.
+INFO: [Common 17-206] Exiting Webtalk at Sat Mar 25 12:49:31 2023...

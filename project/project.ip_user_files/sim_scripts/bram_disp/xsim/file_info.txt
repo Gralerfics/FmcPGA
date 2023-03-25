@@ -1,0 +1,2 @@
+bram_disp.v,verilog,xil_defaultlib,../../../../../ips/ram/bram_disp/sim/bram_disp.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

@@ -1,7 +1,6 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
-use IEEE.std_logic_arith.all;
-use IEEE.std_logic_unsigned.all;
+use IEEE.numeric_std.all;
 
 entity vga_timing_generator_tb is
 end vga_timing_generator_tb;
@@ -15,15 +14,14 @@ architecture Behavioral of vga_timing_generator_tb is
             scan_valid: out std_logic
         );
     end component;
-
-	constant ACTIVE: std_logic := '1';
+	
 	
 	signal clk_vga, rst, hsync_n, vsync_n, scan_valid: std_logic;
 	signal scan_x, scan_y: integer;
 begin
 	UUT: vga_timing_generator
 		port map (
-            clk_vga => clk_vga, rst => rst, enable => ACTIVE,
+            clk_vga => clk_vga, rst => rst, enable => '1',
             hsync_n => hsync_n, vsync_n => vsync_n,
             scan_x => scan_x, scan_y => scan_y,
             scan_valid => scan_valid

@@ -8,7 +8,7 @@ entity vga_timing_generator is
     port (
         clk_vga, rst, enable: in std_logic;
         hsync_n, vsync_n: out std_logic;
-        scan_x, scan_y: out integer range 0 to 1023;
+        scan_x, scan_y: out integer;
         scan_valid: out std_logic   -- In display area but not in border area.
     );
 end entity;

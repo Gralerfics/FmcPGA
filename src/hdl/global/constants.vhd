@@ -1,3 +1,8 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.float_pkg.all;
+
+
 package constants is
     -- vga constants.
     constant H_SYNC_PULSE: integer := 96;
@@ -17,15 +22,20 @@ package constants is
     constant V_BORDER: integer := 90;
     constant H_INAREA: integer := H_ACTIVE - H_BORDER * 2;
     constant V_INAREA: integer := V_ACTIVE - V_BORDER * 2;
-
-    -- floating constants.
-    constant FLOATING_RADIX: integer := 32;
+    constant H_ADDR_RADIX: integer := 9;
 
     -- texture constants.
+    constant TEXTURE_PIXEL_SIZE: float32 := 0.01;
     constant TEXTURE_BLOCK_SIZE: integer := 32;
     constant TEXTURE_ADDR_RADIX: integer := 8;
+
+    -- camera (radar) constants.
+    constant EYE_DISTANCE: float32 := 0.4;
+    constant EYE_PIXEL_SIZE: float32 := 0.001;
 
     -- map constants.
     constant WALL_NUMBER: integer := 1024;
     constant WALL_ADDR_RADIX: integer := 10;
+    constant MAX_DISTANCE: float32 := 1.0E6;
+    constant MIN_DISTANCE: float32 := EYE_DISTANCE;
 end package;

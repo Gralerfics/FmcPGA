@@ -9,7 +9,7 @@ entity radar_scanner is
     port (
         clk_sys, rst: in std_logic;
         tick: out std_logic;
-        idx: out integer range 0 to H_INAREA - 1
+        idx: out std_logic_vector(H_ADDR_RADIX - 1 downto 0)
     );
 end entity;
 
@@ -19,9 +19,9 @@ architecture Behavioral of radar_scanner is
     constant FREQ_FACTOR: integer := 1000000000 / FPS;
 
 
-    signal cnt_clk_reg, cnt_clk_next: integer range 0 to FREQ_FACTOR - 1;
+    signal cnt_clk_reg, cnt_clk_next: integer;
     signal tick_radar: std_logic;
-    signal idx_next: integer range 0 to H_INAREA - 1;
+    signal idx_next: integer;
 begin
     -- tick_radar generation.
     process (clk_sys, rst)

@@ -29,14 +29,14 @@ architecture Behavioral of vga_controller is
         port (
             clk_vga, rst, enable: in std_logic;
             hsync_n, vsync_n: out std_logic;
-            scan_x, scan_y: out integer range 0 to 1023;
+            scan_x, scan_y: out integer;
             scan_valid: out std_logic
         );
     end component;
 
     
     signal clk_vga, clk_locked, ready: std_logic;
-    signal scan_x, scan_y: integer range 0 to 1023;
+    signal scan_x, scan_y: integer;
     signal scan_valid: std_logic;
 begin
     clk_gen: vga_clk_generator

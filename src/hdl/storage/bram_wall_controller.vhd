@@ -4,16 +4,16 @@ use IEEE.numeric_std.all;
 use work.constants.all;
 
 
-entity bram_wall_controller is
+entity bram_wall_controller is  -- 136: 32 p1.x, 32 p1.y, 32 p2.x, 32 p2.y, 8 idx_uv
     port (
         clk_write: in std_logic;
         enable_write: in std_logic;
         addr_write: in std_logic_vector(WALL_ADDR_RADIX - 1 downto 0);
-        data_write: in std_logic_vector(11 downto 0);
+        data_write: in std_logic_vector(135 downto 0);
         clk_read: in std_logic;
         enable_read: in std_logic;
         addr_read: in std_logic_vector(WALL_ADDR_RADIX - 1 downto 0);
-        data_read: out std_logic_vector(11 downto 0)
+        data_read: out std_logic_vector(135 downto 0)
     );
 end entity;
 
@@ -25,11 +25,11 @@ architecture Behavioral of bram_wall_controller is
             ena: in std_logic;
             wea: in std_logic_vector(0 downto 0);
             addra: in std_logic_vector(WALL_ADDR_RADIX - 1 downto 0);
-            dina: in std_logic_vector(11 downto 0);
+            dina: in std_logic_vector(135 downto 0);
             clkb: in std_logic;
             enb: in std_logic;
             addrb: in std_logic_vector(WALL_ADDR_RADIX - 1 downto 0);
-            doutb: out std_logic_vector(11 downto 0)
+            doutb: out std_logic_vector(135 downto 0)
         );
     end component;
 begin

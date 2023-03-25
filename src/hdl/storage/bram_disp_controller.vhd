@@ -4,7 +4,7 @@ use IEEE.numeric_std.all;
 use work.constants.all;
 
 
-entity bram_disp_controller is
+entity bram_disp_controller is  -- 12: 4 red + 4 green + 4 blue
     port (
         clk_write: in std_logic;
         enable_write: in std_logic;

@@ -1,7 +1,0 @@
-# compile vhdl design source files
-vhdl xil_defaultlib  \
-"../../../../../src/hdl/storage/bram_disp_controller.vhd" \
-"../../../../../src/tb/vga/bram_disp_controller_tb.vhd" \
-
-# Do not sort compile order
-nosort

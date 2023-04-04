@@ -1,5 +1,0 @@
-xpm_cdc.sv,systemverilog,xpm,../../../../../Xilinx/Vivado/2019.2/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv,incdir="../../../ipstatic"incdir="../../../ipstatic"
-xpm_VCOMP.vhd,vhdl,xpm,../../../../../Xilinx/Vivado/2019.2/data/ip/xpm/xpm_VCOMP.vhd,incdir="../../../ipstatic"incdir="../../../ipstatic"
-vga_clk_generator_clk_wiz.v,verilog,xil_defaultlib,../../../../../ips/display/vga_clk_generator/vga_clk_generator_clk_wiz.v,incdir="../../../ipstatic"incdir="../../../ipstatic"
-vga_clk_generator.v,verilog,xil_defaultlib,../../../../../ips/display/vga_clk_generator/vga_clk_generator.v,incdir="../../../ipstatic"incdir="../../../ipstatic"
-glbl.v,Verilog,xil_defaultlib,glbl.v

@@ -1,6 +1,0 @@
-vhdl xil_defaultlib  \
-"../../../../../ips/ram/ram2ddrxadc/ipcore_dir/ddr/user_design/rtl/phy/mig_7series_v4_2_ddr_phy_top.vhd" \
-"../../../../../ips/ram/ram2ddrxadc/ipcore_dir/ddr/user_design/rtl/ddr_mig_sim.vhd" \
-"../../../../../ips/ram/ram2ddrxadc/ipcore_dir/ddr/user_design/rtl/ddr.vhd" \
-
-nosort

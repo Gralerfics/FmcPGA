@@ -1,1 +1,0 @@
--wto "e11fca9aaeca43b19a777577e8438698" --incr --debug "typical" --relax --mt "32" --maxdelay -L "xil_defaultlib" -L "simprims_ver" -L "secureip" --snapshot "vga_timing_generator_tb_time_impl" -transport_int_delays -pulse_r "0" -pulse_int_r "0" -pulse_e "0" -pulse_int_e "0" "xil_defaultlib.vga_timing_generator_tb" "xil_defaultlib.glbl" -log "elaborate.log" 

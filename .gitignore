@@ -1,1 +1,5 @@
-test/
+# src/ieee_proposed/
+# src/config.v4p
+# ghdl_sim/
+# project/
+

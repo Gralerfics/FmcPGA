@@ -1,5 +1,4 @@
 library IEEE;
-library IEEE_PROPOSED;
 use IEEE.std_logic_1164.all;
 use IEEE.float_pkg.all;
 

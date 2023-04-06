@@ -1,0 +1,342 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Fri Apr  7 02:26:19 2023
+# Process ID: 588348
+# Current directory: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1
+# Command line: vivado -log test.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source test.tcl
+# Log file: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/test.vds
+# Journal file: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/vivado.jou
+# Running On: gralerfics-HP-ZHAN-66-Pro-G1-MT, OS: Linux, CPU Frequency: 3000.000 MHz, CPU Physical cores: 6, Host memory: 16585 MB
+#-----------------------------------------------------------
+source test.tcl -notrace
+Command: synth_design -top test -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 588377
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1628.680 ; gain = 368.832 ; free physical = 275 ; free virtual = 25232
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1057.303; parent = 848.833; children = 208.470
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 2637.527; parent = 1628.684; children = 1008.844
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'test' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/test.vhd:17]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
+WARNING: [Synth 8-7143] Equality comparison of non constant with static metalogical value is evaluated as 'false'. This may cause simulation-synthesis differences [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:1572]
+WARNING: [Synth 8-7143] Equality comparison of non constant with static metalogical value is evaluated as 'false'. This may cause simulation-synthesis differences [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:1572]
+INFO: [Synth 8-256] done synthesizing module 'test' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/test.vhd:17]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1712.898 ; gain = 453.051 ; free physical = 397 ; free virtual = 25309
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1057.303; parent = 848.833; children = 208.470
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 2721.746; parent = 1712.902; children = 1008.844
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1730.711 ; gain = 470.863 ; free physical = 388 ; free virtual = 25300
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1057.303; parent = 848.833; children = 208.470
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 2739.559; parent = 1730.715; children = 1008.844
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1738.715 ; gain = 478.867 ; free physical = 388 ; free virtual = 25300
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1057.303; parent = 848.833; children = 208.470
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 2747.562; parent = 1738.719; children = 1008.844
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1760.668 ; gain = 500.820 ; free physical = 324 ; free virtual = 25237
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1057.303; parent = 848.833; children = 208.470
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 2769.516; parent = 1760.672; children = 1008.844
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   31 Bit       Adders := 2     
+	   3 Input   28 Bit       Adders := 1     
+	   2 Input   23 Bit       Adders := 2     
+	   2 Input   10 Bit       Adders := 3     
+	   3 Input    9 Bit       Adders := 1     
+	   2 Input    9 Bit       Adders := 1     
+	   2 Input    8 Bit       Adders := 2     
+	   2 Input    6 Bit       Adders := 1     
++---Muxes : 
+	   4 Input   32 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 4     
+	   2 Input   31 Bit        Muxes := 2     
+	  29 Input   29 Bit        Muxes := 1     
+	   2 Input   28 Bit        Muxes := 11    
+	   2 Input   26 Bit        Muxes := 2     
+	   2 Input   24 Bit        Muxes := 2     
+	   2 Input   23 Bit        Muxes := 4     
+	   2 Input   10 Bit        Muxes := 2     
+	   3 Input   10 Bit        Muxes := 1     
+	   2 Input    9 Bit        Muxes := 4     
+	   4 Input    8 Bit        Muxes := 2     
+	   2 Input    8 Bit        Muxes := 2     
+	   3 Input    4 Bit        Muxes := 6     
+	   2 Input    4 Bit        Muxes := 2     
+	   4 Input    3 Bit        Muxes := 4     
+	   4 Input    1 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 8     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:25 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 307 ; free virtual = 24972
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:25 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 306 ; free virtual = 24971
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:22 ; elapsed = 00:00:26 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 304 ; free virtual = 24969
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 304 ; free virtual = 24969
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 304 ; free virtual = 24969
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 304 ; free virtual = 24969
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 304 ; free virtual = 24969
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 304 ; free virtual = 24969
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 304 ; free virtual = 24969
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |CARRY4 |    28|
+|2     |LUT1   |    49|
+|3     |LUT2   |    46|
+|4     |LUT3   |    81|
+|5     |LUT4   |   163|
+|6     |LUT5   |   148|
+|7     |LUT6   |   408|
+|8     |MUXF7  |     2|
+|9     |IBUF   |    64|
+|10    |OBUF   |    32|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------+-------+------+
+|      |Instance |Module |Cells |
++------+---------+-------+------+
+|1     |top      |       |  1021|
++------+---------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 304 ; free virtual = 24969
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 67 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 314 ; free virtual = 24979
+Synthesis Optimization Complete : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.066 ; gain = 750.211 ; free physical = 314 ; free virtual = 24979
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2010.066 ; gain = 0.000 ; free physical = 413 ; free virtual = 25078
+INFO: [Netlist 29-17] Analyzing 30 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'test' is not ideal for floorplanning, since the cellview 'test' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2042.074 ; gain = 0.000 ; free physical = 366 ; free virtual = 25031
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete, checksum: aca4dc46
+INFO: [Common 17-83] Releasing license: Synthesis
+47 Infos, 68 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 2042.074 ; gain = 782.227 ; free physical = 572 ; free virtual = 25237
+INFO: [Common 17-1381] The checkpoint '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/test.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file test_utilization_synth.rpt -pb test_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Apr  7 02:26:56 2023...

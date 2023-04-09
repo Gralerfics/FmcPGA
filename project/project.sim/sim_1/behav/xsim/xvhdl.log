@@ -1,0 +1,8 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/global/constants.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/global/types.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'block_collision'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'plane_collision'
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/tb/block_collision_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'block_collision_tb'

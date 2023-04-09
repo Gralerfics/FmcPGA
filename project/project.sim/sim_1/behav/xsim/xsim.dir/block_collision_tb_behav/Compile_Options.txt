@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "32" -L "xil_defaultlib" -L "secureip" -L "xpm" --snapshot "block_collision_tb_behav" "xil_defaultlib.block_collision_tb" -log "elaborate.log" 

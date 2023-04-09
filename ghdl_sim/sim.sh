@@ -1,8 +1,11 @@
 rm -rf *.o *.vcd *.cf $1
 ghdl --clean
 
-ghdl -a --work=work --std=08 ../src/hdl/global/*.vhd
-ghdl -a --work=work --std=08 ../src/hdl/*.vhd ../src/tb/*.vhd
+ghdl -a --work=work --std=08 ../src/hdl/global/constants.vhd
+ghdl -a --work=work --std=08 ../src/hdl/global/types.vhd
+ghdl -a --work=work --std=08 ../src/hdl/compute/plane_collision.vhd
+ghdl -a --work=work --std=08 ../src/hdl/compute/block_collision.vhd
+ghdl -a --work=work --std=08 ../src/tb/block_collision_tb.vhd
 
 ghdl -e --std=08 $1
 

@@ -1,1 +1,6 @@
 Time resolution is 1 ps
+ERROR: Right operand of ** operator is not of natural type
+Time: 0 ps  Iteration: 0  Process: /block_collision_tb/uut/line__47
+  File: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd
+
+HDL Line: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:47

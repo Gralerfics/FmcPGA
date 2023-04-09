@@ -1,6 +1,6 @@
 
 *** Running vivado
-    with args -log test.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source test.tcl
+    with args -log top_module.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_module.tcl
 
 
 ****** Vivado v2022.2 (64-bit)
@@ -8,178 +8,272 @@
   **** IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 
-source test.tcl -notrace
-Command: synth_design -top test -part xc7a100tcsg324-1
+Sourcing tcl script '/home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/scripts/Vivado_init.tcl'
+source top_module.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.srcs/utils_1/imports/synth_1/test.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.srcs/utils_1/imports/synth_1/test.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top top_module -part xc7a100tcsg324-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 588377
+INFO: [Synth 8-7075] Helper process launched with PID 971424
 INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
 ---------------------------------------------------------------------------------
-Starting Synthesize : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1628.680 ; gain = 368.832 ; free physical = 275 ; free virtual = 25232
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1057.303; parent = 848.833; children = 208.470
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 2637.527; parent = 1628.684; children = 1008.844
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1945.516 ; gain = 372.770 ; free physical = 1960 ; free virtual = 21177
+Synthesis current peak Physical Memory [PSS] (MB): peak = 1392.619; parent = 1176.816; children = 215.803
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 2954.363; parent = 1945.520; children = 1008.844
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'test' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/test.vhd:17]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b0 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-151] case item 1'b1 is unreachable [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-INFO: [Synth 8-226] default block is never used [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:4455]
-WARNING: [Synth 8-7143] Equality comparison of non constant with static metalogical value is evaluated as 'false'. This may cause simulation-synthesis differences [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:1572]
-WARNING: [Synth 8-7143] Equality comparison of non constant with static metalogical value is evaluated as 'false'. This may cause simulation-synthesis differences [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/1993/src/float_pkg_c.vhd:1572]
-INFO: [Synth 8-256] done synthesizing module 'test' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/test.vhd:17]
+INFO: [Synth 8-638] synthesizing module 'top_module' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:19]
+INFO: [Synth 8-3491] module 'block_collision' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:13' bound to instance 'uut' of component 'block_collision' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:38]
+INFO: [Synth 8-638] synthesizing module 'block_collision' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:25]
+	Parameter T bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'plane_collision' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:11' bound to instance 'plane_collision_yz1' of component 'plane_collision' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:62]
+INFO: [Synth 8-638] synthesizing module 'plane_collision' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:24]
+	Parameter T bound to: 0 - type: integer 
+WARNING: [Synth 8-7143] Equality comparison of non constant with static metalogical value is evaluated as 'false'. This may cause simulation-synthesis differences [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:31]
+WARNING: [Synth 8-7143] Equality comparison of non constant with static metalogical value is evaluated as 'false'. This may cause simulation-synthesis differences [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:31]
+INFO: [Synth 8-256] done synthesizing module 'plane_collision' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:24]
+WARNING: [Synth 8-7143] Equality comparison of non constant with static metalogical value is evaluated as 'false'. This may cause simulation-synthesis differences [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:69]
+WARNING: [Synth 8-7143] Equality comparison of non constant with static metalogical value is evaluated as 'false'. This may cause simulation-synthesis differences [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:69]
+	Parameter T bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'plane_collision' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:11' bound to instance 'plane_collision_yz2' of component 'plane_collision' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:71]
+	Parameter T bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'plane_collision' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:11' bound to instance 'plane_collision_xz1' of component 'plane_collision' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:80]
+INFO: [Synth 8-638] synthesizing module 'plane_collision__parameterized2' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:24]
+	Parameter T bound to: 1 - type: integer 
+WARNING: [Synth 8-7143] Equality comparison of non constant with static metalogical value is evaluated as 'false'. This may cause simulation-synthesis differences [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:36]
+WARNING: [Synth 8-7143] Equality comparison of non constant with static metalogical value is evaluated as 'false'. This may cause simulation-synthesis differences [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:36]
+INFO: [Synth 8-256] done synthesizing module 'plane_collision__parameterized2' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:24]
+	Parameter T bound to: 1 - type: integer 
+INFO: [Synth 8-3491] module 'plane_collision' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:11' bound to instance 'plane_collision_xz2' of component 'plane_collision' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:89]
+	Parameter T bound to: 2 - type: integer 
+INFO: [Synth 8-3491] module 'plane_collision' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:11' bound to instance 'plane_collision_xy1' of component 'plane_collision' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:98]
+INFO: [Synth 8-638] synthesizing module 'plane_collision__parameterized4' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:24]
+	Parameter T bound to: 2 - type: integer 
+WARNING: [Synth 8-7143] Equality comparison of non constant with static metalogical value is evaluated as 'false'. This may cause simulation-synthesis differences [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:41]
+WARNING: [Synth 8-7143] Equality comparison of non constant with static metalogical value is evaluated as 'false'. This may cause simulation-synthesis differences [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:41]
+INFO: [Synth 8-256] done synthesizing module 'plane_collision__parameterized4' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:24]
+	Parameter T bound to: 2 - type: integer 
+INFO: [Synth 8-3491] module 'plane_collision' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:11' bound to instance 'plane_collision_xy2' of component 'plane_collision' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:107]
+INFO: [Synth 8-7102] Found dynamic range expression as argument to resize expression [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:183]
+WARNING: [Synth 8-614] signal 'hit_p_yz1' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:116]
+WARNING: [Synth 8-614] signal 'yi_n' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:116]
+WARNING: [Synth 8-614] signal 'zi_n' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:116]
+WARNING: [Synth 8-614] signal 'hit_p_yz2' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:116]
+WARNING: [Synth 8-614] signal 'hit_p_xz1' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:116]
+WARNING: [Synth 8-614] signal 'xi_n' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:116]
+WARNING: [Synth 8-614] signal 'hit_p_xz2' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:116]
+WARNING: [Synth 8-614] signal 'hit_p_xy1' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:116]
+WARNING: [Synth 8-614] signal 'hit_p_xy2' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:116]
+WARNING: [Synth 8-614] signal 'uv_coord' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:116]
+INFO: [Synth 8-256] done synthesizing module 'block_collision' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:25]
+INFO: [Synth 8-256] done synthesizing module 'top_module' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:19]
+WARNING: [Synth 8-7129] Port block_p[x][31] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][30] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][29] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][28] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][27] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][26] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][25] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][24] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][23] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][22] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][21] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][20] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][19] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][18] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][17] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][16] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][15] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][14] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][13] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][12] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][11] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][10] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][9] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][8] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][7] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][6] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][5] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][4] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][3] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][2] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][1] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[x][0] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][31] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][30] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][29] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][28] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][27] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][26] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][25] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][24] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][23] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][22] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][21] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][20] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][19] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][18] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][17] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][16] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][15] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][14] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][13] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][12] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][11] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][10] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][9] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][8] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][7] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][6] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][5] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][4] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][3] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][2] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][1] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[y][0] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][31] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][30] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][29] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][28] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][27] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][26] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][25] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][24] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][23] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][22] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][21] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][20] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][19] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][18] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][17] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][16] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][15] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][14] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][13] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][12] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][11] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][10] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][9] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][8] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][7] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][6] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][5] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][4] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][3] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][2] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][1] in module block_collision is either unconnected or has no load
+WARNING: [Synth 8-7129] Port block_p[z][0] in module block_collision is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Synthesize : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1712.898 ; gain = 453.051 ; free physical = 397 ; free virtual = 25309
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1057.303; parent = 848.833; children = 208.470
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 2721.746; parent = 1712.902; children = 1008.844
+Finished RTL Elaboration : Time (s): cpu = 00:01:10 ; elapsed = 00:01:13 . Memory (MB): peak = 2762.242 ; gain = 1189.496 ; free physical = 1295 ; free virtual = 20519
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2220.062; parent = 2004.344; children = 215.803
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3771.090; parent = 2762.246; children = 1008.844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1730.711 ; gain = 470.863 ; free physical = 388 ; free virtual = 25300
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1057.303; parent = 848.833; children = 208.470
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 2739.559; parent = 1730.715; children = 1008.844
+Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Start Loading Part and Timing Information
----------------------------------------------------------------------------------
-Loading part: xc7a100tcsg324-1
-INFO: [Device 21-403] Loading part xc7a100tcsg324-1
----------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1738.715 ; gain = 478.867 ; free physical = 388 ; free virtual = 25300
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1057.303; parent = 848.833; children = 208.470
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 2747.562; parent = 1738.719; children = 1008.844
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:13 ; elapsed = 00:01:16 . Memory (MB): peak = 2777.086 ; gain = 1204.340 ; free physical = 1294 ; free virtual = 20519
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2220.062; parent = 2004.344; children = 215.803
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3785.934; parent = 2777.090; children = 1008.844
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1760.668 ; gain = 500.820 ; free physical = 324 ; free virtual = 25237
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1057.303; parent = 848.833; children = 208.470
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 2769.516; parent = 1760.672; children = 1008.844
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:01:13 ; elapsed = 00:01:16 . Memory (MB): peak = 2777.086 ; gain = 1204.340 ; free physical = 1294 ; free virtual = 20519
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2220.062; parent = 2004.344; children = 215.803
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 3785.934; parent = 2777.090; children = 1008.844
 ---------------------------------------------------------------------------------
-No constraint files found.
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 2777.086 ; gain = 0.000 ; free physical = 1238 ; free virtual = 20463
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/xdc/test.xdc]
+Finished Parsing XDC File [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/xdc/test.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/xdc/test.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_module_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_module_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 3008.766 ; gain = 0.000 ; free physical = 1076 ; free virtual = 20312
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.11 . Memory (MB): peak = 3008.766 ; gain = 0.000 ; free physical = 1076 ; free virtual = 20312
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:01:33 ; elapsed = 00:01:34 . Memory (MB): peak = 3008.766 ; gain = 1436.020 ; free physical = 1486 ; free virtual = 20723
+Synthesis current peak Physical Memory [PSS] (MB): peak = 2220.062; parent = 2004.344; children = 215.803
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 4001.605; parent = 2992.762; children = 1008.844
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-327] inferring latch for variable 'hit_p_reg[x]' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:127]
+WARNING: [Synth 8-327] inferring latch for variable 'hit_p_reg[y]' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:127]
+WARNING: [Synth 8-327] inferring latch for variable 'hit_p_reg[z]' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:127]
+WARNING: [Synth 8-327] inferring latch for variable 'hit_dir_reg' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:128]
+WARNING: [Synth 8-327] inferring latch for variable 'uv_f_reg[x]' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:129]
+WARNING: [Synth 8-327] inferring latch for variable 'uv_f_reg[y]' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/block_collision.vhd:129]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:02:54 ; elapsed = 00:02:57 . Memory (MB): peak = 3008.766 ; gain = 1436.020 ; free physical = 283 ; free virtual = 16881
+Synthesis current peak Physical Memory [PSS] (MB): peak = 5609.368; parent = 2004.344; children = 4108.615
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 11881.371; parent = 2996.680; children = 8888.609
+---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input   31 Bit       Adders := 2     
-	   3 Input   28 Bit       Adders := 1     
-	   2 Input   23 Bit       Adders := 2     
-	   2 Input   10 Bit       Adders := 3     
-	   3 Input    9 Bit       Adders := 1     
-	   2 Input    9 Bit       Adders := 1     
-	   2 Input    8 Bit       Adders := 2     
-	   2 Input    6 Bit       Adders := 1     
+	   2 Input   32 Bit       Adders := 137   
+	   2 Input   31 Bit       Adders := 254   
+	   3 Input   29 Bit       Adders := 168   
+	   3 Input   28 Bit       Adders := 85    
+	   2 Input   25 Bit       Adders := 2     
+	   2 Input   23 Bit       Adders := 129   
+	   2 Input   10 Bit       Adders := 267   
+	   4 Input   10 Bit       Adders := 38    
+	   5 Input   10 Bit       Adders := 36    
+	   3 Input   10 Bit       Adders := 14    
+	   3 Input    9 Bit       Adders := 66    
+	   2 Input    9 Bit       Adders := 97    
+	   2 Input    8 Bit       Adders := 129   
+	   2 Input    6 Bit       Adders := 179   
++---XORs : 
+	   2 Input      1 Bit         XORs := 18    
++---Multipliers : 
+	              25x32  Multipliers := 2     
 +---Muxes : 
-	   4 Input   32 Bit        Muxes := 1     
-	   2 Input   32 Bit        Muxes := 4     
-	   2 Input   31 Bit        Muxes := 2     
-	  29 Input   29 Bit        Muxes := 1     
-	   2 Input   28 Bit        Muxes := 11    
-	   2 Input   26 Bit        Muxes := 2     
-	   2 Input   24 Bit        Muxes := 2     
-	   2 Input   23 Bit        Muxes := 4     
-	   2 Input   10 Bit        Muxes := 2     
-	   3 Input   10 Bit        Muxes := 1     
-	   2 Input    9 Bit        Muxes := 4     
-	   4 Input    8 Bit        Muxes := 2     
-	   2 Input    8 Bit        Muxes := 2     
-	   3 Input    4 Bit        Muxes := 6     
-	   2 Input    4 Bit        Muxes := 2     
-	   4 Input    3 Bit        Muxes := 4     
-	   4 Input    1 Bit        Muxes := 2     
-	   2 Input    1 Bit        Muxes := 8     
+	   2 Input   32 Bit        Muxes := 882   
+	   5 Input   32 Bit        Muxes := 66    
+	   4 Input   32 Bit        Muxes := 22    
+	   3 Input   32 Bit        Muxes := 11    
+	   2 Input   31 Bit        Muxes := 129   
+	  29 Input   29 Bit        Muxes := 129   
+	   2 Input   28 Bit        Muxes := 908   
+	   2 Input   27 Bit        Muxes := 162   
+	   3 Input   27 Bit        Muxes := 7     
+	   2 Input   26 Bit        Muxes := 129   
+	  25 Input   25 Bit        Muxes := 50    
+	   2 Input   24 Bit        Muxes := 194   
+	   2 Input   23 Bit        Muxes := 258   
+	   2 Input   10 Bit        Muxes := 174   
+	   2 Input    9 Bit        Muxes := 332   
+	   4 Input    8 Bit        Muxes := 182   
+	   2 Input    8 Bit        Muxes := 645   
+	   3 Input    4 Bit        Muxes := 596   
+	   2 Input    4 Bit        Muxes := 205   
+	   4 Input    3 Bit        Muxes := 391   
+	   2 Input    3 Bit        Muxes := 2     
+	   4 Input    2 Bit        Muxes := 12    
+	   2 Input    2 Bit        Muxes := 4     
+	   2 Input    1 Bit        Muxes := 8398  
+	   4 Input    1 Bit        Muxes := 182   
+	   3 Input    1 Bit        Muxes := 1     
+	   6 Input    1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -192,32 +286,286 @@ BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
 ---------------------------------------------------------------------------------
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
-No constraint files found.
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP result0, operation Mode is: A*B.
+DSP Report: operator result0 is absorbed into DSP result0.
+DSP Report: operator result0 is absorbed into DSP result0.
+DSP Report: Generating DSP result0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator result0 is absorbed into DSP result0.
+DSP Report: operator result0 is absorbed into DSP result0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP result0, operation Mode is: A*B.
+DSP Report: operator result0 is absorbed into DSP result0.
+DSP Report: operator result0 is absorbed into DSP result0.
+DSP Report: Generating DSP result0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator result0 is absorbed into DSP result0.
+DSP Report: operator result0 is absorbed into DSP result0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+WARNING: [Synth 8-3917] design block_collision__GCB44 has port ufract166_out driven by constant 1
+WARNING: [Synth 8-3917] design block_collision__GCB44 has port O381 driven by constant 0
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: Generating DSP fract0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator fract0 is absorbed into DSP fract0.
+DSP Report: operator fract0 is absorbed into DSP fract0.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:25 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 307 ; free virtual = 24972
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:06:34 ; elapsed = 00:06:43 . Memory (MB): peak = 3008.766 ; gain = 1436.020 ; free physical = 719 ; free virtual = 16623
+Synthesis current peak Physical Memory [PSS] (MB): peak = 6097.452; parent = 2004.344; children = 4702.581
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 13169.105; parent = 2996.680; children = 10176.344
 ---------------------------------------------------------------------------------
-No constraint files found.
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++----------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name     | DSP Mapping    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++----------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|plane_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|top_module      | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|top_module      | (PCIN>>17)+A*B | 25     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|top_module      | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|top_module      | (PCIN>>17)+A*B | 25     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B            | 25     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | (PCIN>>17)+A*B | 25     | 8      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++----------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:06:42 ; elapsed = 00:06:51 . Memory (MB): peak = 3008.766 ; gain = 1436.020 ; free physical = 509 ; free virtual = 16503
+Synthesis current peak Physical Memory [PSS] (MB): peak = 6097.452; parent = 2004.344; children = 4702.581
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 13169.105; parent = 2996.680; children = 10176.344
+---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:25 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 306 ; free virtual = 24971
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+Finished Timing Optimization : Time (s): cpu = 00:06:47 ; elapsed = 00:06:57 . Memory (MB): peak = 3008.766 ; gain = 1436.020 ; free physical = 499 ; free virtual = 16493
+Synthesis current peak Physical Memory [PSS] (MB): peak = 6097.452; parent = 2004.344; children = 4702.581
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 13169.105; parent = 2996.680; children = 10176.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:22 ; elapsed = 00:00:26 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 304 ; free virtual = 24969
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+Finished Technology Mapping : Time (s): cpu = 00:07:07 ; elapsed = 00:07:18 . Memory (MB): peak = 3008.766 ; gain = 1436.020 ; free physical = 496 ; free virtual = 16497
+Synthesis current peak Physical Memory [PSS] (MB): peak = 6097.452; parent = 2004.344; children = 4702.581
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 13169.105; parent = 2996.680; children = 10176.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -235,53 +583,132 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 304 ; free virtual = 24969
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+Finished IO Insertion : Time (s): cpu = 00:07:15 ; elapsed = 00:07:26 . Memory (MB): peak = 3008.766 ; gain = 1436.020 ; free physical = 484 ; free virtual = 16489
+Synthesis current peak Physical Memory [PSS] (MB): peak = 6097.452; parent = 2004.344; children = 4702.581
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 13169.105; parent = 2996.680; children = 10176.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 304 ; free virtual = 24969
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+Finished Renaming Generated Instances : Time (s): cpu = 00:07:16 ; elapsed = 00:07:27 . Memory (MB): peak = 3008.766 ; gain = 1436.020 ; free physical = 484 ; free virtual = 16489
+Synthesis current peak Physical Memory [PSS] (MB): peak = 6097.452; parent = 2004.344; children = 4702.581
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 13169.105; parent = 2996.680; children = 10176.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 304 ; free virtual = 24969
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:07:20 ; elapsed = 00:07:32 . Memory (MB): peak = 3008.766 ; gain = 1436.020 ; free physical = 474 ; free virtual = 16480
+Synthesis current peak Physical Memory [PSS] (MB): peak = 6097.452; parent = 2004.344; children = 4702.581
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 13169.105; parent = 2996.680; children = 10176.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 304 ; free virtual = 24969
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+Finished Renaming Generated Ports : Time (s): cpu = 00:07:22 ; elapsed = 00:07:33 . Memory (MB): peak = 3008.766 ; gain = 1436.020 ; free physical = 474 ; free virtual = 16480
+Synthesis current peak Physical Memory [PSS] (MB): peak = 6097.452; parent = 2004.344; children = 4702.581
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 13169.105; parent = 2996.680; children = 10176.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 304 ; free virtual = 24969
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+Finished Handling Custom Attributes : Time (s): cpu = 00:07:24 ; elapsed = 00:07:36 . Memory (MB): peak = 3008.766 ; gain = 1436.020 ; free physical = 481 ; free virtual = 16487
+Synthesis current peak Physical Memory [PSS] (MB): peak = 6097.452; parent = 2004.344; children = 4702.581
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 13169.105; parent = 2996.680; children = 10176.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 304 ; free virtual = 24969
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+Finished Renaming Generated Nets : Time (s): cpu = 00:07:24 ; elapsed = 00:07:36 . Memory (MB): peak = 3008.766 ; gain = 1436.020 ; free physical = 481 ; free virtual = 16487
+Synthesis current peak Physical Memory [PSS] (MB): peak = 6097.452; parent = 2004.344; children = 4702.581
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 13169.105; parent = 2996.680; children = 10176.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++----------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name     | DSP Mapping  | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++----------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 0      | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 0      | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 0      | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 0      | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 0      | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 0      | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 0      | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 0      | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 0      | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 0      | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 0      | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 0      | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 0      | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|block_collision | PCIN>>17+A*B | 0      | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | A*B          | 24     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|plane_collision | PCIN>>17+A*B | 24     | 7      | -      | -      | 31     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++----------------+--------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
 
 Report BlackBoxes: 
 +-+--------------+----------+
@@ -290,51 +717,49 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+-------+------+
-|      |Cell   |Count |
-+------+-------+------+
-|1     |CARRY4 |    28|
-|2     |LUT1   |    49|
-|3     |LUT2   |    46|
-|4     |LUT3   |    81|
-|5     |LUT4   |   163|
-|6     |LUT5   |   148|
-|7     |LUT6   |   408|
-|8     |MUXF7  |     2|
-|9     |IBUF   |    64|
-|10    |OBUF   |    32|
-+------+-------+------+
-
-Report Instance Areas: 
-+------+---------+-------+------+
-|      |Instance |Module |Cells |
-+------+---------+-------+------+
-|1     |top      |       |  1021|
-+------+---------+-------+------+
++------+--------+------+
+|      |Cell    |Count |
++------+--------+------+
+|1     |CARRY4  | 16695|
+|2     |DSP48E1 |    72|
+|3     |LUT1    | 10924|
+|4     |LUT2    | 87912|
+|5     |LUT3    |  7262|
+|6     |LUT4    | 15017|
+|7     |LUT5    | 16956|
+|8     |LUT6    | 34721|
+|9     |MUXF7   |   151|
+|10    |MUXF8   |    22|
+|11    |LD      |    16|
+|12    |OBUF    |    16|
++------+--------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 304 ; free virtual = 24969
-Synthesis current peak Physical Memory [PSS] (MB): peak = 1428.290; parent = 1220.106; children = 208.470
-Synthesis current peak Virtual Memory [VSS] (MB): peak = 3018.906; parent = 2010.062; children = 1008.844
+Finished Writing Synthesis Report : Time (s): cpu = 00:07:25 ; elapsed = 00:07:37 . Memory (MB): peak = 3008.766 ; gain = 1436.020 ; free physical = 481 ; free virtual = 16488
+Synthesis current peak Physical Memory [PSS] (MB): peak = 6097.452; parent = 2004.344; children = 4702.581
+Synthesis current peak Virtual Memory [VSS] (MB): peak = 13169.105; parent = 2996.680; children = 10176.344
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 67 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.059 ; gain = 750.211 ; free physical = 314 ; free virtual = 24979
-Synthesis Optimization Complete : Time (s): cpu = 00:00:25 ; elapsed = 00:00:29 . Memory (MB): peak = 2010.066 ; gain = 750.211 ; free physical = 314 ; free virtual = 24979
+Synthesis finished with 0 errors, 0 critical warnings and 9 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:07:13 ; elapsed = 00:07:30 . Memory (MB): peak = 3008.766 ; gain = 1204.340 ; free physical = 4627 ; free virtual = 20798
+Synthesis Optimization Complete : Time (s): cpu = 00:07:27 ; elapsed = 00:07:41 . Memory (MB): peak = 3008.766 ; gain = 1436.020 ; free physical = 4627 ; free virtual = 20793
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2010.066 ; gain = 0.000 ; free physical = 413 ; free virtual = 25078
-INFO: [Netlist 29-17] Analyzing 30 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 3008.766 ; gain = 0.000 ; free physical = 4532 ; free virtual = 20704
+INFO: [Netlist 29-17] Analyzing 16956 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
-WARNING: [Netlist 29-101] Netlist 'test' is not ideal for floorplanning, since the cellview 'test' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2042.074 ; gain = 0.000 ; free physical = 366 ; free virtual = 25031
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 3016.770 ; gain = 0.000 ; free physical = 4464 ; free virtual = 20657
 INFO: [Project 1-111] Unisim Transformation Summary:
-No Unisim elements were transformed.
+  A total of 16 instances were transformed.
+  LD => LDCE: 16 instances
 
-Synth Design complete, checksum: aca4dc46
+Synth Design complete, checksum: 258690eb
 INFO: [Common 17-83] Releasing license: Synthesis
-47 Infos, 68 Warnings, 0 Critical Warnings and 0 Errors encountered.
+41 Infos, 123 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 2042.074 ; gain = 782.227 ; free physical = 572 ; free virtual = 25237
-INFO: [Common 17-1381] The checkpoint '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/test.dcp' has been generated.
-INFO: [runtcl-4] Executing : report_utilization -file test_utilization_synth.rpt -pb test_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Apr  7 02:26:56 2023...
+synth_design: Time (s): cpu = 00:07:52 ; elapsed = 00:08:06 . Memory (MB): peak = 3016.770 ; gain = 1696.438 ; free physical = 4719 ; free virtual = 20913
+INFO: [Common 17-600] The following parameters have non-default value.
+general.maxThreads
+INFO: [Common 17-1381] The checkpoint '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/top_module.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:09 ; elapsed = 00:00:06 . Memory (MB): peak = 3088.805 ; gain = 72.035 ; free physical = 4673 ; free virtual = 20906
+INFO: [runtcl-4] Executing : report_utilization -file top_module_utilization_synth.rpt -pb top_module_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun Apr  9 20:02:44 2023...

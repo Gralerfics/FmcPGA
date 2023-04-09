@@ -1,5 +1,5 @@
 $date
-  Thu Apr  6 18:38:32 2023
+  Sun Apr  9 19:20:05 2023
 $end
 $version
   GHDL v0
@@ -19,91 +19,125 @@ $scope module numeric_std $end
 $upscope $end
 $scope module math_real $end
 $upscope $end
-$scope module test_tb $end
-$var reg 32 ! a[8:-23] $end
-$var reg 32 " b[8:-23] $end
-$var reg 32 # c[8:-23] $end
+$scope module constants $end
+$upscope $end
+$scope module types $end
+$upscope $end
+$scope module block_collision_tb $end
+$comment start_p is not handled $end
+$comment end_p is not handled $end
+$comment block_p is not handled $end
+$comment hit_p is not handled $end
+$comment hit_dir is not handled $end
+$comment uv_coord is not handled $end
+$var reg 1 ! valid $end
 $scope module uut $end
-$var reg 32 $ a[8:-23] $end
-$var reg 32 % b[8:-23] $end
-$var reg 32 & c[8:-23] $end
+$comment start_p is not handled $end
+$comment end_p is not handled $end
+$comment block_p is not handled $end
+$comment hit_p is not handled $end
+$comment hit_dir is not handled $end
+$comment uv_coord is not handled $end
+$var reg 1 " valid $end
+$comment hit_p_yz1 is not handled $end
+$comment hit_p_yz2 is not handled $end
+$comment hit_p_xz1 is not handled $end
+$comment hit_p_xz2 is not handled $end
+$comment hit_p_xy1 is not handled $end
+$comment hit_p_xy2 is not handled $end
+$var reg 1 # valid_yz1 $end
+$var reg 1 $ valid_yz2 $end
+$var reg 1 % valid_xz1 $end
+$var reg 1 & valid_xz2 $end
+$var reg 1 ' valid_xy1 $end
+$var reg 1 ( valid_xy2 $end
+$var reg 1 ) able_yz1 $end
+$var reg 1 * able_yz2 $end
+$var reg 1 + able_xz1 $end
+$var reg 1 , able_xz2 $end
+$var reg 1 - able_xy1 $end
+$var reg 1 . able_xy2 $end
+$var reg 32 / xi_n[8:-23] $end
+$var reg 32 0 xi_p[8:-23] $end
+$var reg 32 1 yi_n[8:-23] $end
+$var reg 32 2 yi_p[8:-23] $end
+$var reg 32 3 zi_n[8:-23] $end
+$var reg 32 4 zi_p[8:-23] $end
+$scope module plane_collision_yz1 $end
+$comment start_p is not handled $end
+$comment end_p is not handled $end
+$var reg 32 5 plane_val[8:-23] $end
+$comment hit_p is not handled $end
+$var reg 1 6 valid $end
+$upscope $end
+$scope module plane_collision_yz2 $end
+$comment start_p is not handled $end
+$comment end_p is not handled $end
+$var reg 32 7 plane_val[8:-23] $end
+$comment hit_p is not handled $end
+$var reg 1 8 valid $end
+$upscope $end
+$scope module plane_collision_xz1 $end
+$comment start_p is not handled $end
+$comment end_p is not handled $end
+$var reg 32 9 plane_val[8:-23] $end
+$comment hit_p is not handled $end
+$var reg 1 : valid $end
+$upscope $end
+$scope module plane_collision_xz2 $end
+$comment start_p is not handled $end
+$comment end_p is not handled $end
+$var reg 32 ; plane_val[8:-23] $end
+$comment hit_p is not handled $end
+$var reg 1 < valid $end
+$upscope $end
+$scope module plane_collision_xy1 $end
+$comment start_p is not handled $end
+$comment end_p is not handled $end
+$var reg 32 = plane_val[8:-23] $end
+$comment hit_p is not handled $end
+$var reg 1 > valid $end
+$upscope $end
+$scope module plane_collision_xy2 $end
+$comment start_p is not handled $end
+$comment end_p is not handled $end
+$var reg 32 ? plane_val[8:-23] $end
+$comment hit_p is not handled $end
+$var reg 1 @ valid $end
+$upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
-b01000000010011010111000010100100 !
-b10111111100111010111000010100100 "
-b00111111111111010111000010100100 #
-b01000000010011010111000010100100 $
-b10111111100111010111000010100100 %
-b00111111111111010111000010100100 &
-#10000000
-b01000000110011010111000010100100 !
-b11000000000111010111000010100100 "
-b01000000011111010111000010100100 #
-b01000000110011010111000010100100 $
-b11000000000111010111000010100100 %
-b01000000011111010111000010100100 &
-#20000000
-b01000001000110100001010001111011 !
-b11000000011011000010100011110110 "
-b01000000101111100001010001111011 #
-b01000001000110100001010001111011 $
-b11000000011011000010100011110110 %
-b01000000101111100001010001111011 &
-#30000000
-b01000001010011010111000010100100 !
-b11000000100111010111000010100100 "
-b01000000111111010111000010100100 #
-b01000001010011010111000010100100 $
-b11000000100111010111000010100100 %
-b01000000111111010111000010100100 &
-#40000000
-b01000001100000000110011001100110 !
-b11000000110001001100110011001101 "
-b01000001000111100110011001100110 #
-b01000001100000000110011001100110 $
-b11000000110001001100110011001101 %
-b01000001000111100110011001100110 &
-#50000000
-b01000001100110100001010001111010 !
-b11000000111011000010100011110110 "
-b01000001001111100001010001111001 #
-b01000001100110100001010001111010 $
-b11000000111011000010100011110110 %
-b01000001001111100001010001111001 &
-#60000000
-b01000001101100111100001010001110 !
-b11000001000010011100001010010000 "
-b01000001010111011100001010001100 #
-b01000001101100111100001010001110 $
-b11000001000010011100001010010000 %
-b01000001010111011100001010001100 &
-#70000000
-b01000001110011010111000010100010 !
-b11000001000111010111000010100100 "
-b01000001011111010111000010100000 #
-b01000001110011010111000010100010 $
-b11000001000111010111000010100100 %
-b01000001011111010111000010100000 &
-#80000000
-b01000001111001110001111010110110 !
-b11000001001100010001111010111000 "
-b01000001100011101000111101011010 #
-b01000001111001110001111010110110 $
-b11000001001100010001111010111000 %
-b01000001100011101000111101011010 &
-#90000000
-b01000010000000000110011001100101 !
-b11000001010001001100110011001100 "
-b01000001100111100110011001100100 #
-b01000010000000000110011001100101 $
-b11000001010001001100110011001100 %
-b01000001100111100110011001100100 &
-#100000000
-b01000010000011010011110101101111 !
-b11000001010110000111101011100000 "
-b01000001101011100011110101101110 #
-b01000010000011010011110101101111 $
-b11000001010110000111101011100000 %
-b01000001101011100011110101101110 &
+1!
+1"
+1#
+1$
+1%
+1&
+1'
+1(
+0)
+1*
+0+
+1,
+0-
+0.
+b00000000000000000000000000000000 /
+b00111111100000000000000000000000 0
+b00000000000000000000000000000000 1
+b00111111100000000000000000000000 2
+b00000000000000000000000000000000 3
+b00111111100000000000000000000000 4
+b00000000000000000000000000000000 5
+16
+b00111111100000000000000000000000 7
+18
+b00000000000000000000000000000000 9
+1:
+b00111111100000000000000000000000 ;
+1<
+b00000000000000000000000000000000 =
+1>
+b00111111100000000000000000000000 ?
+1@

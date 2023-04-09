@@ -1,0 +1,278 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 04:59:54 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Sun Apr  9 20:02:55 2023
+# Process ID: 972387
+# Current directory: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/impl_1
+# Command line: vivado -log top_module.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top_module.tcl -notrace
+# Log file: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/impl_1/top_module.vdi
+# Journal file: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/impl_1/vivado.jou
+# Running On: gralerfics-HP-ZHAN-66-Pro-G1-MT, OS: Linux, CPU Frequency: 3000.000 MHz, CPU Physical cores: 6, Host memory: 16585 MB
+#-----------------------------------------------------------
+Sourcing tcl script '/home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/scripts/Vivado_init.tcl'
+source top_module.tcl -notrace
+Command: link_design -top top_module -part xc7a100tcsg324-1
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+Netlist sorting complete. Time (s): cpu = 00:00:00.52 ; elapsed = 00:00:00.51 . Memory (MB): peak = 1732.766 ; gain = 0.000 ; free physical = 4790 ; free virtual = 21423
+INFO: [Netlist 29-17] Analyzing 16940 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2022.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/xdc/test.xdc]
+Finished Parsing XDC File [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/xdc/test.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1948.332 ; gain = 0.000 ; free physical = 4630 ; free virtual = 21283
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+7 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 1948.332 ; gain = 649.504 ; free physical = 4630 ; free virtual = 21283
+INFO: [Common 17-600] The following parameters have non-default value.
+general.maxThreads
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a100t'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 6 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.67 . Memory (MB): peak = 2023.105 ; gain = 74.773 ; free physical = 4617 ; free virtual = 21270
+
+Starting Cache Timing Information Task
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Ending Cache Timing Information Task | Checksum: 14299df7d
+
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:07 . Memory (MB): peak = 2581.926 ; gain = 558.820 ; free physical = 4063 ; free virtual = 20734
+
+Starting Logic Optimization Task
+
+Phase 1 Retarget
+INFO: [Opt 31-1287] Pulled Inverter fract0__0_i_77__5 into driver instance uut/plane_collision_xy1/fract0__0_i_42__5, which resulted in an inversion of 6 pins
+INFO: [Opt 31-1287] Pulled Inverter fract0__0_i_77__8 into driver instance uut/plane_collision_xy2/fract0__0_i_42__8, which resulted in an inversion of 6 pins
+INFO: [Opt 31-1287] Pulled Inverter fract0__0_i_78__5 into driver instance uut/plane_collision_xy1/fract0__0_i_51__5, which resulted in an inversion of 6 pins
+INFO: [Opt 31-1287] Pulled Inverter fract0__0_i_78__8 into driver instance uut/plane_collision_xy2/fract0__0_i_51__8, which resulted in an inversion of 6 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_32__11 into driver instance uut/fract0__0_i_14__12, which resulted in an inversion of 3 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_33__11 into driver instance uut/fract0__0_i_15__12, which resulted in an inversion of 3 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_33__19 into driver instance uut/fract0__0_i_14__20, which resulted in an inversion of 3 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_34__21 into driver instance uut/fract0__0_i_15__21, which resulted in an inversion of 3 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_40__12 into driver instance uut/fract0__0_i_17__11, which resulted in an inversion of 3 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_41__12 into driver instance uut/fract0__0_i_18__9, which resulted in an inversion of 3 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_42__12 into driver instance uut/fract0__0_i_19__12, which resulted in an inversion of 3 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_43__12 into driver instance uut/fract0__0_i_20__10, which resulted in an inversion of 3 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_43__20 into driver instance uut/fract0__0_i_16__24, which resulted in an inversion of 3 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_43__23 into driver instance uut/fract0__0_i_16__23, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_44__21 into driver instance uut/fract0__0_i_18__24, which resulted in an inversion of 3 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_44__24 into driver instance uut/fract0__0_i_17__23, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_45__19 into driver instance uut/fract0__0_i_19__24, which resulted in an inversion of 3 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_46__18 into driver instance uut/fract0__0_i_20__24, which resulted in an inversion of 3 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_52__24 into driver instance uut/fract0__0_i_18__20, which resulted in an inversion of 6 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_53__19 into driver instance uut/fract0__0_i_20__20, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_54__21 into driver instance uut/fract0__0_i_21__24, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_55__21 into driver instance uut/fract0__0_i_22__20, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_56__16 into driver instance uut/fract0_i_269__21, which resulted in an inversion of 2 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__0_i_75__9 into driver instance uut/fract0_i_254__11, which resulted in an inversion of 28 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_116__1 into driver instance uut/fract0__1_i_46, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_117__3 into driver instance uut/fract0__1_i_47__3, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_117__5 into driver instance uut/fract0__1_i_42__6, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_118__1 into driver instance uut/fract0__1_i_48, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_118__3 into driver instance uut/fract0__1_i_48__4, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_119__3 into driver instance uut/fract0__1_i_49__1, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_119__4 into driver instance uut/fract0__1_i_49__4, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_120__5 into driver instance uut/fract0__1_i_50__4, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_131__3 into driver instance uut/fract0__1_i_52__1, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_132__3 into driver instance uut/fract0__1_i_53__1, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_133__3 into driver instance uut/fract0__1_i_54__1, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_134__3 into driver instance uut/fract0__1_i_55__1, which resulted in an inversion of 6 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_135__5 into driver instance uut/fract0__1_i_51__4, which resulted in an inversion of 6 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_136__5 into driver instance uut/fract0__1_i_53__4, which resulted in an inversion of 6 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_137__2 into driver instance uut/fract0__1_i_54__4, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_138__4 into driver instance uut/fract0__1_i_55__4, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_147__1 into driver instance uut/fract0__1_i_57__1, which resulted in an inversion of 6 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_147__3 into driver instance uut/fract0__1_i_56__6, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_148__3 into driver instance uut/fract0__1_i_58__1, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_148__5 into driver instance uut/fract0__1_i_58__4, which resulted in an inversion of 6 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_149__3 into driver instance uut/fract0__1_i_59__1, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_149__4 into driver instance uut/fract0__1_i_59__4, which resulted in an inversion of 6 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_150__3 into driver instance uut/fract0__1_i_60__1, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_150__4 into driver instance uut/fract0__1_i_60__4, which resulted in an inversion of 7 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_161__4 into driver instance uut/fract0__1_i_66__3, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_162__4 into driver instance uut/fract0__1_i_62__1, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_162__6 into driver instance uut/fract0__1_i_66__6, which resulted in an inversion of 7 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_163__3 into driver instance uut/fract0__1_i_63__1, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_164__4 into driver instance uut/fract0__1_i_137__1, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_164__6 into driver instance uut/fract0__1_i_63__4, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_165__4 into driver instance uut/fract0__1_i_65__1, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_165__6 into driver instance uut/fract0__1_i_64__4, which resulted in an inversion of 6 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_166__5 into driver instance uut/fract0__1_i_65__4, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_18__0 into driver instance uut/fract0__1_i_67__5, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_548__3 into driver instance uut/fract0__2_i_42__6, which resulted in an inversion of 42 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_549__4 into driver instance uut/fract0__1_i_407__6, which resulted in an inversion of 37 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_550__3 into driver instance uut/fract0__1_i_297__6, which resulted in an inversion of 30 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/fract0__1_i_551__4 into driver instance uut/fract0__1_i_252__3, which resulted in an inversion of 37 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__0_i_32__18 into driver instance uut/plane_collision_yz2/fract0__0_i_13__16, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__0_i_33__18 into driver instance uut/plane_collision_yz2/fract0__0_i_15__20, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__0_i_34__22 into driver instance uut/plane_collision_yz2/fract0__0_i_15__22, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__0_i_35__22 into driver instance uut/plane_collision_yz2/fract0__0_i_16__21, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__0_i_38__20 into driver instance uut/plane_collision_yz2/fract0__0_i_16__20, which resulted in an inversion of 6 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__0_i_39__20 into driver instance uut/plane_collision_yz2/fract0__0_i_18__17, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__0_i_40__19 into driver instance uut/plane_collision_yz2/fract0__0_i_19__19, which resulted in an inversion of 3 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__0_i_41__20 into driver instance uut/plane_collision_yz2/fract0__0_i_20__17, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__0_i_41__22 into driver instance uut/plane_collision_yz2/fract0__0_i_18__18, which resulted in an inversion of 6 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__0_i_42__22 into driver instance uut/plane_collision_yz2/fract0__0_i_19__20, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__0_i_43__21 into driver instance uut/plane_collision_yz2/fract0__0_i_20__18, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__0_i_44__22 into driver instance uut/plane_collision_yz2/fract0__0_i_51__22, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__0_i_53__0 into driver instance uut/plane_collision_yz2/fract0_i_487__1, which resulted in an inversion of 15 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__0_i_90__0 into driver instance uut/plane_collision_yz2/fract0_i_500__1, which resulted in an inversion of 7 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_105__0 into driver instance uut/plane_collision_yz2/fract0__1_i_46__6, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_106__0 into driver instance uut/plane_collision_yz2/fract0__1_i_48__6, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_107__0 into driver instance uut/plane_collision_yz2/fract0__1_i_49__6, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_108__0 into driver instance uut/plane_collision_yz2/fract0__1_i_50__6, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_135__0 into driver instance uut/plane_collision_yz2/fract0__1_i_51__6, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_136__0 into driver instance uut/plane_collision_yz2/fract0__1_i_53__6, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_137__0 into driver instance uut/plane_collision_yz2/fract0__1_i_54__6, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_138__0 into driver instance uut/plane_collision_yz2/fract0__1_i_55__6, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_149__0 into driver instance uut/plane_collision_yz2/fract0__1_i_57__6, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_150__0 into driver instance uut/plane_collision_yz2/fract0__1_i_58__6, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_151__0 into driver instance uut/plane_collision_yz2/fract0__1_i_59__6, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_152__0 into driver instance uut/plane_collision_yz2/fract0__1_i_60__6, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_165__0 into driver instance uut/plane_collision_yz2/fract0__1_i_123__6, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_166__0 into driver instance uut/plane_collision_yz2/fract0__1_i_62__6, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_167__0 into driver instance uut/plane_collision_yz2/fract0__1_i_63__6, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_168__0 into driver instance uut/plane_collision_yz2/fract0__1_i_64__6, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_169__0 into driver instance uut/plane_collision_yz2/fract0__1_i_65__6, which resulted in an inversion of 5 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_17__0 into driver instance uut/plane_collision_yz2/fract0__1_i_66__0, which resulted in an inversion of 39 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_363__0 into driver instance uut/plane_collision_yz2/fract0__1_i_365__0, which resulted in an inversion of 31 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_364__0 into driver instance uut/plane_collision_yz2/fract0__1_i_240__0, which resulted in an inversion of 8 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_486__0 into driver instance uut/plane_collision_yz2/fract0__1_i_303__0, which resulted in an inversion of 36 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__1_i_539__0 into driver instance uut/plane_collision_yz2/fract0__2_i_40__0, which resulted in an inversion of 4 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__2_i_16__0 into driver instance uut/plane_collision_yz2/fract0__2_i_9__6, which resulted in an inversion of 2 pins
+INFO: [Opt 31-1287] Pulled Inverter uut/plane_collision_yz2/fract0__2_i_17__0 into driver instance uut/plane_collision_yz2/fract0__2_i_10__0, which resulted in an inversion of 2 pins
+INFO: [Common 17-14] Message 'Opt 31-1287' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: 6bd3f044
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 2873.754 ; gain = 0.000 ; free physical = 3959 ; free virtual = 20632
+INFO: [Opt 31-389] Phase Retarget created 292 cells and removed 3659 cells
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 236 inverter(s) to 1835 load pin(s).
+Phase 2 Constant propagation | Checksum: aff015e8
+
+Time (s): cpu = 00:00:11 ; elapsed = 00:00:10 . Memory (MB): peak = 2873.754 ; gain = 0.000 ; free physical = 3959 ; free virtual = 20631
+INFO: [Opt 31-389] Phase Constant propagation created 5276 cells and removed 25126 cells
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: 149291677
+
+Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2873.754 ; gain = 0.000 ; free physical = 3948 ; free virtual = 20621
+INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 25123 cells
+
+Phase 4 BUFG optimization
+Phase 4 BUFG optimization | Checksum: 149291677
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:14 . Memory (MB): peak = 2905.770 ; gain = 32.016 ; free physical = 3943 ; free virtual = 20616
+INFO: [Opt 31-662] Phase BUFG optimization created 0 cells of which 0 are BUFGs and removed 0 cells.
+
+Phase 5 Shift Register Optimization
+INFO: [Opt 31-1064] SRL Remap converted 0 SRLs to 0 registers and converted 0 registers of register chains to 0 SRLs
+Phase 5 Shift Register Optimization | Checksum: 149291677
+
+Time (s): cpu = 00:00:15 ; elapsed = 00:00:14 . Memory (MB): peak = 2905.770 ; gain = 32.016 ; free physical = 3943 ; free virtual = 20616
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Phase 6 Post Processing Netlist
+Phase 6 Post Processing Netlist | Checksum: 80f9b4dd
+
+Time (s): cpu = 00:00:16 ; elapsed = 00:00:14 . Memory (MB): peak = 2905.770 ; gain = 32.016 ; free physical = 3943 ; free virtual = 20616
+INFO: [Opt 31-389] Phase Post Processing Netlist created 0 cells and removed 124 cells
+Opt_design Change Summary
+=========================
+
+
+-------------------------------------------------------------------------------------------------------------------------
+|  Phase                        |  #Cells created  |  #Cells Removed  |  #Constrained objects preventing optimizations  |
+-------------------------------------------------------------------------------------------------------------------------
+|  Retarget                     |             292  |            3659  |                                              0  |
+|  Constant propagation         |            5276  |           25126  |                                              0  |
+|  Sweep                        |               0  |           25123  |                                              0  |
+|  BUFG optimization            |               0  |               0  |                                              0  |
+|  Shift Register Optimization  |               0  |               0  |                                              0  |
+|  Post Processing Netlist      |               0  |             124  |                                              0  |
+-------------------------------------------------------------------------------------------------------------------------
+
+
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00.22 ; elapsed = 00:00:00.22 . Memory (MB): peak = 2905.770 ; gain = 0.000 ; free physical = 3943 ; free virtual = 20616
+Ending Logic Optimization Task | Checksum: 13061989e
+
+Time (s): cpu = 00:00:20 ; elapsed = 00:00:18 . Memory (MB): peak = 2905.770 ; gain = 32.016 ; free physical = 3943 ; free virtual = 20616
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+Ending Power Optimization Task | Checksum: 13061989e
+
+Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.05 . Memory (MB): peak = 2905.770 ; gain = 0.000 ; free physical = 3943 ; free virtual = 20616
+
+Starting Final Cleanup Task
+Ending Final Cleanup Task | Checksum: 13061989e
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2905.770 ; gain = 0.000 ; free physical = 3943 ; free virtual = 20616
+
+Starting Netlist Obfuscation Task
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2905.770 ; gain = 0.000 ; free physical = 3943 ; free virtual = 20616
+Ending Netlist Obfuscation Task | Checksum: 13061989e
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2905.770 ; gain = 0.000 ; free physical = 3943 ; free virtual = 20616
+INFO: [Common 17-83] Releasing license: Implementation
+126 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:33 ; elapsed = 00:00:28 . Memory (MB): peak = 2905.770 ; gain = 957.438 ; free physical = 3943 ; free virtual = 20616
+INFO: [Common 17-600] The following parameters have non-default value.
+general.maxThreads
+INFO: [Timing 38-480] Writing timing data to binary archive.
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2913.773 ; gain = 0.000 ; free physical = 3943 ; free virtual = 20616
+INFO: [Common 17-1381] The checkpoint '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/impl_1/top_module_opt.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:09 ; elapsed = 00:00:05 . Memory (MB): peak = 2953.793 ; gain = 48.023 ; free physical = 3912 ; free virtual = 20602
+INFO: [runtcl-4] Executing : report_drc -file top_module_drc_opted.rpt -pb top_module_drc_opted.pb -rpx top_module_drc_opted.rpx
+Command: report_drc -file top_module_drc_opted.rpt -pb top_module_drc_opted.pb -rpx top_module_drc_opted.rpx
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/data/ip'.
+INFO: [DRC 23-27] Running DRC with 6 threads
+INFO: [Vivado_Tcl 2-168] The results of DRC are in file /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/impl_1/top_module_drc_opted.rpt.
+report_drc completed successfully
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a100t'
+INFO: [DRC 23-27] Running DRC with 6 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 6 threads
+ERROR: [DRC UTLZ-1] Resource utilization: LUT as Logic over-utilized in Top Level Design (This design requires more LUT as Logic cells than are available in the target device. This design requires 90979 of such cell types but only 63400 compatible sites are available in the target device. Please analyze your synthesis results and constraints to ensure the design is mapped to Xilinx primitives as expected. If so, please consider targeting a larger device. Please set tcl parameter "drc.disableLUTOverUtilError" to 1 to change this error to warning.)
+ERROR: [DRC UTLZ-1] Resource utilization: LUT1 and LUT2 and LUT3 and LUT4 and LUT5 and LUT6 over-utilized in Top Level Design (This design requires more LUT1 and LUT2 and LUT3 and LUT4 and LUT5 and LUT6 cells than are available in the target device. This design requires 128479 of such cell types but only 126800 compatible sites are available in the target device. Please analyze your synthesis results and constraints to ensure the design is mapped to Xilinx primitives as expected. If so, please consider targeting a larger device.)
+ERROR: [DRC UTLZ-1] Resource utilization: Slice LUTs over-utilized in Top Level Design (This design requires more Slice LUTs cells than are available in the target device. This design requires 90979 of such cell types but only 63400 compatible sites are available in the target device. Please analyze your synthesis results and constraints to ensure the design is mapped to Xilinx primitives as expected. If so, please consider targeting a larger device. Please set tcl parameter "drc.disableLUTOverUtilError" to 1 to change this error to warning.)
+INFO: [Vivado_Tcl 4-198] DRC finished with 3 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+ERROR: [Vivado_Tcl 4-23] Error(s) found during DRC. Placer not run.
+INFO: [Common 17-83] Releasing license: Implementation
+143 Infos, 0 Warnings, 0 Critical Warnings and 4 Errors encountered.
+place_design failed
+INFO: [Common 17-600] The following parameters have non-default value.
+general.maxThreads
+ERROR: [Common 17-39] 'place_design' failed due to earlier errors.
+
+INFO: [Common 17-206] Exiting Vivado at Sun Apr  9 20:03:58 2023...

@@ -1,0 +1,10 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.sim/sim_1/impl/timing/xsim/top_module_tb_time_impl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module block_collision
+INFO: [VRFC 10-311] analyzing module plane_collision
+INFO: [VRFC 10-311] analyzing module plane_collision_2
+INFO: [VRFC 10-311] analyzing module plane_collision__parameterized2
+INFO: [VRFC 10-311] analyzing module plane_collision__parameterized2_1
+INFO: [VRFC 10-311] analyzing module plane_collision__parameterized4
+INFO: [VRFC 10-311] analyzing module plane_collision__parameterized4_0
+INFO: [VRFC 10-311] analyzing module top_module
+INFO: [VRFC 10-311] analyzing module glbl

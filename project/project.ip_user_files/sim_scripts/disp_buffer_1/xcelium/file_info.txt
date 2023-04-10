@@ -1,3 +1,0 @@
-blk_mem_gen_v8_4.v,verilog,blk_mem_gen_v8_4_5,../../../ipstatic/simulation/blk_mem_gen_v8_4.v,
-disp_buffer_1.v,verilog,xil_defaultlib,../../../../../ips/disp_buffer_1/sim/disp_buffer_1.v,
-glbl.v,Verilog,xil_defaultlib,glbl.v

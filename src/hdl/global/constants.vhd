@@ -1,9 +1,6 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 
-library IEEE_PROPOSED;
-use IEEE.float_pkg.all;
-
 
 package constants is
     -- display constants. (dimension divided by 2)
@@ -20,17 +17,9 @@ package constants is
     constant VRAM_ADDR_RADIX: integer := 17;
 
     -- texture constants.
-    constant TEXTURE_SCALE: integer := 16;
-
-    -- camera (radar) constants.
-    constant EYE_DISTANCE: float32 := to_float32(to_float(0.4));
-    constant EYE_PIXEL_SIZE: float32 := to_float32(to_float(0.001));
+    constant CUBERES: integer := 16;
 
     -- map constants.
-    constant MAX_DISTANCE: float32 := to_float32(to_float(1.0E6));
-    constant MIN_DISTANCE: float32 := EYE_DISTANCE;
-
-    -- math constants.
-    constant PI: float32 := to_float32(to_float(3.1415926));
-    constant FLOAT_EPS: float32 := to_float32(to_float(0.00001));
+    constant MAXD: integer := 10000000;
+    constant MIND: integer := 7;
 end package;

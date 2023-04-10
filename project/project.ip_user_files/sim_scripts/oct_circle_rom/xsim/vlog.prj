@@ -1,0 +1,6 @@
+verilog xil_defaultlib  \
+"../../../../../ips/oct_circle_rom/sim/oct_circle_rom.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort

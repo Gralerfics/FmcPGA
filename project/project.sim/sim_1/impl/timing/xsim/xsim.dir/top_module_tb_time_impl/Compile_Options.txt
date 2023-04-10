@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "32" --maxdelay -L "xil_defaultlib" -L "simprims_ver" -L "secureip" --snapshot "top_module_tb_time_impl" -transport_int_delays -pulse_r "0" -pulse_int_r "0" -pulse_e "0" -pulse_int_e "0" "xil_defaultlib.top_module_tb" "xil_defaultlib.glbl" -log "elaborate.log" 

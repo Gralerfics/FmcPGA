@@ -1,7 +1,0 @@
-Running: xsim.dir/plane_collision_tb_behav/xsimk -simmode gui -wdb plane_collision_tb_behav.wdb -simrunnum 0 -socket 42757
-Design successfully loaded
-Design Loading Memory Usage: 27844 KB (Peak: 27964 KB)
-Design Loading CPU Usage: 80 ms
-Simulation completed
-Simulation Memory Usage: 117780 KB (Peak: 167112 KB)
-Simulation CPU Usage: 90 ms

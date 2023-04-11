@@ -9,7 +9,7 @@ use work.types.all;
 entity block_collision is
     port (
         start_p, end_p: in vec3i_t;
-        block_p: in vec3i_t;
+        block_p: in vec3i_t;    -- idx
         hit_p: out vec3i_t;
         hit_dir: out dir_t;
         uv_coord: out vec2i_t;
@@ -97,7 +97,7 @@ begin
         );
     able_xy2 <= '1' when valid_xy2 = '1' and (hit_p_xy2.x >= xi_n and hit_p_xy2.x < xi_p and hit_p_xy2.y >= yi_n and hit_p_xy2.y < yi_p) else '0';
 
-    process (start_p, end_p, block_p, able_yz1, able_yz2, able_xz1, able_xz2, able_xy1, able_xy2)
+    process (start_p, end_p, block_p, able_yz1, able_yz2, able_xz1, able_xz2, able_xy1, able_xy2) is
         variable min_dist, dist: integer;
         constant MAXUV: integer := CUBERES - 1;
     begin
@@ -110,7 +110,7 @@ begin
                 min_dist := dist;
                 hit_p <= hit_p_yz1;
                 hit_dir <= X_N;
-                uv_coord <= (MAXUV - (hit_p_yz1.y mod CUBERES), MAXUV - (hit_p_yz1.z mod CUBERES));
+                uv_coord <= (MAXUV - (hit_p_yz1.y - yi_n), MAXUV - (hit_p_yz1.z - zi_n));
             end if;
         end if;
         if able_yz2 = '1' then
@@ -120,7 +120,7 @@ begin
                 min_dist := dist;
                 hit_p <= hit_p_yz2;
                 hit_dir <= X_P;
-                uv_coord <= (hit_p_yz2.y mod CUBERES, MAXUV - (hit_p_yz2.z mod CUBERES));
+                uv_coord <= (hit_p_yz2.y - yi_n, MAXUV - (hit_p_yz2.z - zi_n));
             end if;
         end if;
         if able_xz1 = '1' then
@@ -130,7 +130,7 @@ begin
                 min_dist := dist;
                 hit_p <= hit_p_xz1;
                 hit_dir <= Y_N;
-                uv_coord <= (hit_p_xz1.x mod CUBERES, MAXUV - (hit_p_xz1.z mod CUBERES));
+                uv_coord <= (hit_p_xz1.x - xi_n, MAXUV - (hit_p_xz1.z - zi_n));
             end if;
         end if;
         if able_xz2 = '1' then
@@ -140,7 +140,7 @@ begin
                 min_dist := dist;
                 hit_p <= hit_p_xz2;
                 hit_dir <= Y_P;
-                uv_coord <= (MAXUV - (hit_p_xz2.x mod CUBERES), MAXUV - (hit_p_xz2.z mod CUBERES));
+                uv_coord <= (MAXUV - (hit_p_xz2.x - xi_n), MAXUV - (hit_p_xz2.z - zi_n));
             end if;
         end if;
         if able_xy1 = '1' then
@@ -150,7 +150,7 @@ begin
                 min_dist := dist;
                 hit_p <= hit_p_xy1;
                 hit_dir <= Z_N;
-                uv_coord <= (hit_p_xy1.x mod CUBERES, hit_p_xy1.y mod CUBERES);
+                uv_coord <= (hit_p_xy1.x - xi_n, hit_p_xy1.y - yi_n);
             end if;
         end if;
         if able_xy2 = '1' then
@@ -160,7 +160,7 @@ begin
                 min_dist := dist;
                 hit_p <= hit_p_xy2;
                 hit_dir <= Z_P;
-                uv_coord <= (MAXUV - (hit_p_xy2.x mod CUBERES), hit_p_xy2.y mod CUBERES);
+                uv_coord <= (MAXUV - (hit_p_xy2.x - xi_n), hit_p_xy2.y - yi_n);
             end if;
         end if;
     end process;

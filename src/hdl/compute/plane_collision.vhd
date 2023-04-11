@@ -20,7 +20,7 @@ end entity;
 
 architecture Behavioral of plane_collision is
 begin
-    process (start_p, end_p, plane_val)
+    process (start_p, end_p, plane_val) is
         variable delta_x, delta_y, delta_z: integer;
         variable occ_x, occ_y, occ_z: integer;
     begin

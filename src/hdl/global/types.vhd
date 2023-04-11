@@ -1,5 +1,6 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
 
 use work.constants.all;
 
@@ -8,6 +9,8 @@ package types is
     type axis_t is (X_AXIS, Y_AXIS, Z_AXIS);
 
     type dir_t is (X_P, X_N, Y_P, Y_N, Z_P, Z_N);
+
+    subtype int is signed(19 downto 0);
 
     type vec2i_t is record
         x: integer;
@@ -36,6 +39,7 @@ package types is
     function length2(v: vec3i_t) return integer;
     function length_mht(v: vec3i_t) return integer;
 end package;
+
 
 package body types is
     function "+"(v1, v2: vec3i_t) return vec3i_t is

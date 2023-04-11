@@ -1,6 +1,9 @@
 # compile vhdl design source files
 vhdl2008 xil_defaultlib  \
+"../../../../../../src/tb/plane_collision_tb.vhd" \
+"../../../../../../src/tb/block_collision_tb.vhd" \
 "../../../../../../src/tb/top_module_tb.vhd" \
+"../../../../../../src/tb/display_controller_tb.vhd" \
 
 # Do not sort compile order
 nosort

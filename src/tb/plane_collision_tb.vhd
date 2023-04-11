@@ -24,7 +24,7 @@ architecture Behavioral of plane_collision_tb is
     signal plane_val: integer;
     signal hit_p: vec3i_t;
     signal valid: std_logic;
-    signal modtest1, modtest2: integer;
+    signal modtest1, modtest2, divtest, divtest2: integer;
 begin
     uut: plane_collision generic map (T => Y_AXIS)
         port map (
@@ -40,4 +40,6 @@ begin
     plane_val <= 32;
     modtest1 <= 8 mod 3;
     modtest2 <= (-8) mod 3;
+    divtest <= -1 / 2;
+    divtest2 <= -2 / 2;
 end architecture;

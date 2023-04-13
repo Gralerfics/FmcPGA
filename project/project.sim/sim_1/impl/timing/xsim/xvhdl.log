@@ -1,5 +1,0 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/tb/plane_collision_tb.vhd" into library xil_defaultlib
-ERROR: [VRFC 10-2987] 'types' is not compiled in library 'xil_defaultlib' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/tb/plane_collision_tb.vhd:4]
-INFO: [VRFC 10-3107] analyzing entity 'plane_collision_tb'
-ERROR: [VRFC 10-9458] unit 'plane_collision_tb' is ignored due to previous errors [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/tb/plane_collision_tb.vhd:7]
-INFO: [VRFC 10-8704] VHDL file '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/tb/plane_collision_tb.vhd' is ignored due to errors

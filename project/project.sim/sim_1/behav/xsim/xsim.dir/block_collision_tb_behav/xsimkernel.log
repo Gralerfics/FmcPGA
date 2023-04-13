@@ -1,7 +1,0 @@
-Running: xsim.dir/block_collision_tb_behav/xsimk -simmode gui -wdb block_collision_tb_behav.wdb -simrunnum 0 -socket 54397
-Design successfully loaded
-Design Loading Memory Usage: 27780 KB (Peak: 27900 KB)
-Design Loading CPU Usage: 100 ms
-Simulation completed
-Simulation Memory Usage: 117716 KB (Peak: 167048 KB)
-Simulation CPU Usage: 100 ms

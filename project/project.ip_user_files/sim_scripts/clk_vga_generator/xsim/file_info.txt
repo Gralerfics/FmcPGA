@@ -1,3 +1,0 @@
-clk_vga_generator_clk_wiz.v,verilog,xil_defaultlib,../../../../../ips/clk_vga_generator/clk_vga_generator_clk_wiz.v,incdir="$ref_dir/../../../ipstatic"incdir="../../../ipstatic"
-clk_vga_generator.v,verilog,xil_defaultlib,../../../../../ips/clk_vga_generator/clk_vga_generator.v,incdir="$ref_dir/../../../ipstatic"incdir="../../../ipstatic"
-glbl.v,Verilog,xil_defaultlib,glbl.v

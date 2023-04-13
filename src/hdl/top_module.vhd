@@ -9,8 +9,7 @@ use work.types.all;
 entity top_module is
     port (
         clk_sys, rst: in std_logic;
-        vgaout: out vga_t;
-        tmp_out: out integer
+        vgaout: out vga_t
     );
 end entity;
 
@@ -84,20 +83,6 @@ architecture Behavioral of top_module is
 
     signal p_pos, p_lookat: vec3i_t;
     signal p_angle, p_lookat_h: vec2i_t;
-
-
-
-                                                            type tmp_vec3i_t is array (0 to 1) of vec3i_t;
-                                                            type tmp_dir_t is array (0 to 1) of dir_t;
-                                                            type tmp_vec2i_t is array (0 to 1) of vec2i_t;
-                                                            type tmp_logic_t is array (0 to 1) of std_logic;
-                                                            type tmp_arr is array (0 to 1) of integer;
-
-                                                            signal tmp_hit_p: tmp_vec3i_t;
-                                                            signal tmp_hit_dir: tmp_dir_t;
-                                                            signal tmp_hit_uv: tmp_vec2i_t;
-                                                            signal tmp_hit_valid: tmp_logic_t;
-                                                            signal tmp: tmp_arr;
 begin
     -- Display Controller
         clk_vga_gen: clk_vga_generator
@@ -156,21 +141,5 @@ begin
             );
     
     -- Viewport Scanner
-
     
-    -- Test Resource.
-    gen: for i in 0 to 1 generate
-        uut: block_collision
-            port map (
-                start_p => p_pos + vec3i_t'(i, 0, 0),
-                end_p => p_lookat,
-                block_p => (0, 0, 0),
-                hit_p => tmp_hit_p(i),
-                hit_dir => tmp_hit_dir(i),
-                uv_coord => tmp_hit_uv(i),
-                valid => tmp_hit_valid(i)
-            );
-        tmp(i) <= tmp_hit_p(i).x + tmp_hit_p(i).y + tmp_hit_p(i).z + tmp_hit_uv(i).x + tmp_hit_uv(i).y;
-    end generate;
-    tmp_out <= tmp(0) + tmp(1);
 end architecture;

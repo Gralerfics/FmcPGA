@@ -64,14 +64,13 @@ architecture Behavioral of top_module is
         );
     end component;
 
-    component block_collision is
+    component frequency_divider is
+        generic (
+            period: integer := 100000
+        );
         port (
-            start_p, end_p: in vec3i_t;
-            block_p: in vec3i_t;
-            hit_p: out vec3i_t;
-            hit_dir: out dir_t;
-            uv_coord: out vec2i_t;
-            valid: out std_logic
+            clk_sys, rst: in std_logic;
+            pulse: out std_logic
         );
     end component;
 
@@ -83,6 +82,8 @@ architecture Behavioral of top_module is
 
     signal p_pos, p_lookat: vec3i_t;
     signal p_angle, p_lookat_h: vec2i_t;
+
+    signal tracer_en: std_logic;
 begin
     -- Display Controller
         clk_vga_gen: clk_vga_generator
@@ -126,9 +127,9 @@ begin
             port map (
                 clk_sys => clk_sys,
                 rst => rst,
-                update => '1',          -- TODO
-                pos_in => (0, 0, 0),    -- TODO
-                angle_in => (0, 0),     -- TODO
+                update => '1',              -- TODO
+                pos_in => (80, 60, 70),     -- TODO
+                angle_in => (780, -120),    -- TODO
                 pos => p_pos,
                 angle => p_angle
             );
@@ -141,5 +142,16 @@ begin
             );
     
     -- Viewport Scanner
-    
+
+
+    -- Tracer
+        tracer_freq_div: frequency_divider
+            generic map (
+                period => 20
+            )
+            port map (
+                clk_sys => clk_sys, rst => rst,
+                pulse => tracer_en
+            );
+
 end architecture;

@@ -18,8 +18,15 @@ package constants is
     constant V_REAL: integer := V_ACTIVE / 2;
     constant DISP_RAM_ADDR_RADIX: integer := 17;
 
-    -- texture constants.
-    constant CUBERES: integer := 16;
+    -- block constants.
+    constant TEXTURE_RES: integer := 16;
+    constant TEXTURE_ADDR_RADIX: integer := 10;   -- TODO
+    constant BLOCK_TYPE_RADIX: integer := 5;
+
+    -- map constants.
+    constant MAXD: integer := 10000000;
+    constant MIND: integer := 7;
+    constant MAP_ADDR_RADIX: integer := 17;
 
     -- math constants.
     constant ANGLE_RADIUS: integer := 225;
@@ -27,8 +34,4 @@ package constants is
     constant ANGLE_QUARTER: integer := ANGLE_EIGHTH * 2 + 1;
     constant ANGLE_HALF: integer := ANGLE_EIGHTH * 4 + 2;
     constant ANGLE_MODULO: integer := ANGLE_EIGHTH * 8 + 4;
-
-    -- map constants.
-    constant MAXD: integer := 10000000;
-    constant MIND: integer := 7;
 end package;

@@ -29,31 +29,34 @@ begin
             h_cnt_reg <= 0;
             v_cnt_reg <= 0;
             buf_tick_reg <= '1';
-        elsif rising_edge(clk_vga) and en = '1' then
+        elsif rising_edge(clk_vga) then
             h_cnt_reg <= h_cnt_next;
             v_cnt_reg <= v_cnt_next;
             buf_tick_reg <= buf_tick_next;
         end if;
     end process;
-    h_cnt_next <= 0                 when h_cnt_reg = H_LINE_PERIOD - 1 else
+    h_cnt_next <= h_cnt_reg         when en = '0' else
+                  0                 when h_cnt_reg = H_LINE_PERIOD - 1 else
                   h_cnt_reg + 1;
-    v_cnt_next <= v_cnt_reg         when h_cnt_reg < H_LINE_PERIOD - 1 else
+    v_cnt_next <= v_cnt_reg         when en = '0' or h_cnt_reg < H_LINE_PERIOD - 1 else
                   0                 when v_cnt_reg = V_FRAME_PERIOD - 1 else
                   v_cnt_reg + 1;
-    buf_tick_next <= '1'            when (h_cnt_reg <= H_SYNC_PULSE + H_BACK_PORCH - 2) or (h_cnt_reg >= H_SYNC_PULSE + H_BACK_PORCH + H_ACTIVE - 2) else
+    buf_tick_next <= buf_tick_reg   when en = '0' else
+                     '1'            when (h_cnt_reg <= H_SYNC_PULSE + H_BACK_PORCH - 2) or (h_cnt_reg >= H_SYNC_PULSE + H_BACK_PORCH + H_ACTIVE - 2) else
                      not buf_tick_reg;
 
     process (buf_tick_reg, rst) is
     begin
         if rst = '1' then
             buf_addr_reg <= (others => '0');
-        elsif falling_edge(buf_tick_reg) and en = '1' then
+        elsif falling_edge(buf_tick_reg) then
             buf_addr_reg <= buf_addr_next;
         end if;
     end process;
     scan_x <= (h_cnt_reg - H_SYNC_PULSE - H_BACK_PORCH + 1) / 2; -- next.
     scan_y <= (v_cnt_reg - V_SYNC_PULSE - V_BACK_PORCH) / 2;
-    buf_addr_next <= std_logic_vector(to_unsigned(scan_y * H_REAL + scan_x, DISP_RAM_ADDR_RADIX));
+    buf_addr_next <= buf_addr_reg when en = '0' else
+                     std_logic_vector(to_unsigned(scan_y * H_REAL + scan_x, DISP_RAM_ADDR_RADIX));
 
     hsync_n <= '0' when h_cnt_reg < H_SYNC_PULSE else '1';
     vsync_n <= '0' when v_cnt_reg < V_SYNC_PULSE else '1';

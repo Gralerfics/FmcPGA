@@ -31,6 +31,9 @@ package types is
 
     function "+"(v1, v2: vec3i_t) return vec3i_t;
     function "-"(v1, v2: vec3i_t) return vec3i_t;
+    function "*"(v: vec3i_t; s: integer) return vec3i_t;
+    function "/"(v: vec3i_t; s: integer) return vec3i_t;
+    function cross(v1, v2: vec3i_t) return vec3i_t;
     function length2(v: vec3i_t) return integer;
     function length_mht(v: vec3i_t) return integer;
 
@@ -48,6 +51,23 @@ package body types is
     function "-"(v1, v2: vec3i_t) return vec3i_t is
     begin
         return vec3i_t'(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
+    end function;
+
+    function "*"(v: vec3i_t; s: integer) return vec3i_t is
+    begin
+        return vec3i_t'(v.x * s, v.y * s, v.z * s);
+    end function;
+
+    function "/"(v: vec3i_t; s: integer) return vec3i_t is
+    begin
+        return vec3i_t'(v.x / s, v.y / s, v.z / s);
+    end function;
+
+    function cross(v1, v2: vec3i_t) return vec3i_t is
+    begin
+        return vec3i_t'(v1.y * v2.z - v1.z * v2.y,
+                        v1.z * v2.x - v1.x * v2.z,
+                        v1.x * v2.y - v1.y * v2.x);
     end function;
 
     function length2(v: vec3i_t) return integer is

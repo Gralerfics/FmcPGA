@@ -29,13 +29,13 @@ begin
             v_cnt_reg <= v_cnt_next;
         end if;
     end process;
-    h_cnt_next <= h_cnt_reg         when en = '0' else
+    h_cnt_next <= h_cnt_reg         when en = '0' or tracer_idle = '0' else
                   0                 when h_cnt_reg = H_REAL - 1 else
                   h_cnt_reg + 1;
-    v_cnt_next <= v_cnt_reg         when en = '0' or h_cnt_reg < H_REAL - 1 else
+    v_cnt_next <= v_cnt_reg         when en = '0' or tracer_idle = '0' or h_cnt_reg < H_REAL - 1 else
                   0                 when v_cnt_reg = V_REAL - 1 else
                   v_cnt_reg + 1;
     
-    tracer_start <= '1' when tracer_idle = '1' else '0';
+    tracer_start <= '1';
     pixel <= (h_cnt_reg, v_cnt_reg);
 end architecture;

@@ -28,6 +28,9 @@ package constants is
     constant MIND: integer := 7;
     constant MAP_ADDR_RADIX: integer := 17;
 
+    -- tracing constants.
+    constant LOOKAT_REL_FAC: integer := 2;
+
     -- math constants.
     constant ANGLE_RADIUS: integer := 225;
     constant ANGLE_EIGHTH: integer := 158;

@@ -6,6 +6,8 @@ from resources import textures
 
 
 MAXD = 1000000
+W = 320
+H = 240
 
 
 def angle_coord_convertor(angle):
@@ -74,23 +76,26 @@ world[2, 0:2, 1] = 3
 world[2, 2, 1:4] = 3
 world[2:4, 2, 1] = 3
 
-p_pos = np.array([80, 60, 70])
-p_angle = np.array([780, -120])
-p_lookat = angle_coord_lookat(p_angle)
-v2 = angle_coord_convertor(p_angle[0] - 317)
-v = np.array([v2[0], v2[1], 0])
-u = np.cross(v, p_lookat) // 225
+
 
 
 if __name__ == '__main__':
-    img_shrink = np.zeros((240, 320, 3), np.uint8)
+    img_shrink = np.zeros((H, W, 3), np.uint8)
+
+    p_pos = np.array([80, 60, 70])
+    p_angle = np.array([780, -120])
+    p_lookat = angle_coord_lookat(p_angle)
+    v2 = angle_coord_convertor(p_angle[0] - 317)
+    v = np.array([v2[0], v2[1], 0])
+    u = np.cross(v, p_lookat) // 225
+
     for i in range(0, img_shrink.shape[0]):
         # print(i)
         last_color = np.array([0, 0, 0])
         for j in range(0, img_shrink.shape[1]):
             x, y = j, i
 
-            lookat_rel = p_lookat + v * (x - 160) // 225 + u * (120 - y) // 225
+            lookat_rel = p_lookat + v * (x - W // 2) // 225 + u * (H // 2 - y) // 225
 
             start_p = p_pos
             end_p = p_pos + lookat_rel * 2
@@ -171,7 +176,7 @@ if __name__ == '__main__':
                 
                 cnt += 1
     
-    img = img_shrink.repeat(2, axis=1).repeat(2, axis=0)
+    img = img_shrink.repeat(2, axis=1).repeat(22, axis=0)
     # cv2.imwrite('img_out.png', img)
     cv2.imshow('img', img)
     cv2.waitKey(0)

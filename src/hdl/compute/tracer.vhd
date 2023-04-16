@@ -9,9 +9,7 @@ entity tracer is
     port (
         clk_sys, rst, en: in std_logic;
         start: in std_logic;
-        pixel: in vec2i_t;
-        player_p: in vec3i_t;
-        player_a: in vec2i_t;
+        start_p, end_p: in vec3i_t;
 
         map_read_addr: out std_logic_vector(MAP_ADDR_RADIX - 1 downto 0);
         block_info_in: in std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0);
@@ -21,7 +19,8 @@ entity tracer is
 
         is_idle: out std_logic;
         hit_out: out std_logic;
-        color_out: out color_t
+        color_out: out color_t;
+        valid_color: out std_logic
     );
 end entity;
 
@@ -29,9 +28,7 @@ end entity;
 architecture Behavioral of tracer is
     -- comp
 
-    signal relative_lookat: vec3i_t;
-    signal dir_xyz: std_logic_vector(0 to 2);
-    signal start_p, end_p: vec3i_t;
+    signal dir_xyz: std_logic_vector(2 downto 0);
 
     type state_t is (IDLE, INIT, OPERATE);
     signal state, state_next: state_t;
@@ -50,6 +47,10 @@ architecture Behavioral of tracer is
     signal hit, hit_next: std_logic;
     signal color, color_next: color_t;
 begin
+    dir_xyz(0) <= '1' when end_p.x > start_p.x else '0';
+    dir_xyz(1) <= '1' when end_p.y > start_p.y else '0';
+    dir_xyz(2) <= '1' when end_p.z > start_p.z else '0';
+
     process(clk_sys, rst)
     begin
         if rst = '1' then
@@ -90,27 +91,27 @@ begin
     -- block_info_next <= block_info_in;
     -- color_next <= color_in;
 
-    process (en) is
-    begin
-        case state is
-            when IDLE =>
-                is_idle <= '1';
-                if start = '1' then
-                    state_next <= INIT;
-                else
-                    state_next <= IDLE;
-                end if;
-            when INIT =>
-                is_idle <= '0';
+    -- process () is
+    -- begin
+    --     case state is
+    --         when IDLE =>
+    --             is_idle <= '1';
+    --             if start = '1' then
+    --                 state_next <= INIT;
+    --             else
+    --                 state_next <= IDLE;
+    --             end if;
+    --         when INIT =>
+    --             is_idle <= '0';
 
                 
 
-                cnt_next <= 0;
-                state_next <= OPERATE;
-            when OPERATE =>
+    --             cnt_next <= 0;
+    --             state_next <= OPERATE;
+    --         when OPERATE =>
             
-            when others =>
+    --         when others =>
             
-        end case;
-    end process;
+    --     end case;
+    -- end process;
 end architecture;

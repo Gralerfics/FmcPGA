@@ -50,6 +50,7 @@ architecture Behavioral of tracer is
     signal hit_p_x, hit_p_y, hit_p_z: vec3i_t;
     signal valid_x, valid_y, valid_z: std_logic;
     signal txt_idx: int;
+    signal out_of_map: std_logic;
 
     signal cnt, cnt_next: int;
     signal edges_n, edges_n_next: vec3i_t;
@@ -107,6 +108,8 @@ begin
     valid_x <= '1' when hit_p_x.y >= edges_n.y and hit_p_x.y < edges_n.y + TEXTURE_RES and hit_p_x.z >= edges_n.z and hit_p_x.z < edges_n.z + TEXTURE_RES else '0';
     valid_y <= '1' when hit_p_y.x >= edges_n.x and hit_p_y.x < edges_n.x + TEXTURE_RES and hit_p_y.z >= edges_n.z and hit_p_y.z < edges_n.z + TEXTURE_RES else '0';
     valid_z <= '1' when hit_p_z.x >= edges_n.x and hit_p_z.x < edges_n.x + TEXTURE_RES and hit_p_z.y >= edges_n.y and hit_p_z.y < edges_n.y + TEXTURE_RES else '0';
+
+    out_of_map <= '1' when (block_p.x >= 0 and block_p.x < MAPSIZE_X) and (block_p.y >= 0 and block_p.y < MAPSIZE_Y) and (block_p.z >= 0 and block_p.z < MAPSIZE_Z) else '0';
 
     txt_idx_gen: texture_idx_generator port map (
         block_info => block_info,
@@ -223,7 +226,7 @@ begin
                     write_out <= '1';
                     color_out <= color;
                     valid_color_out <= '1';
-                elsif cnt = TRACE_DEPTH + 2 then
+                elsif cnt = TRACE_DEPTH + 2 or out_of_map = '1' then
                     state_next <= IDLE;
 
                     write_out <= '1';

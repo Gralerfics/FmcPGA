@@ -14,6 +14,6 @@ for i in range(NUM):
     img = cv2.imread('txt/{}.png'.format(i), cv2.IMREAD_COLOR)
     for j in range(16):
         for k in range(16):
-            print(color_to_hex(img[k, j, :] // 16), end=',', file=f)
+            print(color_to_hex(img[j, k, :] // 16), end=',', file=f)
         print('', file=f)
     print('', file=f)

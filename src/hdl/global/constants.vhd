@@ -25,6 +25,9 @@ package constants is
     -- map constants.
     constant MAXD: int := 160000;
     constant MIND: int := 7;
+    constant MAPSIZE_X: int := 64;
+    constant MAPSIZE_Y: int := 64;
+    constant MAPSIZE_Z: int := 32;
 
     -- tracing constants.
     constant LOOKAT_REL_FAC: int := 2;

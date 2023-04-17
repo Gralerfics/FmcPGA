@@ -18,7 +18,7 @@ end entity;
 
 
 architecture Behavioral of disp_ram_writer is
-    constant INTER_LEN: natural := 10;
+    constant INTER_LEN: natural := 15;
 
     signal channels_reg: channels_t(0 to CHANNEL_NUM - 1);
     signal cnt, cnt_next: natural;
@@ -56,7 +56,7 @@ begin
                 cnt;
     cnt_inter_next <= 0 when cnt_inter = INTER_LEN - 1 else
                       cnt_inter + 1;
-    write_tick <= '1' when cnt_inter = 3 and channels_reg(cnt).write_en = '1' else '0';
+    write_tick <= '1' when cnt_inter = 5 and channels_reg(cnt).write_en = '1' else '0';
     write_addr <= channels_reg(cnt).addr;
     write_data <= channels_reg(cnt).color.r & channels_reg(cnt).color.g & channels_reg(cnt).color.b;
 end architecture;

@@ -247,7 +247,7 @@ begin
     -- Viewport Scanner
         freq_div: frequency_divider
             generic map (
-                period => 50
+                period => 60
             )
             port map (
                 clk_sys => clk_sys, rst => rst,

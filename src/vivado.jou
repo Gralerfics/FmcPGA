@@ -24,3 +24,6 @@ export_simulation -of_objects [get_files /home/gralerfics/MyFiles/Workspace/SUST
 reset_run synth_1
 launch_runs impl_1 -to_step write_bitstream -jobs 6
 wait_on_run impl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1

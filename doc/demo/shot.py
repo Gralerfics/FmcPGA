@@ -77,8 +77,6 @@ world[2, 2, 1:4] = 3
 world[2:4, 2, 1] = 3
 
 
-
-
 if __name__ == '__main__':
     img_shrink = np.zeros((H, W, 3), np.uint8)
 
@@ -95,6 +93,7 @@ if __name__ == '__main__':
         for j in range(0, img_shrink.shape[1]):
             x, y = j, i
 
+            # INPUT
             lookat_rel = p_lookat + v * (x - W // 2) // 225 + u * (H // 2 - y) // 225
 
             start_p = p_pos
@@ -107,11 +106,14 @@ if __name__ == '__main__':
             ])
             dir_tot_pn = dir_tot * 2 - 1
 
+            # INIT
             cnt = 0
             block_p = start_p // 16
             edges = (block_p + dir_tot) * 16
             hit_p = start_p
             step_dir = 0
+
+            # OPERATE
             while True:
                 if cnt > 15:
                     img_shrink[i, j, :] = np.array([238, 224, 170])
@@ -156,6 +158,11 @@ if __name__ == '__main__':
                 valid_x = hit_p_x[1] >= block_p[1] * 16 and hit_p_x[1] < (block_p[1] + 1) * 16 and hit_p_x[2] >= block_p[2] * 16 and hit_p_x[2] < (block_p[2] + 1) * 16
                 valid_y = hit_p_y[0] >= block_p[0] * 16 and hit_p_y[0] < (block_p[0] + 1) * 16 and hit_p_y[2] >= block_p[2] * 16 and hit_p_y[2] < (block_p[2] + 1) * 16
                 valid_z = hit_p_z[0] >= block_p[0] * 16 and hit_p_z[0] < (block_p[0] + 1) * 16 and hit_p_z[1] >= block_p[1] * 16 and hit_p_z[1] < (block_p[1] + 1) * 16
+                
+
+                if x == 180 and y == 30:
+                    print(cnt, block_p, edges, hit_p_x, hit_p_y, hit_p_z, valid_x, valid_y, valid_z)
+                
                 if valid_x:
                     step_dir = 0
                 elif valid_y:
@@ -176,7 +183,7 @@ if __name__ == '__main__':
                 
                 cnt += 1
     
-    img = img_shrink.repeat(2, axis=1).repeat(22, axis=0)
+    img = img_shrink.repeat(2, axis=1).repeat(2, axis=0)
     # cv2.imwrite('img_out.png', img)
     cv2.imshow('img', img)
     cv2.waitKey(0)

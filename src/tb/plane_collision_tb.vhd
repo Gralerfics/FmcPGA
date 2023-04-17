@@ -11,7 +11,7 @@ architecture Behavioral of plane_collision_tb is
     component plane_collision is
         port (
             start_p, end_p: in vec3i_t;
-            plane_val: in integer;
+            plane_val: in int;
             hit_p_x, hit_p_y, hit_p_z: out vec3i_t
         );
     end component;

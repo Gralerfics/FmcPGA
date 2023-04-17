@@ -17,7 +17,7 @@ end entity;
 architecture Behavioral of angle_coord_lookat is
     component angle_coord_convertor is
         port (
-            angle: in integer;
+            angle: in int;
             coord: out vec2i_t
         );
     end component;

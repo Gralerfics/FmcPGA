@@ -16,8 +16,8 @@ end entity;
 
 
 architecture Behavioral of viewport_scanner is
-    signal h_cnt_reg, h_cnt_next: integer;
-	signal v_cnt_reg, v_cnt_next: integer;
+    signal h_cnt_reg, h_cnt_next: int;
+	signal v_cnt_reg, v_cnt_next: int;
 begin
     process (clk_sys, rst) is
     begin

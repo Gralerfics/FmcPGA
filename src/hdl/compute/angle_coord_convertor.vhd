@@ -7,7 +7,7 @@ use work.types.all;
 
 entity angle_coord_convertor is
     port (
-        angle: in integer;
+        angle: in int;
         coord: out vec2i_t
     );
 end entity;
@@ -15,12 +15,12 @@ end entity;
 
 -- 方案二: 不使用 ROM, 硬编码 -> 无时序延迟.
 architecture Behavioral of angle_coord_convertor is
-    signal x_mapped, y_mapped: integer;   -- [0, ANGLE_EIGHTH], i.e. [0, 158]
+    signal x_mapped, y_mapped: int;   -- [0, ANGLE_EIGHTH], i.e. [0, 158]
     signal x_inverse, y_inverse, xy_inverse: std_logic;
     signal coord_rev: vec2i_t;
 begin
     process (angle) is
-        variable ang: integer;
+        variable ang: int;
     begin
         x_inverse <= '0';
         y_inverse <= '0';

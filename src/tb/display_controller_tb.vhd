@@ -1,11 +1,13 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 
+use work.types.all;
 use work.constants.all;
 
 
 entity display_controller_tb is
 end entity;
+
 
 architecture Behavioral of display_controller_tb is
     component display_controller is

@@ -2,6 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
+use work.types.all;
 use work.constants.all;
 
 
@@ -17,11 +18,11 @@ end entity;
 
 
 architecture Behavioral of display_controller is
-    signal h_cnt_reg, h_cnt_next: integer;
-	signal v_cnt_reg, v_cnt_next: integer;
+    signal h_cnt_reg, h_cnt_next: int;
+	signal v_cnt_reg, v_cnt_next: int;
     signal buf_tick_reg, buf_tick_next: std_logic;
     signal buf_addr_reg, buf_addr_next: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
-    signal scan_x, scan_y: integer;
+    signal scan_x, scan_y: int;
 begin
     process (clk_vga, rst) is
     begin

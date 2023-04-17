@@ -1,0 +1,251 @@
+/*
+
+Xilinx Vivado v2022.2 (64-bit) [Major: 2022, Minor: 2]
+SW Build: 3671981 on Fri Oct 14 04:59:54 MDT 2022
+IP Build: 3669848 on Fri Oct 14 08:30:02 MDT 2022
+
+Process ID (PID): 5782
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Mon Apr 17 18:38:58 CST 2023
+Time zone: 	China Standard Time (Asia/Shanghai)
+
+OS: Ubuntu
+OS Version: 5.15.0-69-generic
+OS Architecture: amd64
+Available processors (cores): 6
+
+Display: 1
+Screen size: 3840x2160
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=30
+Scale size: 75
+
+Java version: 	11.0.11 64-bit
+Java home: 	/home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/tps/lnx64/jre11.0.11_9
+Java executable: 	/home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/tps/lnx64/jre11.0.11_9/bin/java
+Java arguments: 	[-Dsun.java2d.pmoffscreen=false, -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2, -Dsun.java2d.xrender=false, -Djdk.gtk.version=2, -Dsun.java2d.uiScale.enabled=false, -Xverify:none, -Dswing.aatext=true, -XX:-UsePerfData, -Djdk.map.althashing.threshold=512, -XX:StringTableSize=4072, --add-opens=java.desktop/com.sun.awt=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.base/java.nio=ALL-UNNAMED, --add-opens=java.desktop/sun.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/java.awt.event=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.base/java.nio=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.table=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.desktop/sun.awt.shell=ALL-UNNAMED, --add-exports=java.base/sun.security.action=ALL-UNNAMED, --add-exports=java.desktop/sun.font=ALL-UNNAMED, --add-opens=java.desktop/sun.awt.X11=ALL-UNNAMED, -XX:NewSize=60m, -XX:MaxNewSize=60m, -Xms256m, -Xmx3072m, -Xss5m, -Xrs]
+Java initial memory (-Xms): 	256 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	gralerfics
+User home directory: /home/gralerfics
+User working directory: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /home/gralerfics/MyFiles/Softwares/Xilinx/Vivado
+HDI_APPROOT: /home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2
+RDI_DATADIR: /home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/data
+RDI_BINDIR: /home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/bin
+
+Vivado preferences file: /home/gralerfics/.Xilinx/Vivado/2022.2/vivado.xml
+Vivado preferences directory: /home/gralerfics/.Xilinx/Vivado/2022.2/
+Vivado layouts directory: /home/gralerfics/.Xilinx/Vivado/2022.2/data/layouts
+PlanAhead jar file: 	/home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/lib/classes/planAhead.jar
+Vivado log file: 	/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/vivado.log
+Vivado journal file: 	/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/vivado.jou
+Engine tmp dir: 	./.Xil/Vivado-5782-gralerfics-HP-ZHAN-66-Pro-G1-MT
+
+Xilinx Environment Variables
+----------------------------
+JAVA_HOME: /home/gralerfics/MyFiles/Environments/Java
+RDI_APPROOT: /home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2
+RDI_BASEROOT: /home/gralerfics/MyFiles/Softwares/Xilinx/Vivado
+RDI_BINROOT: /home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/bin
+RDI_BUILD: yes
+RDI_DATADIR: /home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/data
+RDI_INSTALLROOT: /home/gralerfics/MyFiles/Softwares/Xilinx
+RDI_INSTALLVER: 2022.2
+RDI_JAVA_PLATFORM: 
+RDI_JAVA_VERSION: 11.0.11_9
+RDI_LIBDIR: /home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/lib/lnx64.o/Ubuntu/20:/home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/lib/lnx64.o/Ubuntu:/home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/lib/lnx64.o
+RDI_OPT_EXT: .o
+RDI_PATCHROOT: 
+RDI_PLATFORM: lnx64
+RDI_PREPEND_PATH: /home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/ids_lite/ISE/bin/lin64
+RDI_PROG: /home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/bin/unwrapped/lnx64.o/vivado
+RDI_TPS_ROOT: /home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/tps/lnx64
+RDI_USE_JDK11: True
+XILINX: /home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/ids_lite/ISE
+XILINX_DSP: /home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/ids_lite/ISE
+XILINX_HLS: /home/gralerfics/MyFiles/Softwares/Xilinx/Vitis_HLS/2022.2
+XILINX_PLANAHEAD: /home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2
+XILINX_VITIS: 
+XILINX_VIVADO: /home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2
+XILINX_VIVADO_HLS: /home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2
+
+
+GUI allocated memory:	450 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,354 MB
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// Tcl Message: Sourcing tcl script '/home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/scripts/Vivado_init.tcl' 
+selectList(PAResourceQtoS.SyntheticaGettingStartedView_RECENT_PROJECTS, "/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.xpr", 0); // b.a
+// Opening Vivado Project: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.xpr. Version: Vivado v2022.2 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FLOW_ADDED
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 100 MB (+102675kb) [00:00:09]
+// [Engine Memory]: 1,216 MB (+1123301kb) [00:00:09]
+// [GUI Memory]: 129 MB (+24547kb) [00:00:09]
+// WARNING: HEventQueue.dispatchEvent() is taking  2314 ms.
+// [Engine Memory]: 1,354 MB (+80835kb) [00:00:10]
+// Tcl Message: open_project /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.xpr 
+// Tcl Message: INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.gen/sources_1'. 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/data/ip'. 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,196 MB. GUI used memory: 83 MB. Current time: 4/17/23, 6:38:58 PM CST
+// Project name: project; location: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project; part: xc7a100tcsg324-1
+dismissDialog("Open Project"); // bq
+// [GUI Memory]: 136 MB (+343kb) [00:00:14]
+// [GUI Memory]: 151 MB (+8820kb) [00:00:16]
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Open Hardware Manager]", 21, true); // f - Node
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER
+// Tcl Command: 'rdi::info_commands get_hw_probes'
+// Tcl Command: 'load_features labtools'
+// TclEventType: LOAD_FEATURE
+// TclEventType: HW_SESSION_OPEN
+// [GUI Memory]: 168 MB (+10490kb) [00:00:21]
+// WARNING: HEventQueue.dispatchEvent() is taking  1005 ms.
+// Tcl Message: open_hw_manager 
+closeView(PAResourceOtoP.PAViews_PROJECT_SUMMARY, "Project Summary"); // t
+dismissDialog("Open Hardware Manager"); // bq
+// [GUI Memory]: 202 MB (+26513kb) [00:01:02]
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 1328 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true); // f - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_PROJECT_MANAGER
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, top_module(Behavioral) (top_module.vhd)]", 1); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, top_module(Behavioral) (top_module.vhd), txt_rom : texture_rom (texture_rom.xci)]", 10, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, top_module(Behavioral) (top_module.vhd), mp_ram : map_ram (map_ram.xci)]", 9, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, top_module(Behavioral) (top_module.vhd), txt_rom : texture_rom (texture_rom.xci)]", 10, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, top_module(Behavioral) (top_module.vhd), txt_rom : texture_rom (texture_rom.xci)]", 10, false, false, false, false, false, true); // D - Double Click
+// Run Command: PAResourceCommand.PACommandNames_RECUSTOMIZE_CORE
+// TclEventType: LOAD_FEATURE
+selectTab(PAResourceEtoH.HACGCTabbedPane_TABBED_PANE, (HResource) null, "Other Options", 2); // ba
+selectTab(PAResourceEtoH.HACGCTabbedPane_TABBED_PANE, (HResource) null, "Summary", 3); // ba
+selectTab(PAResourceEtoH.HACGCTabbedPane_TABBED_PANE, (HResource) null, "Port A Options", 1); // ba
+selectTab(PAResourceEtoH.HACGCTabbedPane_TABBED_PANE, (HResource) null, "Summary", 3); // ba
+selectTab(PAResourceEtoH.HACGCTabbedPane_TABBED_PANE, (HResource) null, "Other Options", 2); // ba
+selectButton(PAResourceEtoH.HACGCCoeFileWidget_BROWSE, "Browse"); // a
+// [GUI Memory]: 221 MB (+9700kb) [00:23:00]
+setFileChooser("/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/res/coe/textures.coe");
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Re-customize IP"); // m
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILESET_UPDATE_IP
+// Tcl Message: set_property CONFIG.Coe_File {/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/res/coe/textures.coe} [get_ips texture_rom] 
+// Tcl Message: INFO: [IP_Flow 19-3484] Absolute path of file '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/res/coe/textures.coe' provided. It will be converted relative to IP Instance files '../../res/coe/textures.coe' 
+selectButton(PAResourceQtoS.SimpleOutputProductDialog_GENERATE_OUTPUT_PRODUCTS_IMMEDIATELY, "Generate"); // a
+// Tcl Message: generate_target all [get_files  /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/texture_rom/texture_rom.xci] 
+// Tcl Message: INFO: [IP_Flow 19-1686] Generating 'Instantiation Template' target for IP 'texture_rom'... INFO: [IP_Flow 19-1686] Generating 'Synthesis' target for IP 'texture_rom'... 
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'texture_rom'... INFO: [IP_Flow 19-1686] Generating 'Miscellaneous' target for IP 'texture_rom'... INFO: [IP_Flow 19-1686] Generating 'Change Log' target for IP 'texture_rom'... 
+// Tcl Message: catch { config_ip_cache -export [get_ips -all texture_rom] } 
+// Tcl Message: INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: texture_rom 
+// Tcl Message: export_ip_user_files -of_objects [get_files /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/texture_rom/texture_rom.xci] -no_script -sync -force -quiet 
+// TclEventType: FILE_SET_NEW
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_ADD
+// Tcl Message: create_ip_run [get_files -of_objects [get_fileset sources_1] /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/texture_rom/texture_rom.xci] 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: launch_runs texture_rom_synth_1 -jobs 6 
+// Tcl Message: INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: texture_rom 
+// Tcl Message: [Mon Apr 17 19:01:57 2023] Launched texture_rom_synth_1... Run output will be captured here: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/texture_rom_synth_1/runme.log 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_CHANGE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// TclEventType: PACKAGER_MESSAGE_RESET
+// TclEventType: PACKAGER_UNLOAD_CORE
+// TclEventType: RUN_STATUS_CHANGE
+selectButton("OptionPane.button", "OK"); // JButton
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// HMemoryUtils.trashcanNow. Engine heap size: 1,533 MB. GUI used memory: 245 MB. Current time: 4/17/23, 7:02:57 PM CST
+// [GUI Memory]: 249 MB (+16819kb) [00:24:09]
+// [Engine Memory]: 1,533 MB (+117048kb) [00:24:09]
+// Elapsed time: 86 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 20, false); // f
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// [GUI Memory]: 267 MB (+6396kb) [00:24:40]
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// [GUI Memory]: 286 MB (+5359kb) [00:24:40]
+// Tcl Message: reset_run synth_1 
+// Tcl Message: INFO: [Project 1-1161] Replacing file /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.srcs/utils_1/imports/synth_1/test_module.dcp with file /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/top_module.dcp 
+dismissDialog("Resetting Runs"); // bq
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs impl_1 -to_step write_bitstream -jobs 6 
+// Tcl Message: INFO: [Vivado 12-4149] The synthesis checkpoint for IP '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/display_ram/display_ram.xci' is already up-to-date INFO: [Vivado 12-4149] The synthesis checkpoint for IP '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/clk_vga_generator/clk_vga_generator.xci' is already up-to-date 
+// Tcl Message: [Mon Apr 17 19:03:28 2023] Launched synth_1... Run output will be captured here: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/runme.log [Mon Apr 17 19:03:29 2023] Launched impl_1... Run output will be captured here: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/impl_1/runme.log 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// Elapsed time: 470 seconds
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a
+dismissDialog("Bitstream Generation Completed"); // S.a

@@ -109,7 +109,7 @@ begin
     valid_y <= '1' when hit_p_y.x >= edges_n.x and hit_p_y.x < edges_n.x + TEXTURE_RES and hit_p_y.z >= edges_n.z and hit_p_y.z < edges_n.z + TEXTURE_RES else '0';
     valid_z <= '1' when hit_p_z.x >= edges_n.x and hit_p_z.x < edges_n.x + TEXTURE_RES and hit_p_z.y >= edges_n.y and hit_p_z.y < edges_n.y + TEXTURE_RES else '0';
 
-    out_of_map <= '1' when (block_p.x >= 0 and block_p.x < MAPSIZE_X) and (block_p.y >= 0 and block_p.y < MAPSIZE_Y) and (block_p.z >= 0 and block_p.z < MAPSIZE_Z) else '0';
+    out_of_map <= '0' when (block_p.x >= 0 and block_p.x < MAPSIZE_X) and (block_p.y >= 0 and block_p.y < MAPSIZE_Y) and (block_p.z >= 0 and block_p.z < MAPSIZE_Z) else '1';
 
     txt_idx_gen: texture_idx_generator port map (
         block_info => block_info,

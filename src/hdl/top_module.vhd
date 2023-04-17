@@ -129,7 +129,7 @@ architecture Behavioral of top_module is
         );
     end component;
 
-    component disp_ram_writer is
+    component display_ram_write_controller is
         port (
             clk_sys, rst: in std_logic;
             en_in: in std_logic;
@@ -227,8 +227,8 @@ begin
 
         disp_ram: display_ram
             port map (
-                clka => clk_sys,        -- ?
-                ena => write_buf_tick,  -- ?
+                clka => clk_sys,
+                ena => write_buf_tick,
                 wea => "1",
                 addra => write_buf_addr,
                 dina => write_buf_in,
@@ -246,14 +246,14 @@ begin
             port map (
                 clk_sys => clk_sys,
                 rst => rst,
-                update => eof_pulse,              -- TODO
-                pos_in => (80, 60, 70),     -- TODO
-                angle_in => (p_angle_x, -120),    -- TODO
+                update => eof_pulse,                -- TODO
+                pos_in => (80, 60, 70),             -- TODO
+                angle_in => (p_angle_x, -120),      -- TODO
                 pos => p_pos,
                 angle => p_angle
             );
         
-        ac_cvt: angle_coord_lookat  -- TODO: for moving and collision detection.
+        ac_cvt: angle_coord_lookat
             port map (
                 angle => p_angle,
                 lookat => p_lookat,
@@ -266,7 +266,7 @@ begin
     -- Viewport Scanner
         freq_div: frequency_divider
             generic map (
-                period => 60
+                period => FREQ_DIV_PERIOD
             )
             port map (
                 clk_sys => clk_sys, rst => rst,
@@ -343,42 +343,40 @@ begin
                 last_color <= last_color_next;
             end if;
         end process;
-        -- last_color_next <= ("0000", "0000", "0000") when pixel_scan.x = 0 else
-        last_color_next <= tracer_color when update_color = '1' else
-                           last_color;
+        last_color_next <= ("0000", "0000", "0000") when pixel_scan.x = 0 else tracer_color when update_color = '1' else last_color;
     
     -- Display RAM write controller
-    disp_ram_wr: disp_ram_writer
-        port map (
-            clk_sys => clk_sys,
-            rst => rst,
-            en_in => pulse,
-            channels_in => channels_in,
-            write_tick => write_buf_tick,
-            write_addr => write_buf_addr,
-            write_data => write_buf_in
-        );
-    
-    channels_in(0).write_en <= tracer_write;
-    channels_in(0).color <= tracer_color;
-    channels_in(0).addr <= pixel_addr;
+        disp_ram_w_ctrl: display_ram_write_controller
+            port map (
+                clk_sys => clk_sys,
+                rst => rst,
+                en_in => pulse,
+                channels_in => channels_in,
+                write_tick => write_buf_tick,
+                write_addr => write_buf_addr,
+                write_data => write_buf_in
+            );
+        
+        channels_in(0).write_en <= tracer_write;
+        channels_in(0).color <= tracer_color;
+        channels_in(0).addr <= pixel_addr;
 
     -- Debug
-    seven_segs_driver: seven_segments_display_driver
-        port map (
-            clk_sys => clk_sys,
-            rst => rst,
-            nums => num_in,
-            anodes_n => anodes_n,
-            segs_n => segs_n
-        );
+        seven_segs_driver: seven_segments_display_driver
+            port map (
+                clk_sys => clk_sys,
+                rst => rst,
+                nums => num_in,
+                anodes_n => anodes_n,
+                segs_n => segs_n
+            );
 
-    num_in(7) <= "0000";
-    num_in(6) <= "0000";
-    num_in(5) <= "0000";
-    num_in(4) <= "0000";
-    num_in(3) <= "0000";
-    num_in(2) <= "0000";
-    num_in(1) <= "0000";
-    num_in(0) <= "0000";
+        num_in(7) <= "0000";
+        num_in(6) <= "0000";
+        num_in(5) <= "0000";
+        num_in(4) <= "0000";
+        num_in(3) <= "0000";
+        num_in(2) <= "0000";
+        num_in(1) <= "0000";
+        num_in(0) <= "0000";
 end architecture;

@@ -5,7 +5,7 @@ use work.constants.all;
 use work.types.all;
 
 
-entity disp_ram_writer is
+entity display_ram_write_controller is
     port (
         clk_sys, rst: in std_logic;
         en_in: in std_logic;
@@ -17,7 +17,7 @@ entity disp_ram_writer is
 end entity;
 
 
-architecture Behavioral of disp_ram_writer is
+architecture Behavioral of display_ram_write_controller is
     constant INTER_LEN: natural := 15;
 
     signal channels_reg: channels_t(0 to CHANNEL_NUM - 1);

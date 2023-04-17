@@ -27,9 +27,8 @@ package types is
     function "*"(v: vec3i_t; s: int) return vec3i_t;
     function "/"(v: vec3i_t; s: int) return vec3i_t;
     function div_floor(l: int; r: int) return int;
-    function "mod"(v: vec3i_t; s: int) return vec3i_t;
     function cross(v1, v2: vec3i_t) return vec3i_t;
-    function length_mht(v: vec3i_t) return int;
+    function length_squared(v: vec3i_t) return int;
 
     type axis_t is (X_AXIS, Y_AXIS, Z_AXIS, INVALID);
 
@@ -89,11 +88,6 @@ package body types is
         end if;
     end function;
 
-    function "mod"(v: vec3i_t; s: int) return vec3i_t is
-    begin
-        return vec3i_t'(v.x mod s, v.y mod s, v.z mod s);
-    end function;
-
     function cross(v1, v2: vec3i_t) return vec3i_t is
     begin
         return vec3i_t'(v1.y * v2.z - v1.z * v2.y,
@@ -101,8 +95,8 @@ package body types is
                         v1.x * v2.y - v1.y * v2.x);
     end function;
 
-    function length_mht(v: vec3i_t) return int is
+    function length_squared(v: vec3i_t) return int is
     begin
-        return abs(v.x) + abs(v.y) + abs(v.z);
+        return v.x * v.x + v.y * v.y + v.z * v.z;
     end function;
 end package body;

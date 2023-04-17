@@ -45,6 +45,7 @@ architecture Behavioral of tracer is
         );
     end component;
 
+    signal start_block_p: vec3i_t;
     signal dir_xyz: std_logic_vector(2 downto 0);
     signal edges_dir: vec3i_t;
     signal hit_p_x, hit_p_y, hit_p_z: vec3i_t;
@@ -88,6 +89,8 @@ begin
             state <= state_next;
         end if;
     end process;
+
+    start_block_p <= start_p / TEXTURE_RES;
 
     dir_xyz(0) <= '1' when end_p.x > start_p.x else '0';
     dir_xyz(1) <= '1' when end_p.y > start_p.y else '0';
@@ -226,7 +229,8 @@ begin
                     write_out <= '1';
                     color_out <= color;
                     valid_color_out <= '1';
-                elsif cnt = TRACE_DEPTH + 2 or out_of_map = '1' then
+                -- elsif cnt = TRACE_DEPTH + 2 or out_of_map = '1' then
+                elsif length_squared(block_p - start_block_p) >= TRACE_DIST_RAD_SQUARED or out_of_map = '1' then
                     state_next <= IDLE;
 
                     write_out <= '1';

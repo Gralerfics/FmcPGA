@@ -32,7 +32,9 @@ package constants is
     -- tracing constants.
     constant LOOKAT_REL_FAC: int := 2;
     constant TRACE_DEPTH: int := 11;
+    constant TRACE_DIST_RAD_SQUARED: int := 9 ** 2;
     constant CHANNEL_NUM: natural := 1;
+    constant FREQ_DIV_PERIOD: integer := 65;
 
     -- math constants.
     constant ANGLE_RADIUS: int := 225;

@@ -47,3 +47,10 @@ wait_on_run impl_1
 reset_run synth_1
 launch_runs impl_1 -to_step write_bitstream -jobs 6
 wait_on_run impl_1
+create_ip_run [get_files -of_objects [get_fileset sources_1] /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/display_ram/display_ram.xci]
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+create_ip_run [get_files -of_objects [get_fileset sources_1] /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/display_ram/display_ram.xci]
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1

@@ -183,8 +183,25 @@ architecture Behavioral of top_module is
 
     signal num_in: bcd_array_t(7 downto 0);
 
-    -- signal c: int;
+    signal rot_cnt, rot_cnt_next: integer;
+    signal p_angle_x, p_angle_x_next: int;
+    constant ROTCNTMAX: integer := 700000;
 begin
+    process (clk_sys, rst) is
+    begin
+        if rst = '1' then
+            rot_cnt <= 0;
+            p_angle_x <= 780;
+        elsif rising_edge(clk_sys) then
+            rot_cnt <= rot_cnt_next;
+            p_angle_x <= p_angle_x_next;
+        end if;
+    end process;
+    rot_cnt_next <= 0 when rot_cnt = ROTCNTMAX - 1 else rot_cnt + 1;
+    p_angle_x_next <= p_angle_x when rot_cnt < ROTCNTMAX - 1 else
+                      0 when p_angle_x = 1267 else
+                      p_angle_x + 1;
+
     -- Display Controller
         clk_vga_gen: clk_vga_generator
             port map (
@@ -229,7 +246,7 @@ begin
                 rst => rst,
                 update => '1',              -- TODO
                 pos_in => (80, 60, 70),     -- TODO
-                angle_in => (780, -120),    -- TODO
+                angle_in => (p_angle_x, -120),    -- TODO
                 pos => p_pos,
                 angle => p_angle
             );
@@ -352,22 +369,13 @@ begin
             anodes_n => anodes_n,
             segs_n => segs_n
         );
-    
-    -- process (write_buf_tick, rst) is
-    -- begin
-    --     if rst = '1' then
-    --         c <= 0;
-    --     elsif rising_edge(write_buf_tick) then
-    --         c <= c + 1;
-    --     end if;
-    -- end process;
 
-    num_in(7) <= "1000" when tracer_write = '1' else "0000";
-    num_in(6) <= "1000" when update_color = '1' else "0000";
+    num_in(7) <= "0000";
+    num_in(6) <= "0000";
     num_in(5) <= "0000";
     num_in(4) <= "0000";
-    num_in(3) <= std_logic_vector(to_unsigned(pixel_scan.x / 100, 4));
-    num_in(2) <= std_logic_vector(to_unsigned(pixel_scan.x / 10 mod 10, 4));
-    num_in(1) <= std_logic_vector(to_unsigned(pixel_scan.y / 10 mod 10, 4));
-    num_in(0) <= std_logic_vector(to_unsigned(pixel_scan.y mod 10, 4));
+    num_in(3) <= "0000";
+    num_in(2) <= "0000";
+    num_in(1) <= "0000";
+    num_in(0) <= "0000";
 end architecture;

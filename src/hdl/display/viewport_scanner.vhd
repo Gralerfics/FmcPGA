@@ -10,7 +10,8 @@ entity viewport_scanner is
         clk_sys, rst, en: in std_logic;
         tracer_idle: in std_logic;
         tracer_start: out std_logic;
-        pixel: out vec2i_t
+        pixel: out vec2i_t;
+        eof: out std_logic
     );
 end entity;
 
@@ -35,6 +36,7 @@ begin
     v_cnt_next <= v_cnt_reg         when en = '0' or tracer_idle = '0' or h_cnt_reg < H_REAL - 1 else
                   0                 when v_cnt_reg = V_REAL - 1 else
                   v_cnt_reg + 1;
+    eof <= '1' when v_cnt_reg = V_REAL - 1 and h_cnt_reg = H_REAL - 1 else '0';
     
     tracer_start <= '1';
     pixel <= (h_cnt_reg, v_cnt_reg);

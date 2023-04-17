@@ -71,7 +71,8 @@ architecture Behavioral of top_module is
             clk_sys, rst, en: in std_logic;
             tracer_idle: in std_logic;
             tracer_start: out std_logic;
-            pixel: out vec2i_t
+            pixel: out vec2i_t;
+            eof: out std_logic
         );
     end component;
 
@@ -164,6 +165,7 @@ architecture Behavioral of top_module is
     signal pulse: std_logic;
     signal pixel_scan: vec2i_t;
     signal pixel_addr: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
+    signal eof_pulse: std_logic;
 
     signal map_douta: std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0);
     signal map_read_addr: std_logic_vector(MAP_ADDR_RADIX - 1 downto 0);
@@ -244,7 +246,7 @@ begin
             port map (
                 clk_sys => clk_sys,
                 rst => rst,
-                update => '1',              -- TODO
+                update => eof_pulse,              -- TODO
                 pos_in => (80, 60, 70),     -- TODO
                 angle_in => (p_angle_x, -120),    -- TODO
                 pos => p_pos,
@@ -278,7 +280,8 @@ begin
                 en => pulse,
                 tracer_idle => tracer_idle,
                 tracer_start => tracer_start,
-                pixel => pixel_scan
+                pixel => pixel_scan,
+                eof => eof_pulse
             );
         
         pixel_addr <= std_logic_vector(to_unsigned(pixel_scan.y * H_REAL + pixel_scan.x, DISP_RAM_ADDR_RADIX));

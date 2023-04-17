@@ -185,7 +185,7 @@ architecture Behavioral of top_module is
 
     signal rot_cnt, rot_cnt_next: integer;
     signal p_angle_x, p_angle_x_next: int;
-    constant ROTCNTMAX: integer := 700000;
+    constant ROTCNTMAX: integer := 6000000;
 begin
     process (clk_sys, rst) is
     begin

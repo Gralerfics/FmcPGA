@@ -6,10 +6,14 @@ use work.types.all;
 
 
 entity viewport_scanner is
+    generic (
+        H_LEFT, H_RIGHT: int;   -- [.., ..)
+        V_TOP, V_BOTTOM: int
+    );
     port (
         clk_sys, rst, en: in std_logic;
-        tracer_idle: in std_logic;
-        tracer_start: out std_logic;
+        tracers_idle: in std_logic;
+        tracers_start: out std_logic;
         pixel: out vec2i_t;
         eof: out std_logic
     );
@@ -23,21 +27,21 @@ begin
     process (clk_sys, rst) is
     begin
         if rst = '1' then
-            h_cnt_reg <= 0;
-            v_cnt_reg <= 0;
+            h_cnt_reg <= H_LEFT;
+            v_cnt_reg <= V_TOP;
         elsif rising_edge(clk_sys) then
             h_cnt_reg <= h_cnt_next;
             v_cnt_reg <= v_cnt_next;
         end if;
     end process;
-    h_cnt_next <= h_cnt_reg         when en = '0' or tracer_idle = '0' else
-                  0                 when h_cnt_reg = H_REAL - 1 else
+    h_cnt_next <= h_cnt_reg         when en = '0' or tracers_idle = '0' else
+                  H_LEFT            when h_cnt_reg = H_RIGHT - 1 else
                   h_cnt_reg + 1;
-    v_cnt_next <= v_cnt_reg         when en = '0' or tracer_idle = '0' or h_cnt_reg < H_REAL - 1 else
-                  0                 when v_cnt_reg = V_REAL - 1 else
+    v_cnt_next <= v_cnt_reg         when en = '0' or tracers_idle = '0' or h_cnt_reg < H_RIGHT - 1 else
+                  V_TOP             when v_cnt_reg = V_BOTTOM - 1 else
                   v_cnt_reg + 1;
-    eof <= '1' when v_cnt_reg = V_REAL - 1 and h_cnt_reg = H_REAL - 1 else '0';
+    eof <= '1' when v_cnt_reg = V_BOTTOM - 1 and h_cnt_reg = H_RIGHT - 1 else '0';
     
-    tracer_start <= '1';
+    tracers_start <= '1' when tracers_idle = '1' else '0';
     pixel <= (h_cnt_reg, v_cnt_reg);
 end architecture;

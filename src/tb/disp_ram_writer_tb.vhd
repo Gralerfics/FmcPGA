@@ -14,7 +14,7 @@ architecture Behavioral of disp_ram_writer_tb is
         port (
             clk_sys, rst: in std_logic;
             en_in: in std_logic;
-            channel_in: in channels_t(0 to CHANNEL_NUM - 1);
+            channel_in: in disp_write_channels_t(0 to CHANNEL_NUM - 1);
             write_tick: out std_logic;
             write_addr: out std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
             write_data: out std_logic_vector(11 downto 0)
@@ -23,7 +23,7 @@ architecture Behavioral of disp_ram_writer_tb is
 
     signal clk_sys, rst: std_logic;
     signal en_in: std_logic;
-    signal channel_in: channels_t(0 to CHANNEL_NUM - 1);
+    signal channel_in: disp_write_channels_t(0 to CHANNEL_NUM - 1);
     signal write_tick: std_logic;
     signal write_addr: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
     signal write_data: std_logic_vector(11 downto 0);

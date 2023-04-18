@@ -47,6 +47,17 @@ architecture Behavioral of top_module is
         );
     end component;
 
+    component display_ram_write_controller is
+        port (
+            clk_sys, rst: in std_logic;
+            en_in: in std_logic;
+            channels_in: in disp_write_channels_t;
+            write_tick: out std_logic;
+            write_addr: out std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
+            write_data: out std_logic_vector(11 downto 0)
+        );
+    end component;
+
     component player_state is
         port (
             clk_sys, rst: in std_logic;
@@ -67,10 +78,14 @@ architecture Behavioral of top_module is
     end component;
 
     component viewport_scanner is
+        generic (
+            H_LEFT, H_RIGHT: int;
+            V_TOP, V_BOTTOM: int
+        );
         port (
             clk_sys, rst, en: in std_logic;
-            tracer_idle: in std_logic;
-            tracer_start: out std_logic;
+            tracers_idle: in std_logic;
+            tracers_start: out std_logic;
             pixel: out vec2i_t;
             eof: out std_logic
         );
@@ -103,12 +118,36 @@ architecture Behavioral of top_module is
         );
     end component;
 
+    component map_ram_read_controller is
+        port (
+            clk_sys, rst: in std_logic;
+            en_in: in std_logic;
+            addrs: in map_read_addrs_t(0 to CHANNEL_NUM - 1);
+            datas: out map_read_datas_t(0 to CHANNEL_NUM - 1);
+            read_tick: out std_logic;
+            read_addr: out std_logic_vector(MAP_ADDR_RADIX - 1 downto 0);
+            read_data: in std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0)
+        );
+    end component;
+
     component texture_rom is
         port (
             clka: in std_logic;
             ena: in std_logic;
             addra: in std_logic_vector(12 downto 0);
             douta: out std_logic_vector(11 downto 0)
+        );
+    end component;
+
+    component texture_rom_read_controller is
+        port (
+            clk_sys, rst: in std_logic;
+            en_in: in std_logic;
+            addrs: in txt_read_addrs_t(0 to CHANNEL_NUM - 1);
+            datas: out txt_read_datas_t(0 to CHANNEL_NUM - 1);
+            read_tick: out std_logic;
+            read_addr: out std_logic_vector(TEXTURE_ADDR_RADIX - 1 downto 0);
+            read_data: in std_logic_vector(11 downto 0)
         );
     end component;
 
@@ -129,17 +168,6 @@ architecture Behavioral of top_module is
         );
     end component;
 
-    component display_ram_write_controller is
-        port (
-            clk_sys, rst: in std_logic;
-            en_in: in std_logic;
-            channels_in: in channels_t;
-            write_tick: out std_logic;
-            write_addr: out std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
-            write_data: out std_logic_vector(11 downto 0)
-        );
-    end component;
-
     component seven_segments_display_driver is
         port (
             clk_sys, rst: in std_logic;
@@ -151,59 +179,52 @@ architecture Behavioral of top_module is
 
     signal clk_vga, clk_vga_locked: std_logic;
     signal disp_scan_valid: std_logic;
+
     signal write_buf_tick: std_logic;
     signal write_buf_addr: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
     signal write_buf_in: std_logic_vector(11 downto 0);
     signal read_buf_tick: std_logic;
     signal read_buf_addr: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
     signal read_buf_out: std_logic_vector(11 downto 0);
+    signal disp_w_channels_in: disp_write_channels_t(0 to CHANNEL_NUM - 1);
 
     signal p_pos, p_lookat: vec3i_t;
     signal p_angle, p_lookat_h: vec2i_t;
-    signal p_view_u, p_view_v, p_view_target: vec3i_t;
+    signal p_view_u, p_view_v: vec3i_t;
+
+    signal p_view_targets: vec3i_array_t(0 to CHANNEL_NUM - 1);
 
     signal pulse: std_logic;
-    signal pixel_scan: vec2i_t;
-    signal pixel_addr: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
+    signal pixel_scans: vec2i_array_t(0 to CHANNEL_NUM - 1);
+    signal pixel_addrs: disp_write_addrs_t(0 to CHANNEL_NUM - 1);
     signal eof_pulse: std_logic;
 
-    signal map_douta: std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0);
-    signal map_read_addr: std_logic_vector(MAP_ADDR_RADIX - 1 downto 0);
-    signal map_read_out: std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0);
+    signal map_douta: std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0);              -- raw
+    signal map_read_tick: std_logic;                                                -- raw
+    signal map_read_addr: std_logic_vector(MAP_ADDR_RADIX - 1 downto 0);            -- raw
+    signal map_read_out: std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0);           -- raw
+    signal map_read_addrs: map_read_addrs_t(0 to CHANNEL_NUM - 1);
+    signal map_read_datas: map_read_datas_t(0 to CHANNEL_NUM - 1);
 
-    signal texture_read_addr: std_logic_vector(TEXTURE_ADDR_RADIX - 1 downto 0);
-    signal texture_read_out: std_logic_vector(11 downto 0);
+    signal texture_read_tick: std_logic;                                            -- raw
+    signal texture_read_addr: std_logic_vector(TEXTURE_ADDR_RADIX - 1 downto 0);    -- raw
+    signal texture_read_out: std_logic_vector(11 downto 0);                         -- raw
+    signal texture_read_addrs: txt_read_addrs_t(0 to CHANNEL_NUM - 1);
+    signal texture_read_datas: txt_read_datas_t(0 to CHANNEL_NUM - 1);
 
-    signal clk_tracer_read: std_logic;
-    signal tracer_idle, tracer_start: std_logic;
-    signal tracer_write: std_logic;
-    signal tracer_color: color_t;
-    signal last_color, last_color_next: color_t;
-    signal update_color: std_logic;
+    signal tracer_start, tracer_idle_all: std_logic;
+    signal tracer_idles: std_logic_vector(0 to CHANNEL_NUM - 1);
+    signal tracer_writes: std_logic_vector(0 to CHANNEL_NUM - 1);
+    signal tracer_colors: colors_t(0 to CHANNEL_NUM - 1);
 
-    signal channels_in: channels_t(0 to CHANNEL_NUM - 1);
-
-    signal num_in: bcd_array_t(7 downto 0);
+    signal last_colors, last_colors_next: colors_t(0 to CHANNEL_NUM - 1);
+    signal update_colors: std_logic_vector(0 to CHANNEL_NUM - 1);
 
     signal rot_cnt, rot_cnt_next: integer;
     signal p_angle_x, p_angle_x_next: int;
-    constant ROTCNTMAX: integer := 6000000;
+    constant ROT_CNT_MAX: integer := 6000000;
+    signal num_in: bcd_array_t(7 downto 0);
 begin
-    process (clk_sys, rst) is
-    begin
-        if rst = '1' then
-            rot_cnt <= 0;
-            p_angle_x <= 780;
-        elsif rising_edge(clk_sys) then
-            rot_cnt <= rot_cnt_next;
-            p_angle_x <= p_angle_x_next;
-        end if;
-    end process;
-    rot_cnt_next <= 0 when rot_cnt = ROTCNTMAX - 1 else rot_cnt + 1;
-    p_angle_x_next <= p_angle_x when rot_cnt < ROTCNTMAX - 1 else
-                      0 when p_angle_x = 1267 else
-                      p_angle_x + 1;
-
     -- Display Controller
         clk_vga_gen: clk_vga_generator
             port map (
@@ -241,6 +262,7 @@ begin
         vgaout.color.g <= read_buf_out(7 downto 4) when disp_scan_valid = '1' else "0000";
         vgaout.color.b <= read_buf_out(3 downto 0) when disp_scan_valid = '1' else "0000";
 
+
     -- Player State
         p_state: player_state
             port map (
@@ -262,8 +284,9 @@ begin
 
         p_view_v <= vec3i_t'(p_lookat_h.y, -p_lookat_h.x, 0);
         p_view_u <= cross(p_view_v, p_lookat) / ANGLE_RADIUS;
-    
-    -- Viewport Scanner
+
+
+    -- Frequency Divider
         freq_div: frequency_divider
             generic map (
                 period => FREQ_DIV_PERIOD
@@ -272,96 +295,163 @@ begin
                 clk_sys => clk_sys, rst => rst,
                 pulse => pulse
             );
-        
+    
+
+    -- Viewport Scanner (related to the channels)
         view_scan: viewport_scanner
+            generic map (
+                H_LEFT => 0,
+                H_RIGHT => H_REAL,
+                V_TOP => 0,
+                V_BOTTOM => V_REAL / 4
+            )
             port map (
                 clk_sys => clk_sys,
                 rst => rst,
                 en => pulse,
-                tracer_idle => tracer_idle,
-                tracer_start => tracer_start,
-                pixel => pixel_scan,
+                tracers_idle => tracer_idle_all,
+                tracers_start => tracer_start,
+                pixel => pixel_scans(0),
                 eof => eof_pulse
             );
-        
-        pixel_addr <= std_logic_vector(to_unsigned(pixel_scan.y * H_REAL + pixel_scan.x, DISP_RAM_ADDR_RADIX));
-        p_view_target <= p_pos + (p_lookat + p_view_v * (pixel_scan.x - H_REAL / 2) / ANGLE_RADIUS + p_view_u * (V_REAL / 2 - pixel_scan.y) / ANGLE_RADIUS) * LOOKAT_REL_FAC;
 
-    -- Map RAM and Texture ROM (若想并行计算，需要像 disp_ram_wr 一样专门处理，在一个大 tick 以 clk_sys 内把所有 channel 读出来)
+        tracer_idle_all <= tracer_idles(0) and tracer_idles(1) and tracer_idles(2) and tracer_idles(3); -- TODO: use reduce_and
+        
+        pixel_scans(1) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 4);         -- vec2i_t'(H_REAL / 2, 0);
+        pixel_scans(2) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 2);         -- vec2i_t'(0, V_REAL / 2);
+        pixel_scans(3) <= pixel_scans(0) + vec2i_t'(0, V_REAL * 3 / 4);     -- vec2i_t'(H_REAL / 2, V_REAL / 2);
+
+        vp_info_gen: for i in 0 to CHANNEL_NUM - 1 generate
+            pixel_addrs(i) <= std_logic_vector(to_unsigned(pixel_scans(i).y * H_REAL + pixel_scans(i).x, DISP_RAM_ADDR_RADIX));
+            p_view_targets(i) <= p_pos + (p_lookat + p_view_v * (pixel_scans(i).x - H_REAL / 2) / ANGLE_RADIUS + p_view_u * (V_REAL / 2 - pixel_scans(i).y) / ANGLE_RADIUS) * LOOKAT_REL_FAC;
+        end generate;
+        
+
+    -- Map RAM
         mp_ram: map_ram
             port map (
-                clka => '0',
-                ena => '1',
+                clka => '0',                -- write (temporarily disabled)
+                ena => '0',
                 wea => "1",
                 addra => (others => '0'),
                 dina => (others => '0'),
-                douta => map_douta,
-                clkb => clk_tracer_read,
+                douta => map_douta,             -- useless
+                clkb => map_read_tick,      -- read
                 enb => '1',
                 web => "0",
                 addrb => map_read_addr,
-                dinb => (others => '0'),
+                dinb => (others => '0'),        -- useless
                 doutb => map_read_out
             );
         
+        mp_ram_r_ctrl: map_ram_read_controller
+            port map (
+                clk_sys => clk_sys,
+                rst => rst,
+                en_in => pulse,
+                addrs => map_read_addrs,
+                datas => map_read_datas,
+                read_tick => map_read_tick,
+                read_addr => map_read_addr,
+                read_data => map_read_out
+            );
+        
+
+    -- Texture ROM
         txt_rom: texture_rom
             port map (
-                clka => clk_tracer_read,
+                clka => texture_read_tick,
                 ena => '1',
                 addra => texture_read_addr,
                 douta => texture_read_out
             );
         
-        clk_tracer_read <= '1' when clk_sys = '1' and pulse = '1' else '0';
+        txt_rom_r_ctrl: texture_rom_read_controller
+            port map (
+                clk_sys => clk_sys,
+                rst => rst,
+                en_in => pulse,
+                addrs => texture_read_addrs,
+                datas => texture_read_datas,
+                read_tick => texture_read_tick,
+                read_addr => texture_read_addr,
+                read_data => texture_read_out
+            );
+
 
     -- Tracers
-        trace: tracer
+        tracers: for i in 0 to CHANNEL_NUM - 1 generate
+            tr: tracer
             port map (
                 clk_sys => clk_sys,
                 rst => rst,
                 en => pulse,
                 start => tracer_start,
                 start_p => p_pos,
-                end_p => p_view_target,
-                last_color => last_color,
-                block_info_addr => map_read_addr,
-                block_info => map_read_out,
-                color_addr => texture_read_addr,
-                color => (texture_read_out(11 downto 8), texture_read_out(7 downto 4), texture_read_out(3 downto 0)),
-                is_idle => tracer_idle,
-                write_out => tracer_write,
-                color_out => tracer_color,
-                valid_color_out => update_color
+                end_p => p_view_targets(i),
+                last_color => last_colors(i),
+                block_info_addr => map_read_addrs(i),
+                block_info => map_read_datas(i),
+                color_addr => texture_read_addrs(i),
+                color => texture_read_datas(i),
+                is_idle => tracer_idles(i),
+                write_out => tracer_writes(i),
+                color_out => tracer_colors(i),
+                valid_color_out => update_colors(i)
             );
+        end generate;
     
+
     -- Last color register
         process (clk_sys, rst) is
         begin
             if rst = '1' then
-                last_color <= ("0000", "0000", "0000");
+                last_colors <= (others => ("0000", "0000", "0000"));
             elsif rising_edge(clk_sys) then
-                last_color <= last_color_next;
+                last_colors <= last_colors_next;
             end if;
         end process;
-        last_color_next <= ("0000", "0000", "0000") when pixel_scan.x = 0 else tracer_color when update_color = '1' else last_color;
+        
+        lst_c_nxt_gen: for i in 0 to CHANNEL_NUM - 1 generate
+            last_colors_next(i) <= ("0000", "0000", "0000") when pixel_scans(i).x = 0 else tracer_colors(i) when update_colors(i) = '1' else last_colors(i);
+        end generate;
     
+
     -- Display RAM write controller
         disp_ram_w_ctrl: display_ram_write_controller
             port map (
                 clk_sys => clk_sys,
                 rst => rst,
                 en_in => pulse,
-                channels_in => channels_in,
+                channels_in => disp_w_channels_in,
                 write_tick => write_buf_tick,
                 write_addr => write_buf_addr,
                 write_data => write_buf_in
             );
         
-        channels_in(0).write_en <= tracer_write;
-        channels_in(0).color <= tracer_color;
-        channels_in(0).addr <= pixel_addr;
+        disp_w_channels: for i in 0 to CHANNEL_NUM - 1 generate
+            disp_w_channels_in(i).write_en <= tracer_writes(i);
+            disp_w_channels_in(i).color <= tracer_colors(i);
+            disp_w_channels_in(i).addr <= pixel_addrs(i);
+        end generate;
+
 
     -- Debug
+        process (clk_sys, rst) is
+        begin
+            if rst = '1' then
+                rot_cnt <= 0;
+                p_angle_x <= 780;
+            elsif rising_edge(clk_sys) then
+                rot_cnt <= rot_cnt_next;
+                p_angle_x <= p_angle_x_next;
+            end if;
+        end process;
+        rot_cnt_next <= 0 when rot_cnt = ROT_CNT_MAX - 1 else rot_cnt + 1;
+        p_angle_x_next <= p_angle_x when rot_cnt < ROT_CNT_MAX - 1 else
+                        0 when p_angle_x = 1267 else
+                        p_angle_x + 1;
+        
         seven_segs_driver: seven_segments_display_driver
             port map (
                 clk_sys => clk_sys,

@@ -8,8 +8,8 @@ use work.types.all;
 entity display_ram_write_controller is
     port (
         clk_sys, rst: in std_logic;
-        en_in: in std_logic;
-        channels_in: in channels_t(0 to CHANNEL_NUM - 1);
+        en_in: in std_logic;    -- pulse in
+        channels_in: in disp_write_channels_t(0 to CHANNEL_NUM - 1);
         write_tick: out std_logic;
         write_addr: out std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
         write_data: out std_logic_vector(11 downto 0)
@@ -18,13 +18,14 @@ end entity;
 
 
 architecture Behavioral of display_ram_write_controller is
-    constant INTER_LEN: natural := 15;
+    constant CNT_NUM: natural := 5;
+    constant CNT_TICK: natural := 1;
 
-    signal channels_reg: channels_t(0 to CHANNEL_NUM - 1);
+    signal channels_reg: disp_write_channels_t(0 to CHANNEL_NUM - 1);
+    signal channel_cnt, channel_cnt_next: natural;
     signal cnt, cnt_next: natural;
-    signal cnt_inter, cnt_inter_next: natural;
 begin
-    -- Load data
+    -- Load data (使用外部的 pulse 信号，和流水线同步，并且 write_en 为 1 时才写入)
     process (clk_sys, rst) is
     begin
         if rst = '1' then
@@ -41,22 +42,21 @@ begin
     end process;
 
     -- Iteration
-    process (clk_sys, rst) is
+    process (clk_sys, rst, en_in) is
     begin
-        if rst = '1' then
+        if rst = '1' or en_in = '1' then
+            channel_cnt <= 0;
             cnt <= 0;
-            cnt_inter <= 0;
         elsif rising_edge(clk_sys) then
+            channel_cnt <= channel_cnt_next;
             cnt <= cnt_next;
-            cnt_inter <= cnt_inter_next;
         end if;
     end process;
-    cnt_next <= 0 when cnt = CHANNEL_NUM - 1 and cnt_inter = INTER_LEN - 1 else
-                cnt + 1 when cnt_inter = INTER_LEN - 1 else
-                cnt;
-    cnt_inter_next <= 0 when cnt_inter = INTER_LEN - 1 else
-                      cnt_inter + 1;
-    write_tick <= '1' when cnt_inter = 5 and channels_reg(cnt).write_en = '1' else '0';
-    write_addr <= channels_reg(cnt).addr;
-    write_data <= channels_reg(cnt).color.r & channels_reg(cnt).color.g & channels_reg(cnt).color.b;
+    cnt_next <= 0 when channel_cnt = CHANNEL_NUM else
+                0 when cnt = CNT_NUM - 1 else cnt + 1;
+    channel_cnt_next <= channel_cnt + 1 when cnt = CNT_NUM - 1 else channel_cnt;
+
+    write_tick <= '1' when cnt = CNT_TICK and channels_reg(channel_cnt).write_en = '1' else '0';
+    write_addr <= channels_reg(channel_cnt).addr;
+    write_data <= channels_reg(channel_cnt).color.r & channels_reg(channel_cnt).color.g & channels_reg(channel_cnt).color.b;
 end architecture;

@@ -81,7 +81,7 @@ if __name__ == '__main__':
     img_shrink = np.zeros((H, W, 3), np.uint8)
 
     p_pos = np.array([80, 60, 70])
-    p_angle = np.array([780, -120])
+    p_angle = np.array([780, -220])
     p_lookat = angle_coord_lookat(p_angle)
     v2 = angle_coord_convertor(p_angle[0] - 317)
     v = np.array([v2[0], v2[1], 0])

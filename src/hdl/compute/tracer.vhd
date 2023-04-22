@@ -130,16 +130,16 @@ begin
         hit_p_next <= hit_p;
         block_p_next <= block_p;
         step_dir_next <= step_dir;
-        -- block_info_addr <=
         surface_next <= surface;
         uv_coord_next <= uv_coord;
-        -- color_addr <=
         hit_next <= hit;
 
         -- state
         state_next <= state;
 
         -- output
+        -- block_info_addr <= (others => '0');
+        -- color_addr <= (others => '0');
         is_idle <= '0';
         write_out <= '0';
         color_out <= last_color;

@@ -29,15 +29,14 @@ begin
         if rst = '1' then
             h_cnt_reg <= H_LEFT;
             v_cnt_reg <= V_TOP;
-        elsif rising_edge(clk_sys) then
+        elsif rising_edge(clk_sys) and en = '1' and tracers_idle = '1' then
             h_cnt_reg <= h_cnt_next;
             v_cnt_reg <= v_cnt_next;
         end if;
     end process;
-    h_cnt_next <= h_cnt_reg         when en = '0' or tracers_idle = '0' else
-                  H_LEFT            when h_cnt_reg = H_RIGHT - 1 else
+    h_cnt_next <= H_LEFT            when h_cnt_reg = H_RIGHT - 1 else
                   h_cnt_reg + 1;
-    v_cnt_next <= v_cnt_reg         when en = '0' or tracers_idle = '0' or h_cnt_reg < H_RIGHT - 1 else
+    v_cnt_next <= v_cnt_reg         when h_cnt_reg /= H_RIGHT - 1 else
                   V_TOP             when v_cnt_reg = V_BOTTOM - 1 else
                   v_cnt_reg + 1;
     eof <= '1' when v_cnt_reg = V_BOTTOM - 1 and h_cnt_reg = H_RIGHT - 1 else '0';

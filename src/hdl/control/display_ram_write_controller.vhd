@@ -18,7 +18,7 @@ end entity;
 
 
 architecture Behavioral of display_ram_write_controller is
-    constant CNT_NUM: natural := 5;
+    constant CNT_NUM: natural := 10;
     constant CNT_TICK: natural := 1;
 
     signal channels_reg: disp_write_channels_t(0 to CHANNEL_NUM - 1);
@@ -42,21 +42,25 @@ begin
     end process;
 
     -- Iteration
-    process (clk_sys, rst, en_in) is
+    process (clk_sys, rst) is
     begin
-        if rst = '1' or en_in = '1' then
+        if rst = '1' then
             channel_cnt <= 0;
             cnt <= 0;
         elsif rising_edge(clk_sys) then
-            channel_cnt <= channel_cnt_next;
-            cnt <= cnt_next;
+            if en_in = '1' then
+                channel_cnt <= 0;
+                cnt <= 0;
+            else
+                channel_cnt <= channel_cnt_next;
+                cnt <= cnt_next;
+            end if;
         end if;
     end process;
-    cnt_next <= 0 when channel_cnt = CHANNEL_NUM else
-                0 when cnt = CNT_NUM - 1 else cnt + 1;
+    cnt_next <= 0 when channel_cnt = CHANNEL_NUM or cnt = CNT_NUM - 1 else cnt + 1;
     channel_cnt_next <= channel_cnt + 1 when cnt = CNT_NUM - 1 else channel_cnt;
 
-    write_tick <= '1' when cnt = CNT_TICK and channels_reg(channel_cnt).write_en = '1' else '0';
-    write_addr <= channels_reg(channel_cnt).addr;
-    write_data <= channels_reg(channel_cnt).color.r & channels_reg(channel_cnt).color.g & channels_reg(channel_cnt).color.b;
+    write_tick <= '1' when channel_cnt /= CHANNEL_NUM and cnt = CNT_TICK and channels_reg(channel_cnt).write_en = '1' else '0';
+    write_addr <= channels_reg(channel_cnt).addr when channel_cnt /= CHANNEL_NUM else (others => '0');
+    write_data <= channels_reg(channel_cnt).color.r & channels_reg(channel_cnt).color.g & channels_reg(channel_cnt).color.b when channel_cnt /= CHANNEL_NUM else (others => '0');
 end architecture;

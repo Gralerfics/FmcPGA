@@ -19,27 +19,32 @@ end entity;
 
 
 architecture Behavioral of texture_rom_read_controller is
-    constant CNT_NUM: natural := 5;
-    constant CNT_TICK: natural := 1;
+    constant CNT_NUM: natural := 10;
+    constant CNT_TICK: natural := 2;
 
     signal datas_reg, datas_next: txt_read_datas_t(0 to CHANNEL_NUM - 1);
     signal channel_cnt, channel_cnt_next: natural;
     signal cnt, cnt_next: natural;
 begin
-    process (clk_sys, rst, en_in) is
+    process (clk_sys, rst) is
     begin
-        if rst = '1' or en_in = '1' then
+        if rst = '1' then
             channel_cnt <= 0;
             cnt <= 0;
             datas_reg <= (others => ("0000", "0000", "0000"));
         elsif rising_edge(clk_sys) then
-            channel_cnt <= channel_cnt_next;
-            cnt <= cnt_next;
-            datas_reg <= datas_next;
+            if en_in = '1' then
+                channel_cnt <= 0;
+                cnt <= 0;
+                datas_reg <= (others => ("0000", "0000", "0000"));
+            else
+                channel_cnt <= channel_cnt_next;
+                cnt <= cnt_next;
+                datas_reg <= datas_next;
+            end if;
         end if;
     end process;
-    cnt_next <= 0 when channel_cnt = CHANNEL_NUM else
-                0 when cnt = CNT_NUM - 1 else cnt + 1;
+    cnt_next <= 0 when channel_cnt = CHANNEL_NUM or cnt = CNT_NUM - 1 else cnt + 1;
     channel_cnt_next <= channel_cnt + 1 when cnt = CNT_NUM - 1 else channel_cnt;
 
     data_nxt_gen: for i in 0 to CHANNEL_NUM - 1 generate
@@ -48,5 +53,5 @@ begin
     datas <= datas_reg;
 
     read_tick <= '1' when cnt = CNT_TICK else '0';
-    read_addr <= addrs(channel_cnt);
+    read_addr <= addrs(channel_cnt) when channel_cnt < CHANNEL_NUM else (others => '0');
 end architecture;

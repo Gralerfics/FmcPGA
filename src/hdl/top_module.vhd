@@ -77,6 +77,14 @@ architecture Behavioral of top_module is
         );
     end component;
 
+    component viewport_base_vec is
+        port (
+            p_lookat_h: in vec2i_t;
+            p_lookat: in vec3i_t;
+            p_view_u, p_view_v: out vec3i_t
+        );
+    end component;
+
     component viewport_scanner is
         generic (
             H_LEFT, H_RIGHT: int;
@@ -88,6 +96,15 @@ architecture Behavioral of top_module is
             tracers_start: out std_logic;
             pixel: out vec2i_t;
             eof: out std_logic
+        );
+    end component;
+
+    component viewport_pixel_info_gen is
+        port (
+            pixel_scans: in vec2i_array_t(CHANNEL_NUM - 1 downto 0);
+            p_pos, p_lookat, p_view_u, p_view_v: in vec3i_t;
+            pixel_addrs: out disp_write_addrs_t(CHANNEL_NUM - 1 downto 0);
+            p_view_targets: out vec3i_array_t(CHANNEL_NUM - 1 downto 0)
         );
     end component;
 
@@ -282,8 +299,13 @@ begin
                 dir_h => p_lookat_h
             );
 
-        p_view_v <= vec3i_t'(p_lookat_h.y, -p_lookat_h.x, 0);
-        p_view_u <= cross(p_view_v, p_lookat) / ANGLE_RADIUS;
+        vp_base_gen: viewport_base_vec
+            port map (
+                p_lookat => p_lookat,
+                p_lookat_h => p_lookat_h,
+                p_view_u => p_view_u,
+                p_view_v => p_view_v
+            );
 
 
     -- Frequency Divider
@@ -309,22 +331,40 @@ begin
                 clk_sys => clk_sys,
                 rst => rst,
                 en => pulse,
-                tracers_idle => tracer_idle_all,
-                tracers_start => tracer_start,
+                tracers_idle => tracer_idle_all,        -- all tracers are done
+                tracers_start => tracer_start,          -- synchroneous start signal
                 pixel => pixel_scans(0),
                 eof => eof_pulse
             );
 
-        tracer_idle_all <= tracer_idles(0) and tracer_idles(1) and tracer_idles(2) and tracer_idles(3); -- TODO: use reduce_and
+        -- Idle Signal Generation
+        process (tracer_idles) is
+            variable reduce_and_idle_all: std_logic;
+        begin
+            reduce_and_idle_all := tracer_idles(0);
+            for i in 1 to CHANNEL_NUM - 1 loop
+                reduce_and_idle_all := reduce_and_idle_all and tracer_idles(i);
+            end loop;
+            tracer_idle_all <= reduce_and_idle_all;
+        end process;
+        -- tracer_idle_all <= tracer_idles(0) and tracer_idles(1) and tracer_idles(2) and tracer_idles(3);
         
+        -- Pixel Coordinates for Channels Generation
         pixel_scans(1) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 4);         -- vec2i_t'(H_REAL / 2, 0);
         pixel_scans(2) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 2);         -- vec2i_t'(0, V_REAL / 2);
         pixel_scans(3) <= pixel_scans(0) + vec2i_t'(0, V_REAL * 3 / 4);     -- vec2i_t'(H_REAL / 2, V_REAL / 2);
 
-        vp_info_gen: for i in 0 to CHANNEL_NUM - 1 generate
-            pixel_addrs(i) <= std_logic_vector(to_unsigned(pixel_scans(i).y * H_REAL + pixel_scans(i).x, DISP_RAM_ADDR_RADIX));
-            p_view_targets(i) <= p_pos + (p_lookat + p_view_v * (pixel_scans(i).x - H_REAL / 2) / ANGLE_RADIUS + p_view_u * (V_REAL / 2 - pixel_scans(i).y) / ANGLE_RADIUS) * LOOKAT_REL_FAC;
-        end generate;
+        -- Viewport Info Generation
+        vp_info_gen: viewport_pixel_info_gen
+            port map (
+                pixel_scans => pixel_scans,
+                p_pos => p_pos,
+                p_lookat => p_lookat,
+                p_view_u => p_view_u,
+                p_view_v => p_view_v,
+                pixel_addrs => pixel_addrs,
+                p_view_targets => p_view_targets
+            );
         
 
     -- Map RAM
@@ -349,9 +389,9 @@ begin
                 clk_sys => clk_sys,
                 rst => rst,
                 en_in => pulse,
-                addrs => map_read_addrs,
+                addrs => map_read_addrs,    -- for tracers
                 datas => map_read_datas,
-                read_tick => map_read_tick,
+                read_tick => map_read_tick, -- for raw interface
                 read_addr => map_read_addr,
                 read_data => map_read_out
             );
@@ -382,39 +422,40 @@ begin
     -- Tracers
         tracers: for i in 0 to CHANNEL_NUM - 1 generate
             tr: tracer
-            port map (
-                clk_sys => clk_sys,
-                rst => rst,
-                en => pulse,
-                start => tracer_start,
-                start_p => p_pos,
-                end_p => p_view_targets(i),
-                last_color => last_colors(i),
-                block_info_addr => map_read_addrs(i),
-                block_info => map_read_datas(i),
-                color_addr => texture_read_addrs(i),
-                color => texture_read_datas(i),
-                is_idle => tracer_idles(i),
-                write_out => tracer_writes(i),
-                color_out => tracer_colors(i),
-                valid_color_out => update_colors(i)
-            );
+                port map (
+                    clk_sys => clk_sys,
+                    rst => rst,
+                    en => pulse,
+                    start => tracer_start,
+                    start_p => p_pos,
+                    end_p => p_view_targets(i),
+                    last_color => last_colors(i),
+                    block_info_addr => map_read_addrs(i),
+                    block_info => map_read_datas(i),
+                    color_addr => texture_read_addrs(i),
+                    color => texture_read_datas(i),
+                    is_idle => tracer_idles(i),
+                    write_out => tracer_writes(i),
+                    color_out => tracer_colors(i),
+                    valid_color_out => update_colors(i)
+                );
         end generate;
     
 
-    -- Last color register
-        process (clk_sys, rst) is
-        begin
-            if rst = '1' then
-                last_colors <= (others => ("0000", "0000", "0000"));
-            elsif rising_edge(clk_sys) then
-                last_colors <= last_colors_next;
-            end if;
-        end process;
+    -- Last Color Registers
+        last_colors <= (others => ("0000", "0000", "0000"));
+        -- process (clk_sys, rst) is
+        -- begin
+        --     if rst = '1' then
+        --         last_colors <= (others => ("0000", "0000", "0000"));
+        --     elsif rising_edge(clk_sys) then
+        --         last_colors <= last_colors_next;
+        --     end if;
+        -- end process;
         
-        lst_c_nxt_gen: for i in 0 to CHANNEL_NUM - 1 generate
-            last_colors_next(i) <= ("0000", "0000", "0000") when pixel_scans(i).x = 0 else tracer_colors(i) when update_colors(i) = '1' else last_colors(i);
-        end generate;
+        -- lst_c_nxt_gen: for i in 0 to CHANNEL_NUM - 1 generate
+        --     last_colors_next(i) <= tracer_colors(i) when update_colors(i) = '1' else last_colors(i);
+        -- end generate;
     
 
     -- Display RAM write controller
@@ -437,20 +478,21 @@ begin
 
 
     -- Debug
-        process (clk_sys, rst) is
-        begin
-            if rst = '1' then
-                rot_cnt <= 0;
-                p_angle_x <= 780;
-            elsif rising_edge(clk_sys) then
-                rot_cnt <= rot_cnt_next;
-                p_angle_x <= p_angle_x_next;
-            end if;
-        end process;
-        rot_cnt_next <= 0 when rot_cnt = ROT_CNT_MAX - 1 else rot_cnt + 1;
-        p_angle_x_next <= p_angle_x when rot_cnt < ROT_CNT_MAX - 1 else
-                        0 when p_angle_x = 1267 else
-                        p_angle_x + 1;
+        p_angle_x <= 780;
+        -- process (clk_sys, rst) is
+        -- begin
+        --     if rst = '1' then
+        --         rot_cnt <= 0;
+        --         p_angle_x <= 780;
+        --     elsif rising_edge(clk_sys) then
+        --         rot_cnt <= rot_cnt_next;
+        --         p_angle_x <= p_angle_x_next;
+        --     end if;
+        -- end process;
+        -- rot_cnt_next <= 0 when rot_cnt = ROT_CNT_MAX - 1 else rot_cnt + 1;
+        -- p_angle_x_next <= p_angle_x when rot_cnt < ROT_CNT_MAX - 1 else
+        --                 0 when p_angle_x = 1267 else
+        --                 p_angle_x + 1;
         
         seven_segs_driver: seven_segments_display_driver
             port map (
@@ -460,13 +502,14 @@ begin
                 anodes_n => anodes_n,
                 segs_n => segs_n
             );
-
-        num_in(7) <= "0000";
-        num_in(6) <= "0000";
-        num_in(5) <= "0000";
-        num_in(4) <= "0000";
-        num_in(3) <= "0000";
-        num_in(2) <= "0000";
-        num_in(1) <= "0000";
-        num_in(0) <= "0000";
+        
+        -- num_in(7) <= ;
+        -- num_in(7) <= "0000";
+        -- num_in(6) <= "0000";
+        -- num_in(5) <= "0000";
+        -- num_in(4) <= "0000";
+        -- num_in(3) <= "0000";
+        -- num_in(2) <= "0000";
+        -- num_in(1) <= "0000";
+        -- num_in(0) <= "0000";
 end architecture;

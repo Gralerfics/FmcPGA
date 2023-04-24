@@ -19,8 +19,8 @@ end entity;
 
 
 architecture Behavioral of map_ram_read_controller is
-    constant CNT_NUM: natural := 10;
-    constant CNT_TICK: natural := 2;
+    constant CNT_NUM: natural := 12;
+    constant CNT_TICK: natural := 3;
 
     signal datas_reg, datas_next: map_read_datas_t(0 to CHANNEL_NUM - 1);
     signal channel_cnt, channel_cnt_next: natural;

@@ -18,8 +18,8 @@ end entity;
 
 
 architecture Behavioral of display_ram_write_controller is
-    constant CNT_NUM: natural := 10;
-    constant CNT_TICK: natural := 1;
+    constant CNT_NUM: natural := 12;
+    constant CNT_TICK: natural := 3;
 
     signal channels_reg: disp_write_channels_t(0 to CHANNEL_NUM - 1);
     signal channel_cnt, channel_cnt_next: natural;

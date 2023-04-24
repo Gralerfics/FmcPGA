@@ -174,7 +174,7 @@ architecture Behavioral of top_module is
             start: in std_logic;
             start_p, end_p: in vec3i_t;
             last_color: in color_t;
-            block_info_addr: out std_logic_vector(MAP_ADDR_RADIX - 1 downto 0); -- "next"
+            block_info_addr: out std_logic_vector(MAP_ADDR_RADIX - 1 downto 0);
             block_info: in std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0);
             color_addr: out std_logic_vector(TEXTURE_ADDR_RADIX - 1 downto 0);
             color: in color_t;
@@ -239,7 +239,7 @@ architecture Behavioral of top_module is
 
     signal rot_cnt, rot_cnt_next: integer;
     signal p_angle_x, p_angle_x_next: int;
-    constant ROT_CNT_MAX: integer := 6000000;
+    constant ROT_CNT_MAX: integer := 12000000;
     signal num_in: bcd_array_t(7 downto 0);
 begin
     -- Display Controller
@@ -325,7 +325,7 @@ begin
                 H_LEFT => 0,
                 H_RIGHT => H_REAL,
                 V_TOP => 0,
-                V_BOTTOM => V_REAL / 4
+                V_BOTTOM => V_REAL / CHANNEL_NUM
             )
             port map (
                 clk_sys => clk_sys,
@@ -347,12 +347,17 @@ begin
             end loop;
             tracer_idle_all <= reduce_and_idle_all;
         end process;
-        -- tracer_idle_all <= tracer_idles(0) and tracer_idles(1) and tracer_idles(2) and tracer_idles(3);
         
         -- Pixel Coordinates for Channels Generation
-        pixel_scans(1) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 4);         -- vec2i_t'(H_REAL / 2, 0);
-        pixel_scans(2) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 2);         -- vec2i_t'(0, V_REAL / 2);
-        pixel_scans(3) <= pixel_scans(0) + vec2i_t'(0, V_REAL * 3 / 4);     -- vec2i_t'(H_REAL / 2, V_REAL / 2);
+        -- pixel_scans(1) <= pixel_scans(0) + vec2i_t'(0, 40);
+        -- pixel_scans(2) <= pixel_scans(0) + vec2i_t'(0, 80);
+        -- pixel_scans(3) <= pixel_scans(0) + vec2i_t'(0, 120);
+        -- pixel_scans(4) <= pixel_scans(0) + vec2i_t'(0, 160);
+        -- pixel_scans(5) <= pixel_scans(0) + vec2i_t'(0, 200);
+
+        -- pixel_scans(1) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 4);
+        -- pixel_scans(2) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 2);
+        -- pixel_scans(3) <= pixel_scans(0) + vec2i_t'(0, V_REAL * 3 / 4);
 
         -- Viewport Info Generation
         vp_info_gen: viewport_pixel_info_gen
@@ -478,21 +483,21 @@ begin
 
 
     -- Debug
-        p_angle_x <= 780;
-        -- process (clk_sys, rst) is
-        -- begin
-        --     if rst = '1' then
-        --         rot_cnt <= 0;
-        --         p_angle_x <= 780;
-        --     elsif rising_edge(clk_sys) then
-        --         rot_cnt <= rot_cnt_next;
-        --         p_angle_x <= p_angle_x_next;
-        --     end if;
-        -- end process;
-        -- rot_cnt_next <= 0 when rot_cnt = ROT_CNT_MAX - 1 else rot_cnt + 1;
-        -- p_angle_x_next <= p_angle_x when rot_cnt < ROT_CNT_MAX - 1 else
-        --                 0 when p_angle_x = 1267 else
-        --                 p_angle_x + 1;
+        -- p_angle_x <= 780;
+        process (clk_sys, rst) is
+        begin
+            if rst = '1' then
+                rot_cnt <= 0;
+                p_angle_x <= 680;
+            elsif rising_edge(clk_sys) then
+                rot_cnt <= rot_cnt_next;
+                p_angle_x <= p_angle_x_next;
+            end if;
+        end process;
+        rot_cnt_next <= 0 when rot_cnt = ROT_CNT_MAX - 1 else rot_cnt + 1;
+        p_angle_x_next <= p_angle_x when rot_cnt < ROT_CNT_MAX - 1 else
+                        680 when p_angle_x = 880 else
+                        p_angle_x + 1;
         
         seven_segs_driver: seven_segments_display_driver
             port map (

@@ -34,16 +34,31 @@ architecture Behavioral of top_module is
         );
     end component;
 
-    component display_ram is
+    -- component display_ram is
+    --     port (
+    --         clka: in std_logic;
+    --         ena: in std_logic;
+    --         wea: in std_logic_vector(0 downto 0);
+    --         addra: in std_logic_vector(16 downto 0);
+    --         dina: in std_logic_vector(11 downto 0);
+    --         clkb: in std_logic;
+    --         addrb: in std_logic_vector(16 downto 0);
+    --         doutb: out std_logic_vector(11 downto 0)
+    --     );
+    -- end component;
+
+    component display_buffer_controller is
         port (
-            clka: in std_logic;
-            ena: in std_logic;
-            wea: in std_logic_vector(0 downto 0);
-            addra: in std_logic_vector(16 downto 0);
-            dina: in std_logic_vector(11 downto 0);
-            clkb: in std_logic;
-            addrb: in std_logic_vector(16 downto 0);
-            doutb: out std_logic_vector(11 downto 0)
+            clk_sys, rst: in std_logic;
+            swap, pulse_en: in std_logic;
+            clk_write: in std_logic;
+            en_write: in std_logic;
+            we_write: in std_logic_vector(0 downto 0);
+            addr_write: in std_logic_vector(16 downto 0);
+            din_write: in std_logic_vector(11 downto 0);
+            clk_read: in std_logic;
+            addr_read: in std_logic_vector(16 downto 0);
+            dout_read: out std_logic_vector(11 downto 0)
         );
     end component;
 
@@ -263,16 +278,32 @@ begin
                 scan_valid => disp_scan_valid
             );
 
-        disp_ram: display_ram
+        -- disp_ram: display_ram
+        --     port map (
+        --         clka => clk_sys,
+        --         ena => write_buf_tick,
+        --         wea => "1",
+        --         addra => write_buf_addr,
+        --         dina => write_buf_in,
+        --         clkb => read_buf_tick,
+        --         addrb => read_buf_addr,
+        --         doutb => read_buf_out
+        --     );
+        
+        disp_bufs: display_buffer_controller
             port map (
-                clka => clk_sys,
-                ena => write_buf_tick,
-                wea => "1",
-                addra => write_buf_addr,
-                dina => write_buf_in,
-                clkb => read_buf_tick,
-                addrb => read_buf_addr,
-                doutb => read_buf_out
+                clk_sys => clk_sys,
+                rst => rst,
+                swap => eof_pulse,
+                pulse_en => pulse,
+                clk_write => clk_sys,
+                en_write => write_buf_tick,
+                we_write => "1",
+                addr_write => write_buf_addr,
+                din_write => write_buf_in,
+                clk_read => read_buf_tick,
+                addr_read => read_buf_addr,
+                dout_read => read_buf_out
             );
         
         vgaout.color.r <= read_buf_out(11 downto 8) when disp_scan_valid = '1' else "0000";

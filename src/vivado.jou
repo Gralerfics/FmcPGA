@@ -207,3 +207,31 @@ set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
 set_property PROGRAM.FILE {/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/impl_1/top_module.bit} [get_hw_devices xc7a100t_0]
 program_hw_devices [get_hw_devices xc7a100t_0]
 refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/impl_1/top_module.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/impl_1/top_module.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+add_files -norecurse /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/display_buffer_controller.vhd
+set_property file_type {VHDL 2008} [get_files  /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/display_buffer_controller.vhd]
+refresh_design
+refresh_design
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+wait_on_run impl_1
+set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/impl_1/top_module.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]

@@ -1442,3 +1442,219 @@ refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
 INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
 WARNING: [IP_Flow 19-4067] Ignoring invalid widget type specified checkbox.Providing a default widget
 WARNING: [IP_Flow 19-4067] Ignoring invalid widget type specified checkbox.Providing a default widget
+reset_run synth_1
+INFO: [Project 1-1161] Replacing file /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.srcs/utils_1/imports/synth_1/test_module.dcp with file /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/top_module.dcp
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+INFO: [Vivado 12-4149] The synthesis checkpoint for IP '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/clk_vga_generator/clk_vga_generator.xci' is already up-to-date
+[Wed Apr 26 04:10:52 2023] Launched synth_1...
+Run output will be captured here: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/runme.log
+[Wed Apr 26 04:10:52 2023] Launched impl_1...
+Run output will be captured here: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/impl_1/runme.log
+set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/impl_1/top_module.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+reset_run synth_1
+INFO: [Project 1-1161] Replacing file /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.srcs/utils_1/imports/synth_1/test_module.dcp with file /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/top_module.dcp
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+INFO: [Vivado 12-4149] The synthesis checkpoint for IP '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/clk_vga_generator/clk_vga_generator.xci' is already up-to-date
+[Wed Apr 26 04:24:40 2023] Launched synth_1...
+Run output will be captured here: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/runme.log
+[Wed Apr 26 04:24:40 2023] Launched impl_1...
+Run output will be captured here: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/impl_1/runme.log
+set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/impl_1/top_module.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+add_files -norecurse /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/display_buffer_controller.vhd
+set_property file_type {VHDL 2008} [get_files  /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/display_buffer_controller.vhd]
+refresh_design
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:08 . Memory (MB): peak = 11805.930 ; gain = 0.000 ; free physical = 2632 ; free virtual = 18823
+---------------------------------------------------------------------------------
+ERROR: [Synth 8-9486] formal port 'pulse_en' has no actual or default value [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:306]
+INFO: [Synth 8-8898] 'pulse_en' is declared here [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:53]
+INFO: [Synth 8-11252] unit 'behavioral' is ignored due to previous errors [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:550]
+INFO: [Synth 8-10443] VHDL file '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd' is ignored due to errors
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:09 . Memory (MB): peak = 11805.930 ; gain = 0.000 ; free physical = 2539 ; free virtual = 18732
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+refresh_design: Time (s): cpu = 00:00:06 ; elapsed = 00:00:09 . Memory (MB): peak = 11805.930 ; gain = 0.000 ; free physical = 2713 ; free virtual = 18906
+ERROR: [Common 17-39] 'refresh_design' failed due to earlier errors.
+refresh_design
+INFO: [Synth 8-11241] undeclared symbol 'REGCCE', assumed default net type 'wire' [/home/gralerfics/MyFiles/Softwares/Xilinx/Vivado/2022.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.v:2170]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 11829.941 ; gain = 0.000 ; free physical = 2428 ; free virtual = 18699
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'top_module' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:19]
+INFO: [Synth 8-3491] module 'clk_vga_generator' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/.Xil/Vivado-4189-gralerfics-HP-ZHAN-66-Pro-G1-MT/realtime/clk_vga_generator_stub.vhdl:5' bound to instance 'clk_vga_gen' of component 'clk_vga_generator' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:261]
+INFO: [Synth 8-638] synthesizing module 'clk_vga_generator' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/.Xil/Vivado-4189-gralerfics-HP-ZHAN-66-Pro-G1-MT/realtime/clk_vga_generator_stub.vhdl:15]
+INFO: [Synth 8-3491] module 'display_controller' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/display_controller.vhd:9' bound to instance 'disp_ctrl' of component 'display_controller' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:269]
+INFO: [Synth 8-638] synthesizing module 'display_controller' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/display_controller.vhd:20]
+INFO: [Synth 8-256] done synthesizing module 'display_controller' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/display_controller.vhd:20]
+INFO: [Synth 8-3491] module 'display_buffer_controller' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/display_buffer_controller.vhd:8' bound to instance 'disp_bufs' of component 'display_buffer_controller' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:293]
+INFO: [Synth 8-638] synthesizing module 'display_buffer_controller' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/display_buffer_controller.vhd:24]
+INFO: [Synth 8-3491] module 'display_ram' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/.Xil/Vivado-4189-gralerfics-HP-ZHAN-66-Pro-G1-MT/realtime/display_ram_stub.vhdl:5' bound to instance 'disp_ram_0' of component 'display_ram' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/display_buffer_controller.vhd:45]
+INFO: [Synth 8-638] synthesizing module 'display_ram' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/.Xil/Vivado-4189-gralerfics-HP-ZHAN-66-Pro-G1-MT/realtime/display_ram_stub.vhdl:19]
+INFO: [Synth 8-3491] module 'display_ram' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/.Xil/Vivado-4189-gralerfics-HP-ZHAN-66-Pro-G1-MT/realtime/display_ram_stub.vhdl:5' bound to instance 'disp_ram_1' of component 'display_ram' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/display_buffer_controller.vhd:57]
+WARNING: [Synth 8-614] signal 'pulse_en' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/display_buffer_controller.vhd:87]
+INFO: [Synth 8-256] done synthesizing module 'display_buffer_controller' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/display_buffer_controller.vhd:24]
+INFO: [Synth 8-3491] module 'player_state' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/player_state.vhd:7' bound to instance 'p_state' of component 'player_state' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:315]
+INFO: [Synth 8-638] synthesizing module 'player_state' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/player_state.vhd:19]
+INFO: [Synth 8-256] done synthesizing module 'player_state' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/player_state.vhd:19]
+INFO: [Synth 8-3491] module 'angle_coord_lookat' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/angle_coord_lookat.vhd:8' bound to instance 'ac_cvt' of component 'angle_coord_lookat' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:326]
+INFO: [Synth 8-638] synthesizing module 'angle_coord_lookat' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/angle_coord_lookat.vhd:17]
+INFO: [Synth 8-3491] module 'angle_coord_convertor' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/angle_coord_convertor.vhd:8' bound to instance 'ac_cvt_h' of component 'angle_coord_convertor' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/angle_coord_lookat.vhd:27]
+INFO: [Synth 8-638] synthesizing module 'angle_coord_convertor' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/angle_coord_convertor.vhd:17]
+INFO: [Synth 8-256] done synthesizing module 'angle_coord_convertor' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/angle_coord_convertor.vhd:17]
+INFO: [Synth 8-3491] module 'angle_coord_convertor' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/angle_coord_convertor.vhd:8' bound to instance 'ac_cvt_v' of component 'angle_coord_convertor' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/angle_coord_lookat.vhd:32]
+INFO: [Synth 8-256] done synthesizing module 'angle_coord_lookat' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/angle_coord_lookat.vhd:17]
+INFO: [Synth 8-3491] module 'viewport_base_vec' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/viewport_base_vec.vhd:8' bound to instance 'vp_base_gen' of component 'viewport_base_vec' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:333]
+INFO: [Synth 8-638] synthesizing module 'viewport_base_vec' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/viewport_base_vec.vhd:17]
+INFO: [Synth 8-256] done synthesizing module 'viewport_base_vec' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/viewport_base_vec.vhd:17]
+	Parameter period bound to: 100 - type: integer 
+INFO: [Synth 8-3491] module 'frequency_divider' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/frequency_divider.vhd:7' bound to instance 'freq_div' of component 'frequency_divider' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:343]
+INFO: [Synth 8-638] synthesizing module 'frequency_divider' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/frequency_divider.vhd:18]
+	Parameter period bound to: 100 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'frequency_divider' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/frequency_divider.vhd:18]
+	Parameter H_LEFT bound to: 0 - type: integer 
+	Parameter H_RIGHT bound to: 320 - type: integer 
+	Parameter V_TOP bound to: 0 - type: integer 
+	Parameter V_BOTTOM bound to: 60 - type: integer 
+INFO: [Synth 8-3491] module 'viewport_scanner' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/viewport_scanner.vhd:8' bound to instance 'view_scan' of component 'viewport_scanner' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:354]
+INFO: [Synth 8-638] synthesizing module 'viewport_scanner' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/viewport_scanner.vhd:23]
+	Parameter H_LEFT bound to: 0 - type: integer 
+	Parameter H_RIGHT bound to: 320 - type: integer 
+	Parameter V_TOP bound to: 0 - type: integer 
+	Parameter V_BOTTOM bound to: 60 - type: integer 
+WARNING: [Synth 8-614] signal 'tracers_idle' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/viewport_scanner.vhd:27]
+WARNING: [Synth 8-614] signal 'en' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/viewport_scanner.vhd:27]
+INFO: [Synth 8-256] done synthesizing module 'viewport_scanner' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/viewport_scanner.vhd:23]
+INFO: [Synth 8-3491] module 'viewport_pixel_info_gen' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/viewport_pixel_info_gen.vhd:9' bound to instance 'vp_info_gen' of component 'viewport_pixel_info_gen' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:394]
+INFO: [Synth 8-638] synthesizing module 'viewport_pixel_info_gen' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/viewport_pixel_info_gen.vhd:19]
+INFO: [Synth 8-256] done synthesizing module 'viewport_pixel_info_gen' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/viewport_pixel_info_gen.vhd:19]
+INFO: [Synth 8-3491] module 'map_ram' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/.Xil/Vivado-4189-gralerfics-HP-ZHAN-66-Pro-G1-MT/realtime/map_ram_stub.vhdl:5' bound to instance 'mp_ram' of component 'map_ram' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:407]
+INFO: [Synth 8-638] synthesizing module 'map_ram' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/.Xil/Vivado-4189-gralerfics-HP-ZHAN-66-Pro-G1-MT/realtime/map_ram_stub.vhdl:23]
+INFO: [Synth 8-3491] module 'map_ram_read_controller' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/map_ram_read_controller.vhd:8' bound to instance 'mp_ram_r_ctrl' of component 'map_ram_read_controller' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:423]
+INFO: [Synth 8-638] synthesizing module 'map_ram_read_controller' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/map_ram_read_controller.vhd:21]
+INFO: [Synth 8-256] done synthesizing module 'map_ram_read_controller' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/map_ram_read_controller.vhd:21]
+INFO: [Synth 8-3491] module 'texture_rom' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/.Xil/Vivado-4189-gralerfics-HP-ZHAN-66-Pro-G1-MT/realtime/texture_rom_stub.vhdl:5' bound to instance 'txt_rom' of component 'texture_rom' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:437]
+INFO: [Synth 8-638] synthesizing module 'texture_rom' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/.Xil/Vivado-4189-gralerfics-HP-ZHAN-66-Pro-G1-MT/realtime/texture_rom_stub.vhdl:15]
+INFO: [Synth 8-3491] module 'texture_rom_read_controller' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/texture_rom_read_controller.vhd:8' bound to instance 'txt_rom_r_ctrl' of component 'texture_rom_read_controller' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:445]
+INFO: [Synth 8-638] synthesizing module 'texture_rom_read_controller' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/texture_rom_read_controller.vhd:21]
+INFO: [Synth 8-256] done synthesizing module 'texture_rom_read_controller' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/texture_rom_read_controller.vhd:21]
+INFO: [Synth 8-3491] module 'tracer' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:9' bound to instance 'tr' of component 'tracer' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:460]
+INFO: [Synth 8-638] synthesizing module 'tracer' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:33]
+WARNING: [Synth 8-614] signal 'en' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:96]
+INFO: [Synth 8-3491] module 'plane_collision' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:8' bound to instance 'plane_col' of component 'plane_collision' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:177]
+INFO: [Synth 8-638] synthesizing module 'plane_collision' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:17]
+INFO: [Synth 8-256] done synthesizing module 'plane_collision' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/plane_collision.vhd:17]
+INFO: [Synth 8-3491] module 'texture_idx_generator' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/texture_idx_generator.vhd:9' bound to instance 'txt_idx_gen' of component 'texture_idx_generator' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:195]
+INFO: [Synth 8-638] synthesizing module 'texture_idx_generator' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/texture_idx_generator.vhd:18]
+INFO: [Synth 8-256] done synthesizing module 'texture_idx_generator' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/texture_idx_generator.vhd:18]
+WARNING: [Synth 8-614] signal 'block_info_addr' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:204]
+WARNING: [Synth 8-614] signal 'block_p_2' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:204]
+WARNING: [Synth 8-614] signal 'is_valid_2' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:204]
+WARNING: [Synth 8-614] signal 'block_p_3' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:204]
+WARNING: [Synth 8-614] signal 'is_valid_3' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:204]
+WARNING: [Synth 8-614] signal 'color_addr' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:204]
+WARNING: [Synth 8-614] signal 'block_p_4' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:204]
+WARNING: [Synth 8-614] signal 'is_valid_4' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:204]
+WARNING: [Synth 8-614] signal 'block_p_5' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:204]
+WARNING: [Synth 8-614] signal 'is_valid_5' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:204]
+WARNING: [Synth 8-614] signal 'write_out' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:204]
+WARNING: [Synth 8-614] signal 'color_out' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:204]
+WARNING: [Synth 8-614] signal 'valid_color_out' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:204]
+WARNING: [Synth 8-614] signal 'txt_idx' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:204]
+WARNING: [Synth 8-614] signal 'start_block_p' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:204]
+WARNING: [Synth 8-614] signal 'out_of_map' is read in the process but is not in the sensitivity list [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:204]
+INFO: [Synth 8-256] done synthesizing module 'tracer' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:33]
+INFO: [Synth 8-3491] module 'tracer' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:9' bound to instance 'tr' of component 'tracer' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:460]
+INFO: [Synth 8-3491] module 'tracer' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:9' bound to instance 'tr' of component 'tracer' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:460]
+INFO: [Synth 8-3491] module 'tracer' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/tracer.vhd:9' bound to instance 'tr' of component 'tracer' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:460]
+INFO: [Synth 8-3491] module 'display_ram_write_controller' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/display_ram_write_controller.vhd:8' bound to instance 'disp_ram_w_ctrl' of component 'display_ram_write_controller' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:498]
+INFO: [Synth 8-638] synthesizing module 'display_ram_write_controller' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/display_ram_write_controller.vhd:20]
+INFO: [Synth 8-256] done synthesizing module 'display_ram_write_controller' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/display_ram_write_controller.vhd:20]
+INFO: [Synth 8-3491] module 'seven_segments_display_driver' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/utils/seven_segments_display_driver.vhd:10' bound to instance 'seven_segs_driver' of component 'seven_segments_display_driver' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:533]
+INFO: [Synth 8-638] synthesizing module 'seven_segments_display_driver' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/utils/seven_segments_display_driver.vhd:20]
+	Parameter period bound to: 100000 - type: integer 
+INFO: [Synth 8-3491] module 'frequency_divider' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/frequency_divider.vhd:7' bound to instance 'freq_div' of component 'frequency_divider' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/utils/seven_segments_display_driver.vhd:50]
+INFO: [Synth 8-638] synthesizing module 'frequency_divider__parameterized1' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/frequency_divider.vhd:18]
+	Parameter period bound to: 100000 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'frequency_divider__parameterized1' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/frequency_divider.vhd:18]
+INFO: [Synth 8-3491] module 'decoder_3_to_8' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/utils/decoder_3_to_8.vhd:7' bound to instance 'decoder' of component 'decoder_3_to_8' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/utils/seven_segments_display_driver.vhd:71]
+INFO: [Synth 8-638] synthesizing module 'decoder_3_to_8' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/utils/decoder_3_to_8.vhd:15]
+INFO: [Synth 8-256] done synthesizing module 'decoder_3_to_8' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/utils/decoder_3_to_8.vhd:15]
+INFO: [Synth 8-3491] module 'seven_segments_display_decoder' declared at '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/utils/seven_segments_display_decoder.vhd:8' bound to instance 'seven_seg_dec' of component 'seven_segments_display_decoder' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/utils/seven_segments_display_driver.vhd:85]
+INFO: [Synth 8-638] synthesizing module 'seven_segments_display_decoder' [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/utils/seven_segments_display_decoder.vhd:16]
+INFO: [Synth 8-256] done synthesizing module 'seven_segments_display_decoder' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/utils/seven_segments_display_decoder.vhd:16]
+INFO: [Synth 8-256] done synthesizing module 'seven_segments_display_driver' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/utils/seven_segments_display_driver.vhd:20]
+INFO: [Synth 8-256] done synthesizing module 'top_module' (0#1) [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:19]
+WARNING: [Synth 8-3848] Net num_in[7] in module/entity top_module does not have driver. [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:258]
+WARNING: [Synth 8-3848] Net num_in[6] in module/entity top_module does not have driver. [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:258]
+WARNING: [Synth 8-3848] Net num_in[5] in module/entity top_module does not have driver. [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:258]
+WARNING: [Synth 8-3848] Net num_in[4] in module/entity top_module does not have driver. [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:258]
+WARNING: [Synth 8-3848] Net num_in[3] in module/entity top_module does not have driver. [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:258]
+WARNING: [Synth 8-3848] Net num_in[2] in module/entity top_module does not have driver. [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:258]
+WARNING: [Synth 8-3848] Net num_in[1] in module/entity top_module does not have driver. [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:258]
+WARNING: [Synth 8-3848] Net num_in[0] in module/entity top_module does not have driver. [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/top_module.vhd:258]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 11829.941 ; gain = 0.000 ; free physical = 2494 ; free virtual = 18765
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 11829.941 ; gain = 0.000 ; free physical = 2494 ; free virtual = 18765
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 11829.941 ; gain = 0.000 ; free physical = 2494 ; free virtual = 18765
+---------------------------------------------------------------------------------
+INFO: [Project 1-454] Reading design checkpoint '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/clk_vga_generator/clk_vga_generator.dcp' for cell 'clk_vga_gen'
+INFO: [Project 1-454] Reading design checkpoint '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/map_ram/map_ram.dcp' for cell 'mp_ram'
+INFO: [Project 1-454] Reading design checkpoint '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/texture_rom/texture_rom.dcp' for cell 'txt_rom'
+INFO: [Project 1-454] Reading design checkpoint '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/display_ram/display_ram.dcp' for cell 'disp_bufs/disp_ram_0'
+Netlist sorting complete. Time (s): cpu = 00:00:00.12 ; elapsed = 00:00:00.11 . Memory (MB): peak = 11829.941 ; gain = 0.000 ; free physical = 2428 ; free virtual = 18788
+INFO: [Netlist 29-17] Analyzing 114 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2022.2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/clk_vga_generator/clk_vga_generator_board.xdc] for cell 'clk_vga_gen/inst'
+Finished Parsing XDC File [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/clk_vga_generator/clk_vga_generator_board.xdc] for cell 'clk_vga_gen/inst'
+Parsing XDC File [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/clk_vga_generator/clk_vga_generator.xdc] for cell 'clk_vga_gen/inst'
+Finished Parsing XDC File [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/clk_vga_generator/clk_vga_generator.xdc] for cell 'clk_vga_gen/inst'
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/clk_vga_generator/clk_vga_generator.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_module_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_module_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+INFO: [Timing 38-2] Deriving generated clocks
+Parsing XDC File [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/xdc/top_module.xdc]
+Finished Parsing XDC File [/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/xdc/top_module.xdc]
+Completed Processing XDC Constraints
+
+refresh_design: Time (s): cpu = 00:00:14 ; elapsed = 00:00:11 . Memory (MB): peak = 11840.953 ; gain = 11.012 ; free physical = 2310 ; free virtual = 18677
+reset_run synth_1
+INFO: [Project 1-1161] Replacing file /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.srcs/utils_1/imports/synth_1/test_module.dcp with file /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/top_module.dcp
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+INFO: [Vivado 12-4149] The synthesis checkpoint for IP '/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/clk_vga_generator/clk_vga_generator.xci' is already up-to-date
+[Wed Apr 26 04:44:01 2023] Launched synth_1...
+Run output will be captured here: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/synth_1/runme.log
+[Wed Apr 26 04:44:01 2023] Launched impl_1...
+Run output will be captured here: /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/impl_1/runme.log
+set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {/home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/project/project.runs/impl_1/top_module.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+ERROR: [Labtoolstcl 44-513] HW Target shutdown. Closing target: localhost:3121/xilinx_tcf/Digilent/210292A3FFEDA

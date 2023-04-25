@@ -39,7 +39,8 @@ begin
     v_cnt_next <= v_cnt_reg         when h_cnt_reg /= H_RIGHT - 1 else
                   V_TOP             when v_cnt_reg = V_BOTTOM - 1 else
                   v_cnt_reg + 1;
-    eof <= '1' when v_cnt_reg = V_BOTTOM - 1 and h_cnt_reg = H_RIGHT - 1 else '0';
+    -- eof <= '1' when v_cnt_reg = V_BOTTOM - 1 and h_cnt_reg = H_RIGHT - 1 else '0';  -- TODO: 不对，最好个单周期脉冲，而且这里实际上是开始处理最后一个点时发出，而不是处理完
+    eof <= '1' when v_cnt_reg = V_BOTTOM - 1 and h_cnt_reg = H_RIGHT - 1 and tracers_idle = '1' else '0';
     
     tracers_start <= '1' when tracers_idle = '1' else '0';
     pixel <= (h_cnt_reg, v_cnt_reg);

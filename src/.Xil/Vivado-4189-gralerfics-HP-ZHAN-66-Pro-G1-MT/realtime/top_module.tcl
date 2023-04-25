@@ -72,6 +72,7 @@ set rt::rc [catch {
       /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/control/texture_rom_read_controller.vhd
       /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/viewport_base_vec.vhd
       /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/compute/viewport_pixel_info_gen.vhd
+      /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/src/hdl/display/display_buffer_controller.vhd
     }
       rt::filesetChecksum
     }

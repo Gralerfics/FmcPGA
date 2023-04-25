@@ -19,8 +19,8 @@ end entity;
 
 
 architecture Behavioral of map_ram_read_controller is
-    constant CNT_NUM: natural := 12;
-    constant CNT_TICK: natural := 3;
+    constant CNT_NUM: natural := RAM_READ_CNT_NUM;
+    constant CNT_TICK: natural := RAM_READ_CNT_TICK;
 
     signal datas_reg, datas_next: map_read_datas_t(0 to CHANNEL_NUM - 1);
     signal channel_cnt, channel_cnt_next: natural;
@@ -49,6 +49,7 @@ begin
 
     data_nxt_gen: for i in 0 to CHANNEL_NUM - 1 generate
         datas_next(i) <= read_data when i = channel_cnt else datas_reg(i);
+        -- datas_next(i) <= datas_reg(i) when i /= channel_cnt or cnt <= CNT_TICK else read_data;
     end generate;
     datas <= datas_reg;
 

@@ -355,9 +355,9 @@ begin
         -- pixel_scans(4) <= pixel_scans(0) + vec2i_t'(0, 160);
         -- pixel_scans(5) <= pixel_scans(0) + vec2i_t'(0, 200);
 
-        -- pixel_scans(1) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 4);
-        -- pixel_scans(2) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 2);
-        -- pixel_scans(3) <= pixel_scans(0) + vec2i_t'(0, V_REAL * 3 / 4);
+        pixel_scans(1) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 4);
+        pixel_scans(2) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 2);
+        pixel_scans(3) <= pixel_scans(0) + vec2i_t'(0, V_REAL * 3 / 4);
 
         -- Viewport Info Generation
         vp_info_gen: viewport_pixel_info_gen

@@ -34,8 +34,10 @@ package constants is
     constant PIPELINE_LEN: int := 5;
     -- constant TRACE_DEPTH: int := 11;
     constant TRACE_DIST_RAD_SQUARED: int := 6 ** 2;
-    constant CHANNEL_NUM: natural := 1;
+    constant CHANNEL_NUM: natural := 4;
     constant FREQ_DIV_PERIOD: integer := 100; -- 65;
+    constant RAM_READ_CNT_NUM : natural := 15;
+    constant RAM_READ_CNT_TICK : natural := 3;
 
     -- math constants.
     constant ANGLE_RADIUS: int := 225;

@@ -23,7 +23,7 @@ entity tracer is
     );
 end entity;
 
---  乍看没问题是则垃圾的想法，留个纪念：
+--  乍看没问题实则垃圾的想法，留个纪念：
 --      RAM <-> Register
 --          ram_addr -> RAM -> ram_value
 --          reg_next -> REG -> reg_value
@@ -86,6 +86,10 @@ architecture Behavioral of tracer is
     signal block_p_5, block_p_5_next: vec3i_t;
     signal is_valid_5, is_valid_5_next: std_logic;
 
+    signal write_out_reg, write_out_next: std_logic;
+    signal color_out_reg, color_out_next: color_t;
+    signal valid_color_out_reg, valid_color_out_next: std_logic;
+
     type state_t is (IDLE, INIT, OPERATE);
     signal state, state_next: state_t;
 begin
@@ -121,6 +125,10 @@ begin
             block_p_5 <= (0, 0, 0);
             is_valid_5 <= '0';
 
+            write_out_reg <= '0';
+            color_out_reg <= ("0000", "0000", "0000");
+            valid_color_out_reg <= '0';
+
             state <= IDLE;
         elsif rising_edge(clk_sys) and en = '1' then
             cnt <= cnt_next;
@@ -151,6 +159,10 @@ begin
             color_done <= color_done_next;
             block_p_5 <= block_p_5_next;
             is_valid_5 <= is_valid_5_next;
+            
+            write_out_reg <= write_out_next;
+            color_out_reg <= color_out_next;
+            valid_color_out_reg <= valid_color_out_next;
 
             state <= state_next;
         end if;
@@ -223,13 +235,17 @@ begin
         block_p_5_next <= block_p_5;
         is_valid_5_next <= is_valid_5;
 
+        write_out_next <= write_out;
+        color_out_next <= color_out;
+        valid_color_out_next <= valid_color_out;
+
         state_next <= state;
 
         -- output
         is_idle <= '0';
-        write_out <= '0';
-        color_out <= last_color;
-        valid_color_out <= '0';
+        -- write_out <= '0';
+        -- color_out <= last_color;
+        -- valid_color_out <= '0';
 
         case state is
             when IDLE =>
@@ -270,11 +286,15 @@ begin
                 block_p_5_next <= (0, 0, 0);
                 is_valid_5_next <= '0';
 
+                write_out_next <= '0';
+                color_out_next <= ("0000", "0000", "0000");
+                valid_color_out_next <= '0';
+
                 state_next <= OPERATE;
 
                 is_idle <= '0';
-                write_out <= '0';
-                valid_color_out <= '0';
+                -- write_out <= '0';
+                -- valid_color_out <= '0';
             when OPERATE =>
                 -- cnt
                 cnt_next <= cnt + 1;
@@ -365,29 +385,33 @@ begin
 
                 -- State Transition 注意都使用末级状态，否则超前判断
                 state_next <= OPERATE;
-                write_out <= '0';
+                write_out_next <= '0';
                 if cnt >= PIPELINE_LEN - 1 then
                     -- 前提是有效信息已经来到末级
                     if is_valid_5 = '0' then
                         state_next <= IDLE;
 
-                        write_out <= '1';
-                        color_out <= last_color;
-                        valid_color_out <= '0';
+                        write_out_next <= '1';
+                        color_out_next <= last_color;
+                        valid_color_out_next <= '0';
                     elsif length_squared(block_p_5 - start_block_p) >= TRACE_DIST_RAD_SQUARED or out_of_map = '1' then
                         state_next <= IDLE;
 
-                        write_out <= '1';
-                        color_out <= ("1010", "1110", "1111");
-                        valid_color_out <= '1';
+                        write_out_next <= '1';
+                        color_out_next <= ("1010", "1110", "1111");
+                        valid_color_out_next <= '1';
                     elsif hit_done = '1' then
                         state_next <= IDLE;
 
-                        write_out <= '1';
-                        color_out <= color_done;
-                        valid_color_out <= '1';
+                        write_out_next <= '1';
+                        color_out_next <= color_done;
+                        valid_color_out_next <= '1';
                     end if;
                 end if;
         end case;
     end process;
+
+    write_out <= write_out_reg;
+    color_out <= color_out_reg;
+    valid_color_out <= valid_color_out_reg;
 end architecture;

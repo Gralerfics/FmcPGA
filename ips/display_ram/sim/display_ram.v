@@ -60,6 +60,7 @@ module display_ram (
   addra,
   dina,
   clkb,
+  enb,
   addrb,
   doutb
 );
@@ -77,6 +78,8 @@ input wire [16 : 0] addra;
 input wire [11 : 0] dina;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 BRAM_PORTB CLK" *)
 input wire clkb;
+(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 BRAM_PORTB EN" *)
+input wire enb;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 BRAM_PORTB ADDR" *)
 input wire [16 : 0] addrb;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME BRAM_PORTB, MEM_SIZE 8192, MEM_WIDTH 32, MEM_ECC NONE, MASTER_TYPE OTHER, READ_LATENCY 1" *)
@@ -122,7 +125,7 @@ output wire [11 : 0] doutb;
     .C_RST_PRIORITY_B("CE"),
     .C_RSTRAM_B(0),
     .C_INITB_VAL("0"),
-    .C_HAS_ENB(0),
+    .C_HAS_ENB(1),
     .C_HAS_REGCEB(0),
     .C_USE_BYTE_WEB(0),
     .C_WEB_WIDTH(1),
@@ -170,7 +173,7 @@ output wire [11 : 0] doutb;
     .douta(),
     .clkb(clkb),
     .rstb(1'D0),
-    .enb(1'D0),
+    .enb(enb),
     .regceb(1'D0),
     .web(1'B0),
     .addrb(addrb),

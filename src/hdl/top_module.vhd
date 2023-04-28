@@ -57,6 +57,7 @@ architecture Behavioral of top_module is
             addr_write: in std_logic_vector(16 downto 0);
             din_write: in std_logic_vector(11 downto 0);
             clk_read: in std_logic;
+            en_read: in std_logic;
             addr_read: in std_logic_vector(16 downto 0);
             dout_read: out std_logic_vector(11 downto 0)
         );
@@ -277,18 +278,6 @@ begin
                 buf_addr => read_buf_addr,
                 scan_valid => disp_scan_valid
             );
-
-        -- disp_ram: display_ram
-        --     port map (
-        --         clka => clk_sys,
-        --         ena => write_buf_tick,
-        --         wea => "1",
-        --         addra => write_buf_addr,
-        --         dina => write_buf_in,
-        --         clkb => read_buf_tick,
-        --         addrb => read_buf_addr,
-        --         doutb => read_buf_out
-        --     );
         
         disp_bufs: display_buffer_controller
             port map (
@@ -302,6 +291,7 @@ begin
                 addr_write => write_buf_addr,
                 din_write => write_buf_in,
                 clk_read => read_buf_tick,
+                en_read => '1',
                 addr_read => read_buf_addr,
                 dout_read => read_buf_out
             );
@@ -412,9 +402,11 @@ begin
                 addra => (others => '0'),
                 dina => (others => '0'),
                 douta => map_douta,             -- useless
-                clkb => map_read_tick,      -- read
-                enb => '1',
-                web => "0",
+                -- clkb => map_read_tick,
+                -- enb => '1',
+                clkb => clk_sys,            -- read
+                enb => map_read_tick,
+                web => "0",                     -- useless
                 addrb => map_read_addr,
                 dinb => (others => '0'),        -- useless
                 doutb => map_read_out
@@ -431,13 +423,15 @@ begin
                 read_addr => map_read_addr,
                 read_data => map_read_out
             );
-        
+    
 
     -- Texture ROM
         txt_rom: texture_rom
             port map (
-                clka => texture_read_tick,
-                ena => '1',
+                -- clka => texture_read_tick,
+                -- ena => '1',
+                clka => clk_sys,
+                ena => texture_read_tick,
                 addra => texture_read_addr,
                 douta => texture_read_out
             );
@@ -479,19 +473,19 @@ begin
     
 
     -- Last Color Registers
-        last_colors <= (others => ("0000", "0000", "0000"));
-        -- process (clk_sys, rst) is
-        -- begin
-        --     if rst = '1' then
-        --         last_colors <= (others => ("0000", "0000", "0000"));
-        --     elsif rising_edge(clk_sys) then
-        --         last_colors <= last_colors_next;
-        --     end if;
-        -- end process;
+        -- last_colors <= (others => ("0000", "0000", "0000"));
+        process (clk_sys, rst) is
+        begin
+            if rst = '1' then
+                last_colors <= (others => ("0000", "0000", "0000"));
+            elsif rising_edge(clk_sys) then
+                last_colors <= last_colors_next;
+            end if;
+        end process;
         
-        -- lst_c_nxt_gen: for i in 0 to CHANNEL_NUM - 1 generate
-        --     last_colors_next(i) <= tracer_colors(i) when update_colors(i) = '1' else last_colors(i);
-        -- end generate;
+        lst_c_nxt_gen: for i in 0 to CHANNEL_NUM - 1 generate
+            last_colors_next(i) <= tracer_colors(i) when update_colors(i) = '1' else last_colors(i);
+        end generate;
     
 
     -- Display RAM write controller

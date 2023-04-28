@@ -15,6 +15,7 @@ entity display_buffer_controller is
         addr_write: in std_logic_vector(16 downto 0);
         din_write: in std_logic_vector(11 downto 0);
         clk_read: in std_logic;
+        en_read: in std_logic;
         addr_read: in std_logic_vector(16 downto 0);
         dout_read: out std_logic_vector(11 downto 0)
     );
@@ -30,6 +31,7 @@ architecture Behavioral of display_buffer_controller is
             addra: in std_logic_vector(16 downto 0);
             dina: in std_logic_vector(11 downto 0);
             clkb: in std_logic;
+            enb: in std_logic;
             addrb: in std_logic_vector(16 downto 0);
             doutb: out std_logic_vector(11 downto 0)
         );
@@ -37,7 +39,7 @@ architecture Behavioral of display_buffer_controller is
 
     signal mode, mode_next: std_logic;  -- which one is the displaying buffer (reading)
     signal clka_0, clka_1, clkb_0, clkb_1: std_logic;
-    signal ena_0, ena_1: std_logic;
+    signal ena_0, ena_1, enb_0, enb_1: std_logic;
     signal wea_0, wea_1: std_logic_vector(0 downto 0);
     signal addra_0, addra_1, addrb_0, addrb_1: std_logic_vector(16 downto 0);
     signal dina_0, dina_1, doutb_0, doutb_1: std_logic_vector(11 downto 0);
@@ -50,6 +52,7 @@ begin
             addra => addra_0,
             dina => dina_0,
             clkb => clkb_0,
+            enb => enb_0,
             addrb => addrb_0,
             doutb => doutb_0
         );
@@ -62,6 +65,7 @@ begin
             addra => addra_1,
             dina => dina_1,
             clkb => clkb_1,
+            enb => enb_1,
             addrb => addrb_1,
             doutb => doutb_1
         );
@@ -72,6 +76,7 @@ begin
     addra_0 <= (others => '0')  when mode = '0' else addr_write;
     dina_0 <= (others => '0')   when mode = '0' else din_write;
     clkb_0 <= clk_read          when mode = '0' else '0';
+    enb_0 <= en_read            when mode = '0' else '0';
     addrb_0 <= addr_read        when mode = '0' else (others => '0');
 
     clka_1 <= clk_write         when mode = '0' else '0';
@@ -80,6 +85,7 @@ begin
     addra_1 <= addr_write       when mode = '0' else (others => '0');
     dina_1 <= din_write         when mode = '0' else (others => '0');
     clkb_1 <= '0'               when mode = '0' else clk_read;
+    enb_1 <= '0'                when mode = '0' else en_read;
     addrb_1 <= (others => '0')  when mode = '0' else addr_read;
 
     dout_read <= doutb_0        when mode = '0' else doutb_1;

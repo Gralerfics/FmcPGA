@@ -10,6 +10,7 @@ entity display_ram is
     addra : in STD_LOGIC_VECTOR ( 16 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 11 downto 0 );
     clkb : in STD_LOGIC;
+    enb : in STD_LOGIC;
     addrb : in STD_LOGIC_VECTOR ( 16 downto 0 );
     doutb : out STD_LOGIC_VECTOR ( 11 downto 0 )
   );

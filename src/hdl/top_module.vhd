@@ -253,6 +253,29 @@ architecture Behavioral of top_module is
     signal last_colors, last_colors_next: colors_t(0 to CHANNEL_NUM - 1);
     signal update_colors: std_logic_vector(0 to CHANNEL_NUM - 1);
 
+    -- attribute MARK_DEBUG: string;
+    -- attribute MARK_DEBUG of clk_sys: signal is "TRUE";
+    -- attribute MARK_DEBUG of write_buf_tick: signal is "TRUE";
+    -- attribute MARK_DEBUG of write_buf_addr: signal is "TRUE";
+    -- attribute MARK_DEBUG of write_buf_in: signal is "TRUE";
+    -- attribute MARK_DEBUG of read_buf_tick: signal is "TRUE";
+    -- attribute MARK_DEBUG of read_buf_addr: signal is "TRUE";
+    -- attribute MARK_DEBUG of read_buf_out: signal is "TRUE";
+    -- attribute MARK_DEBUG of p_view_targets: signal is "TRUE";
+    -- attribute MARK_DEBUG of pulse: signal is "TRUE";
+    -- attribute MARK_DEBUG of pixel_scans: signal is "TRUE";
+    -- attribute MARK_DEBUG of map_read_tick: signal is "TRUE";
+    -- attribute MARK_DEBUG of map_read_addr: signal is "TRUE";
+    -- attribute MARK_DEBUG of map_read_out: signal is "TRUE";
+    -- attribute MARK_DEBUG of texture_read_tick: signal is "TRUE";
+    -- attribute MARK_DEBUG of texture_read_addr: signal is "TRUE";
+    -- attribute MARK_DEBUG of texture_read_out: signal is "TRUE";
+    -- attribute MARK_DEBUG of tracer_start: signal is "TRUE";
+    -- attribute MARK_DEBUG of tracer_idle_all: signal is "TRUE";
+    -- attribute MARK_DEBUG of tracer_writes: signal is "TRUE";
+    -- attribute MARK_DEBUG of tracer_colors: signal is "TRUE";
+    -- attribute MARK_DEBUG of update_colors: signal is "TRUE";
+
     signal rot_cnt, rot_cnt_next: integer;
     signal p_angle_x, p_angle_x_next: int;
     constant ROT_CNT_MAX: integer := 12000000;
@@ -376,9 +399,9 @@ begin
         -- pixel_scans(4) <= pixel_scans(0) + vec2i_t'(0, 160);
         -- pixel_scans(5) <= pixel_scans(0) + vec2i_t'(0, 200);
 
-        pixel_scans(1) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 4);
-        pixel_scans(2) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 2);
-        pixel_scans(3) <= pixel_scans(0) + vec2i_t'(0, V_REAL * 3 / 4);
+        -- pixel_scans(1) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 4);
+        -- pixel_scans(2) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 2);
+        -- pixel_scans(3) <= pixel_scans(0) + vec2i_t'(0, V_REAL * 3 / 4);
 
         -- Viewport Info Generation
         vp_info_gen: viewport_pixel_info_gen
@@ -513,7 +536,7 @@ begin
         begin
             if rst = '1' then
                 rot_cnt <= 0;
-                p_angle_x <= 680;
+                p_angle_x <= 400;
             elsif rising_edge(clk_sys) then
                 rot_cnt <= rot_cnt_next;
                 p_angle_x <= p_angle_x_next;
@@ -521,8 +544,8 @@ begin
         end process;
         rot_cnt_next <= 0 when rot_cnt = ROT_CNT_MAX - 1 else rot_cnt + 1;
         p_angle_x_next <= p_angle_x when rot_cnt < ROT_CNT_MAX - 1 else
-                        680 when p_angle_x = 880 else
-                        p_angle_x + 1;
+                          0 when p_angle_x = ANGLE_MODULO - 1 else
+                          p_angle_x + 1;
         
         seven_segs_driver: seven_segments_display_driver
             port map (

@@ -120,3 +120,4 @@ set_property PACKAGE_PIN K13 [get_ports {segs_n[4]}]
 set_property PACKAGE_PIN P15 [get_ports {segs_n[5]}]
 set_property PACKAGE_PIN T11 [get_ports {segs_n[6]}]
 set_property PACKAGE_PIN L18 [get_ports {segs_n[7]}]
+

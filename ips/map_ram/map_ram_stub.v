@@ -1,10 +1,10 @@
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
-// Date        : Mon Apr 17 18:17:39 2023
+// Date        : Mon Apr 17 18:17:38 2023
 // Host        : gralerfics-HP-ZHAN-66-Pro-G1-MT running 64-bit Ubuntu 20.04.6 LTS
-// Command     : write_verilog -force -mode synth_stub
-//               /home/gralerfics/MyFiles/Workspace/SUSTech-EE332-Digital-System-Designing-Project/ips/map_ram/map_ram_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top map_ram -prefix
+//               map_ram_ map_ram_stub.v
 // Design      : map_ram
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tcsg324-1

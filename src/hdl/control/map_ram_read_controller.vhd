@@ -25,6 +25,7 @@ architecture Behavioral of map_ram_read_controller is
     signal datas_reg, datas_next: map_read_datas_t(0 to CHANNEL_NUM - 1);
     signal channel_cnt, channel_cnt_next: natural;
     signal cnt, cnt_next: natural;
+    signal first_tick, first_tick_next: std_logic;
 begin
     process (clk_sys, rst) is
     begin
@@ -32,24 +33,27 @@ begin
             channel_cnt <= 0;
             cnt <= 0;
             datas_reg <= (others => (others => '0'));
+            first_tick <= '1';
         elsif rising_edge(clk_sys) then
             if en_in = '1' then
                 channel_cnt <= 0;
                 cnt <= 0;
                 datas_reg <= (others => (others => '0'));
+                first_tick <= '1';
             else
                 channel_cnt <= channel_cnt_next;
                 cnt <= cnt_next;
                 datas_reg <= datas_next;
+                first_tick <= first_tick_next;
             end if;
         end if;
     end process;
     cnt_next <= 0 when channel_cnt = CHANNEL_NUM or cnt = CNT_NUM - 1 else cnt + 1;
-    channel_cnt_next <= channel_cnt + 1 when cnt = CNT_NUM - 1 else channel_cnt;
+    channel_cnt_next <= channel_cnt + 1 when cnt = CNT_NUM - 1 and first_tick = '0' else channel_cnt;
+    first_tick_next <= '0' when cnt = CNT_NUM - 1 and first_tick = '1' else first_tick;
 
     data_nxt_gen: for i in 0 to CHANNEL_NUM - 1 generate
         datas_next(i) <= read_data when i = channel_cnt else datas_reg(i);
-        -- datas_next(i) <= datas_reg(i) when i /= channel_cnt or cnt <= CNT_TICK else read_data;
     end generate;
     datas <= datas_reg;
 

@@ -34,19 +34,6 @@ architecture Behavioral of top_module is
         );
     end component;
 
-    -- component display_ram is
-    --     port (
-    --         clka: in std_logic;
-    --         ena: in std_logic;
-    --         wea: in std_logic_vector(0 downto 0);
-    --         addra: in std_logic_vector(16 downto 0);
-    --         dina: in std_logic_vector(11 downto 0);
-    --         clkb: in std_logic;
-    --         addrb: in std_logic_vector(16 downto 0);
-    --         doutb: out std_logic_vector(11 downto 0)
-    --     );
-    -- end component;
-
     component display_buffer_controller is
         port (
             clk_sys, rst: in std_logic;
@@ -184,7 +171,7 @@ architecture Behavioral of top_module is
         );
     end component;
 
-    component tracer is
+    component tracer_interface is
         port (
             clk_sys, rst, en: in std_logic;
             start: in std_logic;
@@ -278,7 +265,7 @@ architecture Behavioral of top_module is
 
     signal rot_cnt, rot_cnt_next: integer;
     signal p_angle_x, p_angle_x_next: int;
-    constant ROT_CNT_MAX: integer := 12000000;
+    constant ROT_CNT_MAX: integer := 3000000;
     signal num_in: bcd_array_t(7 downto 0);
 begin
     -- Display Controller
@@ -399,10 +386,18 @@ begin
         -- pixel_scans(4) <= pixel_scans(0) + vec2i_t'(0, 160);
         -- pixel_scans(5) <= pixel_scans(0) + vec2i_t'(0, 200);
 
-        -- pixel_scans(1) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 4);
-        -- pixel_scans(2) <= pixel_scans(0) + vec2i_t'(0, V_REAL / 2);
-        -- pixel_scans(3) <= pixel_scans(0) + vec2i_t'(0, V_REAL * 3 / 4);
+        -- pixel_scans(1) <= pixel_scans(0) + vec2i_t'(0, 48);
+        -- pixel_scans(2) <= pixel_scans(0) + vec2i_t'(0, 96);
+        -- pixel_scans(3) <= pixel_scans(0) + vec2i_t'(0, 144);
+        -- pixel_scans(4) <= pixel_scans(0) + vec2i_t'(0, 192);
 
+        pixel_scans(1) <= pixel_scans(0) + vec2i_t'(0, 60);
+        pixel_scans(2) <= pixel_scans(0) + vec2i_t'(0, 120);
+        pixel_scans(3) <= pixel_scans(0) + vec2i_t'(0, 180);
+
+        -- pixel_scans(1) <= pixel_scans(0) + vec2i_t'(0, 80);
+        -- pixel_scans(2) <= pixel_scans(0) + vec2i_t'(0, 160);
+        
         -- Viewport Info Generation
         vp_info_gen: viewport_pixel_info_gen
             port map (
@@ -474,7 +469,7 @@ begin
 
     -- Tracers
         tracers: for i in 0 to CHANNEL_NUM - 1 generate
-            tr: tracer
+            tr: tracer_interface
                 port map (
                     clk_sys => clk_sys,
                     rst => rst,

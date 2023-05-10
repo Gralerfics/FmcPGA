@@ -10,7 +10,7 @@ for r in range(img.shape[0]):
             X.append(c)
             break
 
-f = open('octcircle.coe', mode='w')
+f = open('oct_circle.coe', mode='w')
 print('memory_initialization_radix=16;\nmemory_initialization_vector=', file=f)
 for x in X:
     print(hex(x)[2:] + ',', file=f)

@@ -9,7 +9,8 @@ entity viewport_params is
     port (
         p_pos: in vec3i_t;
         p_angle: in vec2i_t;
-        vp_origin, vp_u, vp_v: out vec3i_t
+        vp_origin, vp_u, vp_v: out vec3i_t;
+        towards_h: out vec2i_t
     );
 end entity;
 
@@ -37,9 +38,11 @@ begin
 
     vp_origin <= p_pos + (
         lookat_rel
-        - vp_u * H_REAL / ANGLE_RADIUS
-        + vp_v * V_REAL / ANGLE_RADIUS
+        - vp_u * H_REAL / 2 / ANGLE_RADIUS
+        + vp_v * V_REAL / 2 / ANGLE_RADIUS
     ) * LOOKAT_REL_FAC;
+
+    towards_h <= lookat_h_rel;
 end architecture;
 
 -- Viewport Coordinate System Base Vectors

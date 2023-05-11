@@ -20,10 +20,10 @@ end entity;
 architecture Behavioral of seven_segments_display_driver is
     component frequency_divider is
         generic (
-            period: integer := 100000
+            PERIOD: integer := 100000
         );
         port (
-            clk_sys, rst: in std_logic;
+            clk, rst: in std_logic;
             pulse: out std_logic
         );
     end component;
@@ -52,7 +52,7 @@ begin
             period => 100000
         )
         port map (
-            clk_sys => clk_sys, rst => rst,
+            clk => clk_sys, rst => rst,
             pulse => enable
         );
 

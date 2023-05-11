@@ -76,6 +76,7 @@ architecture Behavioral of top_module is
             p_pos: in vec3i_t;
             p_angle: in vec2i_t;
             is_preparing, is_eof: out std_logic;
+            towards_h: out vec2i_t;
             -- Pipeline Final States
             next_pixel_pplout: in std_logic;
             pixel_addr_pplout: in std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
@@ -177,6 +178,16 @@ architecture Behavioral of top_module is
         );
     end component;
 
+    component frequency_divider is
+        generic (
+            PERIOD: integer := 100000
+        );
+        port (
+            clk, rst: in std_logic;
+            pulse: out std_logic
+        );
+    end component;
+
     component debounced_button is
         generic (
             PERIOD: integer := 2000 -- 20 us
@@ -209,9 +220,9 @@ architecture Behavioral of top_module is
 
     signal p_pos_raw, p_pos: vec3i_t;
     signal p_angle: vec2i_t;
+    signal towards_h: vec2i_t;
 
     signal clk_ppl, clk_ppl_locked: std_logic;
-
     signal end_of_frame, is_preparing, pipeline_enable: std_logic;
 
     signal idle_in: std_logic;
@@ -257,11 +268,17 @@ architecture Behavioral of top_module is
     signal txt_idx_map_read_addr: std_logic_vector(TEXTURE_IDX_ADDR_RADIX - 1 downto 0);
     signal txt_idx_map_read_data: std_logic_vector(TEXTURE_TYPE_RADIX - 1 downto 0);
 
+    -- ctrl
+    signal ctrl_pulse: std_logic;
+    signal btn_front, btn_back, btn_left, btn_right, btn_up, btn_down: std_logic;
+    signal ctrl_pos, ctrl_pos_next: vec3i_t;
+    signal ctrl_angle, ctrl_angle_next: vec2i_t;
+
     -- dbg
-    signal rot_cnt, rot_cnt_next: integer;
-    signal p_angle_x, p_angle_x_next: int;
-    constant ROT_CNT_MAX: integer := 3000000;
-    signal bcd_nums: bcd_array_t(7 downto 0);
+    -- signal rot_cnt, rot_cnt_next: integer;
+    -- signal p_angle_x, p_angle_x_next: int;
+    -- constant ROT_CNT_MAX: integer := 3000000;
+    -- signal bcd_nums: bcd_array_t(7 downto 0);
 begin
     -- Display Controller
         clk_vga_gen: clk_vga_generator
@@ -313,12 +330,12 @@ begin
                 clk => clk_sys,
                 rst => rst,
                 update_sync => end_of_frame,
-                p_pos_in => (470, 470, 280),        -- TODO
-                p_angle_in => (p_angle_x, -120),    -- TODO
+                p_pos_in => ctrl_pos, -- (470 * 16, 470 * 16, 280 * 16),
+                p_angle_in => ctrl_angle, -- (30, -120),
                 p_pos => p_pos_raw,
                 p_angle => p_angle
             );
-        p_pos <= p_pos_raw; -- sra 4;
+        p_pos <= p_pos_raw / 16;
 
     -- Pipeline
         clk_ppl_gen: clk_ppl_generator
@@ -338,6 +355,7 @@ begin
                 p_angle => p_angle,
                 is_preparing => is_preparing,
                 is_eof => end_of_frame,
+                towards_h => towards_h,
                 -- Pipeline Final States
                 next_pixel_pplout => next_pixel_out,
                 pixel_addr_pplout => pixel_addr_out,
@@ -405,7 +423,7 @@ begin
                 to_is_behind_out => to_is_behind_out
             );
 
-    -- Map RAM
+    -- Storage
         mp_ram: map_ram
             port map (
                 clka => '0',                -- write (temporarily disabled)
@@ -423,7 +441,6 @@ begin
             );
         map_ram_read_enable <= '1';
     
-    -- Texture ROM
         txt_rom: texture_rom
             port map (
                 clka => clk_ppl,
@@ -442,36 +459,105 @@ begin
             );
         txt_idx_map_read_enable <= '1';
     
-    -- Debug
+    -- Control
+        btn_front_state: debounced_button port map (clk => clk_sys, rst => rst, btn_in => btn_front_in, btn_out => btn_front);
+        btn_back_state: debounced_button port map (clk => clk_sys, rst => rst, btn_in => btn_back_in, btn_out => btn_back);
+        btn_left_state: debounced_button port map (clk => clk_sys, rst => rst, btn_in => btn_left_in, btn_out => btn_left);
+        btn_right_state: debounced_button port map (clk => clk_sys, rst => rst, btn_in => btn_right_in, btn_out => btn_right);
+        btn_up_state: debounced_button port map (clk => clk_sys, rst => rst, btn_in => btn_up_in, btn_out => btn_up);
+        btn_down_state: debounced_button port map (clk => clk_sys, rst => rst, btn_in => btn_down_in, btn_out => btn_down);
+
+        ctrl_freq_div: frequency_divider
+            generic map (
+                PERIOD => 12500000
+            )
+            port map (
+                clk => clk_sys,
+                rst => rst,
+                pulse => ctrl_pulse
+            );
+
         process (clk_sys, rst) is
         begin
             if rst = '1' then
-                rot_cnt <= 0;
-                p_angle_x <= 150;
-            elsif rising_edge(clk_sys) then
-                rot_cnt <= rot_cnt_next;
-                p_angle_x <= p_angle_x_next;
+                ctrl_pos <= (470 * 16, 470 * 16, 280 * 16);
+                ctrl_angle <= (30, -120);
+            elsif rising_edge(clk_sys) and ctrl_pulse = '1' then
+                ctrl_pos <= ctrl_pos_next;
+                ctrl_angle <= ctrl_angle_next;
             end if;
         end process;
-        rot_cnt_next <= 0 when rot_cnt = ROT_CNT_MAX - 1 else rot_cnt + 1;
-        p_angle_x_next <= p_angle_x when rot_cnt < ROT_CNT_MAX - 1 else
-                          0 when p_angle_x = ANGLE_MODULO - 1 else
-                          p_angle_x + 1;
+
+        process (clk_sys, rst) is
+        begin
+            ctrl_pos_next <= ctrl_pos;
+            ctrl_angle_next <= ctrl_angle;
+            if ctrl_mode = '0' then
+                -- Position
+                if btn_front = '1' then
+                    ctrl_pos_next.x <= ctrl_pos.x + towards_h.x * 80 / ANGLE_RADIUS;
+                    ctrl_pos_next.y <= ctrl_pos.y + towards_h.y * 80 / ANGLE_RADIUS;
+                elsif btn_back = '1' then
+                    ctrl_pos_next.x <= ctrl_pos.x - towards_h.x * 80 / ANGLE_RADIUS;
+                    ctrl_pos_next.y <= ctrl_pos.y - towards_h.y * 80 / ANGLE_RADIUS;
+                end if;
+                if btn_left = '1' then
+                    ctrl_pos_next.x <= ctrl_pos.x - towards_h.y * 80 / ANGLE_RADIUS;
+                    ctrl_pos_next.y <= ctrl_pos.y + towards_h.x * 80 / ANGLE_RADIUS;
+                elsif btn_right = '1' then
+                    ctrl_pos_next.x <= ctrl_pos.x + towards_h.y * 80 / ANGLE_RADIUS;
+                    ctrl_pos_next.y <= ctrl_pos.y - towards_h.x * 80 / ANGLE_RADIUS;
+                end if;
+                if btn_up = '1' then
+                    ctrl_pos_next.z <= ctrl_pos.z + 80;
+                elsif btn_down = '1' then
+                    ctrl_pos_next.z <= ctrl_pos.z - 80;
+                end if;
+            else
+                -- Angle
+                if btn_front = '1' then
+                    ctrl_angle_next.y <= ctrl_angle.y + 30;
+                elsif btn_back = '1' then
+                    ctrl_angle_next.y <= ctrl_angle.y - 30;
+                end if;
+                if btn_left = '1' then
+                    ctrl_angle_next.x <= ctrl_angle.x + 30;
+                elsif btn_right = '1' then
+                    ctrl_angle_next.x <= ctrl_angle.x - 30;
+                end if;
+            end if;
+        end process;
+    
+    -- Debug
+        -- process (clk_sys, rst) is
+        -- begin
+        --     if rst = '1' then
+        --         rot_cnt <= 0;
+        --         p_angle_x <= 150;
+        --     elsif rising_edge(clk_sys) then
+        --         rot_cnt <= rot_cnt_next;
+        --         p_angle_x <= p_angle_x_next;
+        --     end if;
+        -- end process;
+        -- rot_cnt_next <= 0 when rot_cnt = ROT_CNT_MAX - 1 else rot_cnt + 1;
+        -- p_angle_x_next <= p_angle_x when rot_cnt < ROT_CNT_MAX - 1 else
+        --                   0 when p_angle_x = ANGLE_MODULO - 1 else
+        --                   p_angle_x + 1;
         
-        seven_segs_driver: seven_segments_display_driver
-            port map (
-                clk_sys => clk_sys,
-                rst => rst,
-                nums => bcd_nums,
-                anodes_n => anodes_n,
-                segs_n => segs_n
-            );
-        bcd_nums(7) <= "0000";
-        bcd_nums(6) <= "0000";
-        bcd_nums(5) <= "0000";
-        bcd_nums(4) <= "0000";
-        bcd_nums(3) <= std_logic_vector(to_unsigned(p_angle_x / 1000 mod 10, 4));
-        bcd_nums(2) <= std_logic_vector(to_unsigned(p_angle_x / 100 mod 10, 4));
-        bcd_nums(1) <= std_logic_vector(to_unsigned(p_angle_x / 10 mod 10, 4));
-        bcd_nums(0) <= std_logic_vector(to_unsigned(p_angle_x mod 10, 4));
+        -- seven_segs_driver: seven_segments_display_driver
+        --     port map (
+        --         clk_sys => clk_sys,
+        --         rst => rst,
+        --         nums => bcd_nums,
+        --         anodes_n => anodes_n,
+        --         segs_n => segs_n
+        --     );
+        -- bcd_nums(7) <= "0000";
+        -- bcd_nums(6) <= "0000";
+        -- bcd_nums(5) <= "0000";
+        -- bcd_nums(4) <= "0000";
+        -- bcd_nums(3) <= std_logic_vector(to_unsigned(p_angle_x / 1000 mod 10, 4));
+        -- bcd_nums(2) <= std_logic_vector(to_unsigned(p_angle_x / 100 mod 10, 4));
+        -- bcd_nums(1) <= std_logic_vector(to_unsigned(p_angle_x / 10 mod 10, 4));
+        -- bcd_nums(0) <= std_logic_vector(to_unsigned(p_angle_x mod 10, 4));
 end architecture;

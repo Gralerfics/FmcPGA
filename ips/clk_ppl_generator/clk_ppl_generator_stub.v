@@ -1,10 +1,10 @@
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
-// Date        : Mon May  8 23:19:41 2023
+// Date        : Thu May 11 09:28:21 2023
 // Host        : gralerfics-HP-ZHAN-66-Pro-G1-MT running 64-bit Ubuntu 20.04.6 LTS
-// Command     : write_verilog -force -mode synth_stub -rename_top clk_ppl_generator -prefix
-//               clk_ppl_generator_ clk_ppl_generator_stub.v
+// Command     : write_verilog -force -mode synth_stub
+//               /home/gralerfics/MyFiles/Workspace/FmcPGA/ips/clk_ppl_generator/clk_ppl_generator_stub.v
 // Design      : clk_ppl_generator
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tcsg324-1

@@ -12,6 +12,7 @@ entity pipeline_entrance is
         p_pos: in vec3i_t;
         p_angle: in vec2i_t;
         is_preparing, is_eof: out std_logic;
+        towards_h: out vec2i_t;
         -- Pipeline Final States
         next_pixel_pplout: in std_logic;
         pixel_addr_pplout: in std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
@@ -48,7 +49,8 @@ architecture Behavioral of pipeline_entrance is
         port (
             p_pos: in vec3i_t;
             p_angle: in vec2i_t;
-            vp_origin, vp_u, vp_v: out vec3i_t
+            vp_origin, vp_u, vp_v: out vec3i_t;
+            towards_h: out vec2i_t
         );
     end component;
 
@@ -116,7 +118,8 @@ begin
             p_angle => p_angle,
             vp_origin => vp_origin,
             vp_u => vp_u,
-            vp_v => vp_v
+            vp_v => vp_v,
+            towards_h => towards_h
         );
     vp_target <= vp_origin + vp_u * fragment_uv.x * LOOKAT_REL_FAC / ANGLE_RADIUS - vp_v * fragment_uv.y * LOOKAT_REL_FAC / ANGLE_RADIUS; -- update when p_state updates, i.e., when preparing.
 

@@ -1,10 +1,10 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
--- Date        : Mon May  8 23:19:41 2023
+-- Date        : Thu May 11 09:28:21 2023
 -- Host        : gralerfics-HP-ZHAN-66-Pro-G1-MT running 64-bit Ubuntu 20.04.6 LTS
--- Command     : write_vhdl -force -mode funcsim -rename_top clk_ppl_generator -prefix
---               clk_ppl_generator_ clk_ppl_generator_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim
+--               /home/gralerfics/MyFiles/Workspace/FmcPGA/ips/clk_ppl_generator/clk_ppl_generator_sim_netlist.vhdl
 -- Design      : clk_ppl_generator
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -14,16 +14,16 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity clk_ppl_generator_clk_ppl_generator_clk_wiz is
+entity clk_ppl_generator_clk_wiz is
   port (
     clk_ppl : out STD_LOGIC;
     reset : in STD_LOGIC;
     locked : out STD_LOGIC;
     clk_sys : in STD_LOGIC
   );
-end clk_ppl_generator_clk_ppl_generator_clk_wiz;
+end clk_ppl_generator_clk_wiz;
 
-architecture STRUCTURE of clk_ppl_generator_clk_ppl_generator_clk_wiz is
+architecture STRUCTURE of clk_ppl_generator_clk_wiz is
   signal clk_ppl_clk_ppl_generator : STD_LOGIC;
   signal clk_sys_clk_ppl_generator : STD_LOGIC;
   signal clkfbout_buf_clk_ppl_generator : STD_LOGIC;
@@ -78,12 +78,12 @@ clkout1_buf: unisim.vcomponents.BUFG
 mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
     generic map(
       BANDWIDTH => "OPTIMIZED",
-      CLKFBOUT_MULT_F => 15.625000,
+      CLKFBOUT_MULT_F => 49.875000,
       CLKFBOUT_PHASE => 0.000000,
       CLKFBOUT_USE_FINE_PS => false,
       CLKIN1_PERIOD => 10.000000,
       CLKIN2_PERIOD => 0.000000,
-      CLKOUT0_DIVIDE_F => 78.125000,
+      CLKOUT0_DIVIDE_F => 83.125000,
       CLKOUT0_DUTY_CYCLE => 0.500000,
       CLKOUT0_PHASE => 0.000000,
       CLKOUT0_USE_FINE_PS => false,
@@ -113,7 +113,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKOUT6_PHASE => 0.000000,
       CLKOUT6_USE_FINE_PS => false,
       COMPENSATION => "ZHOLD",
-      DIVCLK_DIVIDE => 2,
+      DIVCLK_DIVIDE => 5,
       IS_CLKINSEL_INVERTED => '0',
       IS_PSEN_INVERTED => '0',
       IS_PSINCDEC_INVERTED => '0',
@@ -179,7 +179,7 @@ end clk_ppl_generator;
 
 architecture STRUCTURE of clk_ppl_generator is
 begin
-inst: entity work.clk_ppl_generator_clk_ppl_generator_clk_wiz
+inst: entity work.clk_ppl_generator_clk_wiz
      port map (
       clk_ppl => clk_ppl,
       clk_sys => clk_sys,

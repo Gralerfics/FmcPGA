@@ -32,11 +32,10 @@ package constants is
 
     -- tracing constants.
     constant SKY_COLOR: color_t := color_t'(10, 14, 15, 15);
-    constant TRACE_DIST_RAD_SQUARED: int := 10 ** 2;
+    constant TRACE_DIST_RAD_SQUARED: int := 12 ** 2;
 
     -- viewport constants.
     constant LOOKAT_REL_FAC: int := 2;
-    constant VP_BASE_FAC: int := 2;
     -- constant CENTER_ADDR: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0) := "01001011010100000";
     constant CENTER_ADDR: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0) := std_logic_vector(to_unsigned(H_REAL * V_REAL / 2 + H_REAL / 2, DISP_RAM_ADDR_RADIX));
     -- constant EOF_ADDR: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0) := "10010101111111111";

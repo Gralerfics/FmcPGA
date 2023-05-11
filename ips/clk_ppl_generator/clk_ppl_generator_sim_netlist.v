@@ -1,10 +1,10 @@
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
-// Date        : Mon May  8 23:19:41 2023
+// Date        : Thu May 11 09:28:21 2023
 // Host        : gralerfics-HP-ZHAN-66-Pro-G1-MT running 64-bit Ubuntu 20.04.6 LTS
-// Command     : write_verilog -force -mode funcsim -rename_top clk_ppl_generator -prefix
-//               clk_ppl_generator_ clk_ppl_generator_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim
+//               /home/gralerfics/MyFiles/Workspace/FmcPGA/ips/clk_ppl_generator/clk_ppl_generator_sim_netlist.v
 // Design      : clk_ppl_generator
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -28,14 +28,14 @@ module clk_ppl_generator
   wire locked;
   wire reset;
 
-  clk_ppl_generator_clk_ppl_generator_clk_wiz inst
+  clk_ppl_generator_clk_wiz inst
        (.clk_ppl(clk_ppl),
         .clk_sys(clk_sys),
         .locked(locked),
         .reset(reset));
 endmodule
 
-module clk_ppl_generator_clk_ppl_generator_clk_wiz
+module clk_ppl_generator_clk_wiz
    (clk_ppl,
     reset,
     locked,
@@ -91,12 +91,12 @@ module clk_ppl_generator_clk_ppl_generator_clk_wiz
   (* BOX_TYPE = "PRIMITIVE" *) 
   MMCME2_ADV #(
     .BANDWIDTH("OPTIMIZED"),
-    .CLKFBOUT_MULT_F(15.625000),
+    .CLKFBOUT_MULT_F(49.875000),
     .CLKFBOUT_PHASE(0.000000),
     .CLKFBOUT_USE_FINE_PS("FALSE"),
     .CLKIN1_PERIOD(10.000000),
     .CLKIN2_PERIOD(0.000000),
-    .CLKOUT0_DIVIDE_F(78.125000),
+    .CLKOUT0_DIVIDE_F(83.125000),
     .CLKOUT0_DUTY_CYCLE(0.500000),
     .CLKOUT0_PHASE(0.000000),
     .CLKOUT0_USE_FINE_PS("FALSE"),
@@ -126,7 +126,7 @@ module clk_ppl_generator_clk_ppl_generator_clk_wiz
     .CLKOUT6_PHASE(0.000000),
     .CLKOUT6_USE_FINE_PS("FALSE"),
     .COMPENSATION("ZHOLD"),
-    .DIVCLK_DIVIDE(2),
+    .DIVCLK_DIVIDE(5),
     .IS_CLKINSEL_INVERTED(1'b0),
     .IS_PSEN_INVERTED(1'b0),
     .IS_PSINCDEC_INVERTED(1'b0),

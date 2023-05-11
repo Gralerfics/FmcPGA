@@ -9,7 +9,7 @@ use work.types.all;
 entity top_module is
     port (
         clk_sys, rst: in std_logic;
-        ctrl_mode: in std_logic;
+        ctrl_mode0, ctrl_mode1: in std_logic;
         btn_front_in, btn_back_in, btn_left_in, btn_right_in, btn_up_in, btn_down_in: in std_logic;
         vgaout: out vga_t;
         anodes_n: out std_logic_vector(7 downto 0);
@@ -132,7 +132,7 @@ architecture Behavioral of top_module is
             is_air_out: out std_logic;
             continue_out: out std_logic;
             is_in_bound_out: out std_logic;
-            blend_color_sky_out: out color_t;
+            is_sky_out: out std_logic;
             to_block_p_out: out vec3i_t;
             to_dir_out: out dir_t;
             to_hit_p_out: out vec3i_t;
@@ -178,6 +178,40 @@ architecture Behavioral of top_module is
         );
     end component;
 
+    component crosshair_object_register is
+        port (
+        clk, rst: in std_logic;
+        update_sync: in std_logic;
+        valid_in: in std_logic;
+        block_p_sel_in: in vec3i_t;
+        hit_surface_sel_in: in surface_t;
+        valid_sel: out std_logic;
+        block_p_sel: out vec3i_t;
+        hit_surface_sel: out surface_t;
+        block_p_inc: out vec3i_t
+        );
+    end component;
+
+    component inventory_register is
+        port (
+            clk, rst, enable: in std_logic;
+            last_item, next_item: in std_logic;
+            current_item: out int
+        );
+    end component;
+
+    component map_modifier is
+        port (
+            clk, rst: in std_logic;
+            valid_target: in std_logic;
+            block_p_target: in vec3i_t;
+            idx_target: in int;
+            write_enable: out std_logic;
+            write_addr: out std_logic_vector(MAP_ADDR_RADIX - 1 downto 0);
+            write_data: out std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0)
+        );
+    end component;
+
     component frequency_divider is
         generic (
             PERIOD: integer := 100000
@@ -217,6 +251,7 @@ architecture Behavioral of top_module is
     signal disp_buf_read_tick: std_logic;
     signal disp_buf_read_addr: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
     signal disp_buf_read_data: std_logic_vector(11 downto 0);
+    signal color_pass0, color_pass1: color_t;
 
     signal p_pos_raw, p_pos: vec3i_t;
     signal p_angle: vec2i_t;
@@ -246,7 +281,7 @@ architecture Behavioral of top_module is
     signal is_air_out: std_logic;
     signal continue_out: std_logic;
     signal is_in_bound_out: std_logic;
-    signal blend_color_sky_out: color_t;
+    signal is_sky_out: std_logic;
     signal to_block_p_out: vec3i_t;
     signal to_dir_out: dir_t;
     signal to_hit_p_out: vec3i_t;
@@ -255,7 +290,9 @@ architecture Behavioral of top_module is
     signal is_behind_out: std_logic;
     signal to_is_behind_out: std_logic;
 
-    signal map_douta: std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0);              -- useless
+    signal map_ram_write_enable: std_logic;
+    signal map_ram_write_addr: std_logic_vector(MAP_ADDR_RADIX - 1 downto 0);
+    signal map_ram_write_data: std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0);
     signal map_ram_read_enable: std_logic;
     signal map_ram_read_addr: std_logic_vector(MAP_ADDR_RADIX - 1 downto 0);
     signal map_ram_read_data: std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0);
@@ -268,17 +305,25 @@ architecture Behavioral of top_module is
     signal txt_idx_map_read_addr: std_logic_vector(TEXTURE_IDX_ADDR_RADIX - 1 downto 0);
     signal txt_idx_map_read_data: std_logic_vector(TEXTURE_TYPE_RADIX - 1 downto 0);
 
-    -- ctrl
-    signal ctrl_pulse: std_logic;
     signal btn_front, btn_back, btn_left, btn_right, btn_up, btn_down: std_logic;
+    signal bcd_nums: bcd_array_t(7 downto 0);
+
+    signal mani_pulse: std_logic;
+    signal ity_change_enable: std_logic;
+    signal current_item: int;
+    --
+    signal obj_sel_update: std_logic;
+    signal valid_sel: std_logic;
+    signal block_p_sel, block_p_inc: vec3i_t;
+    signal hit_surface_sel: surface_t;
+    --
+    signal valid_target: std_logic;
+    signal block_p_target: vec3i_t;
+    signal idx_target: int;
+
+    signal ctrl_pulse: std_logic;
     signal ctrl_pos, ctrl_pos_next: vec3i_t;
     signal ctrl_angle, ctrl_angle_next: vec2i_t;
-
-    -- dbg
-    -- signal rot_cnt, rot_cnt_next: integer;
-    -- signal p_angle_x, p_angle_x_next: int;
-    -- constant ROT_CNT_MAX: integer := 3000000;
-    -- signal bcd_nums: bcd_array_t(7 downto 0);
 begin
     -- Display Controller
         clk_vga_gen: clk_vga_generator
@@ -322,8 +367,14 @@ begin
         vgaout.color.b <= disp_buf_read_data(3 downto 0) when vga_pixel_valid = '1' else "0000";
         disp_buf_write_enable <= '1' when write_disp_buf_out = '1' and pipeline_enable = '1' else '0';
         disp_buf_write_addr <= pixel_addr_out;
-        disp_buf_write_data <= std_logic_vector(to_unsigned(to_color_acc_out.r, 4)) & std_logic_vector(to_unsigned(to_color_acc_out.g, 4)) & std_logic_vector(to_unsigned(to_color_acc_out.b, 4));
+        disp_buf_write_data <= std_logic_vector(to_unsigned(color_pass1.r, 4)) & std_logic_vector(to_unsigned(color_pass1.g, 4)) & std_logic_vector(to_unsigned(color_pass1.b, 4));
     
+        color_pass0 <= to_color_acc_out;
+        color_pass1 <=
+            color_pass0 when valid_sel = '0' or block_p_out /= block_p_sel or hit_surface_out /= hit_surface_sel else
+            color_pass0 * 10 / 15 + color_t'(1, 1, 1, 1) * 5;
+            -- If the logic get slower in the future, this should be added into the pipeline
+
     -- Player State
         p_pose_reg: player_pose_register
             port map (
@@ -413,7 +464,7 @@ begin
                 is_air_out => is_air_out,
                 continue_out => continue_out,
                 is_in_bound_out => is_in_bound_out,
-                blend_color_sky_out => blend_color_sky_out,
+                is_sky_out => is_sky_out,
                 to_block_p_out => to_block_p_out,
                 to_dir_out => to_dir_out,
                 to_hit_p_out => to_hit_p_out,
@@ -426,12 +477,12 @@ begin
     -- Storage
         mp_ram: map_ram
             port map (
-                clka => '0',                -- write (temporarily disabled)
-                ena => '0',
+                clka => clk_ppl,            -- write (todo)
+                ena => map_ram_write_enable,
                 wea => "1",
-                addra => (others => '0'),
-                dina => (others => '0'),
-                douta => map_douta,             -- useless
+                addra => map_ram_write_addr,
+                dina => map_ram_write_data,
+                douta => open,                  -- useless
                 clkb => clk_ppl,            -- read
                 enb => map_ram_read_enable,
                 web => "0",                     -- useless
@@ -458,8 +509,8 @@ begin
                 douta => txt_idx_map_read_data
             );
         txt_idx_map_read_enable <= '1';
-    
-    -- Control
+
+    -- Peripherals
         btn_front_state: debounced_button port map (clk => clk_sys, rst => rst, btn_in => btn_front_in, btn_out => btn_front);
         btn_back_state: debounced_button port map (clk => clk_sys, rst => rst, btn_in => btn_back_in, btn_out => btn_back);
         btn_left_state: debounced_button port map (clk => clk_sys, rst => rst, btn_in => btn_left_in, btn_out => btn_left);
@@ -467,9 +518,72 @@ begin
         btn_up_state: debounced_button port map (clk => clk_sys, rst => rst, btn_in => btn_up_in, btn_out => btn_up);
         btn_down_state: debounced_button port map (clk => clk_sys, rst => rst, btn_in => btn_down_in, btn_out => btn_down);
 
+        seven_segs_driver: seven_segments_display_driver port map (clk_sys => clk_sys, rst => rst, nums => bcd_nums, anodes_n => anodes_n, segs_n => segs_n);
+        bcd_nums(7) <= "0001" when btn_front = '1' else "0000";
+        bcd_nums(6) <= "0001" when btn_back = '1' else "0000";
+        bcd_nums(5) <= "0001" when btn_left = '1' else "0000";
+        bcd_nums(4) <= "0001" when btn_right = '1' else "0000";
+        bcd_nums(3) <= "0001" when btn_up = '1' else "0000";
+        bcd_nums(2) <= "0001" when btn_down = '1' else "0000";
+        bcd_nums(1) <= std_logic_vector(to_unsigned(current_item / 10 mod 10, 4));
+        bcd_nums(0) <= std_logic_vector(to_unsigned(current_item mod 10, 4));
+
+    -- Manipulation
+        ch_obj_reg: crosshair_object_register
+            port map (
+                clk => clk_ppl,
+                rst => rst,
+                update_sync => obj_sel_update,
+                valid_in => not is_sky_out,
+                block_p_sel_in => block_p_out,
+                hit_surface_sel_in => hit_surface_out,
+                valid_sel => valid_sel,
+                block_p_sel => block_p_sel,
+                hit_surface_sel => hit_surface_sel,
+                block_p_inc => block_p_inc
+            );
+        obj_sel_update <= '1' when is_crosshair_out = '1' and ((is_air_out = '0' and is_behind_out = '0') or is_sky_out = '1') else '0';
+
+        mani_freq_div: frequency_divider
+            generic map (
+                PERIOD => 18000000
+            )
+            port map (
+                clk => clk_sys,
+                rst => rst,
+                pulse => mani_pulse
+            );
+        
+        ity_reg: inventory_register
+            port map (
+                clk => clk_sys,
+                rst => rst,
+                enable => ity_change_enable,
+                last_item => btn_back,
+                next_item => btn_front,
+                current_item => current_item
+            );
+        ity_change_enable <= mani_pulse and ctrl_mode0 and ctrl_mode1;
+        
+        map_mod: map_modifier
+            port map (
+                clk => clk_ppl,
+                rst => rst,
+                valid_target => valid_target,
+                block_p_target => block_p_target,
+                idx_target => idx_target,
+                write_enable => map_ram_write_enable,
+                write_addr => map_ram_write_addr,
+                write_data => map_ram_write_data
+            );
+        valid_target <= valid_sel and (btn_left or btn_right) and ctrl_mode0 and ctrl_mode1;
+        block_p_target <= block_p_sel when btn_left = '1' else block_p_inc;
+        idx_target <= 0 when btn_left = '1' else current_item;
+    
+    -- Control
         ctrl_freq_div: frequency_divider
             generic map (
-                PERIOD => 12500000
+                PERIOD => 1250000
             )
             port map (
                 clk => clk_sys,
@@ -492,72 +606,44 @@ begin
         begin
             ctrl_pos_next <= ctrl_pos;
             ctrl_angle_next <= ctrl_angle;
-            if ctrl_mode = '0' then
+            if ctrl_mode0 = '0' and ctrl_mode1 = '0' then
                 -- Position
                 if btn_front = '1' then
-                    ctrl_pos_next.x <= ctrl_pos.x + towards_h.x * 80 / ANGLE_RADIUS;
-                    ctrl_pos_next.y <= ctrl_pos.y + towards_h.y * 80 / ANGLE_RADIUS;
+                    ctrl_pos_next.x <= ctrl_pos.x + towards_h.x * 8 / ANGLE_RADIUS;
+                    ctrl_pos_next.y <= ctrl_pos.y + towards_h.y * 8 / ANGLE_RADIUS;
                 elsif btn_back = '1' then
-                    ctrl_pos_next.x <= ctrl_pos.x - towards_h.x * 80 / ANGLE_RADIUS;
-                    ctrl_pos_next.y <= ctrl_pos.y - towards_h.y * 80 / ANGLE_RADIUS;
+                    ctrl_pos_next.x <= ctrl_pos.x - towards_h.x * 8 / ANGLE_RADIUS;
+                    ctrl_pos_next.y <= ctrl_pos.y - towards_h.y * 8 / ANGLE_RADIUS;
                 end if;
                 if btn_left = '1' then
-                    ctrl_pos_next.x <= ctrl_pos.x - towards_h.y * 80 / ANGLE_RADIUS;
-                    ctrl_pos_next.y <= ctrl_pos.y + towards_h.x * 80 / ANGLE_RADIUS;
+                    ctrl_pos_next.x <= ctrl_pos.x - towards_h.y * 8 / ANGLE_RADIUS;
+                    ctrl_pos_next.y <= ctrl_pos.y + towards_h.x * 8 / ANGLE_RADIUS;
                 elsif btn_right = '1' then
-                    ctrl_pos_next.x <= ctrl_pos.x + towards_h.y * 80 / ANGLE_RADIUS;
-                    ctrl_pos_next.y <= ctrl_pos.y - towards_h.x * 80 / ANGLE_RADIUS;
+                    ctrl_pos_next.x <= ctrl_pos.x + towards_h.y * 8 / ANGLE_RADIUS;
+                    ctrl_pos_next.y <= ctrl_pos.y - towards_h.x * 8 / ANGLE_RADIUS;
                 end if;
                 if btn_up = '1' then
-                    ctrl_pos_next.z <= ctrl_pos.z + 80;
+                    ctrl_pos_next.z <= ctrl_pos.z + 8;
                 elsif btn_down = '1' then
-                    ctrl_pos_next.z <= ctrl_pos.z - 80;
+                    ctrl_pos_next.z <= ctrl_pos.z - 8;
                 end if;
-            else
+            elsif ctrl_mode0 = '0' and ctrl_mode1 = '1' then
                 -- Angle
                 if btn_front = '1' then
-                    ctrl_angle_next.y <= ctrl_angle.y + 30;
+                    ctrl_angle_next.y <= ctrl_angle.y + 3;
                 elsif btn_back = '1' then
-                    ctrl_angle_next.y <= ctrl_angle.y - 30;
+                    ctrl_angle_next.y <= ctrl_angle.y - 3;
                 end if;
                 if btn_left = '1' then
-                    ctrl_angle_next.x <= ctrl_angle.x + 30;
+                    ctrl_angle_next.x <= ctrl_angle.x + 3;
                 elsif btn_right = '1' then
-                    ctrl_angle_next.x <= ctrl_angle.x - 30;
+                    ctrl_angle_next.x <= ctrl_angle.x - 3;
+                end if;
+                if btn_up = '1' then
+                    ctrl_pos_next.z <= ctrl_pos.z + 8;
+                elsif btn_down = '1' then
+                    ctrl_pos_next.z <= ctrl_pos.z - 8;
                 end if;
             end if;
         end process;
-    
-    -- Debug
-        -- process (clk_sys, rst) is
-        -- begin
-        --     if rst = '1' then
-        --         rot_cnt <= 0;
-        --         p_angle_x <= 150;
-        --     elsif rising_edge(clk_sys) then
-        --         rot_cnt <= rot_cnt_next;
-        --         p_angle_x <= p_angle_x_next;
-        --     end if;
-        -- end process;
-        -- rot_cnt_next <= 0 when rot_cnt = ROT_CNT_MAX - 1 else rot_cnt + 1;
-        -- p_angle_x_next <= p_angle_x when rot_cnt < ROT_CNT_MAX - 1 else
-        --                   0 when p_angle_x = ANGLE_MODULO - 1 else
-        --                   p_angle_x + 1;
-        
-        -- seven_segs_driver: seven_segments_display_driver
-        --     port map (
-        --         clk_sys => clk_sys,
-        --         rst => rst,
-        --         nums => bcd_nums,
-        --         anodes_n => anodes_n,
-        --         segs_n => segs_n
-        --     );
-        -- bcd_nums(7) <= "0000";
-        -- bcd_nums(6) <= "0000";
-        -- bcd_nums(5) <= "0000";
-        -- bcd_nums(4) <= "0000";
-        -- bcd_nums(3) <= std_logic_vector(to_unsigned(p_angle_x / 1000 mod 10, 4));
-        -- bcd_nums(2) <= std_logic_vector(to_unsigned(p_angle_x / 100 mod 10, 4));
-        -- bcd_nums(1) <= std_logic_vector(to_unsigned(p_angle_x / 10 mod 10, 4));
-        -- bcd_nums(0) <= std_logic_vector(to_unsigned(p_angle_x mod 10, 4));
 end architecture;

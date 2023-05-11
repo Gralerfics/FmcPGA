@@ -39,7 +39,7 @@ entity pipeline_process is
         is_air_out: out std_logic;
         continue_out: out std_logic;
         is_in_bound_out: out std_logic;
-        blend_color_sky_out: out color_t;
+        is_sky_out: out std_logic;
         to_block_p_out: out vec3i_t;
         to_dir_out: out dir_t;
         to_hit_p_out: out vec3i_t;
@@ -95,7 +95,7 @@ architecture Behavioral of pipeline_process is
     signal color_acc_2, color_acc_2_next: color_t;
     signal hit_surface_2, hit_surface_2_next: surface_t;
     signal block_p_2, block_p_2_next: vec3i_t;
-    signal block_idx_2, block_idx_2_next: std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0);
+    signal block_idx_2: std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0);
     signal uv_coord_xn_2, uv_coord_xn_2_next: vec2i_t;
     signal uv_coord_xp_2, uv_coord_xp_2_next: vec2i_t;
     signal uv_coord_yn_2, uv_coord_yn_2_next: vec2i_t;
@@ -135,7 +135,7 @@ architecture Behavioral of pipeline_process is
     signal pixel_addr_4, pixel_addr_4_next: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
     signal color_acc_4, color_acc_4_next: color_t;
     signal hit_surface_4, hit_surface_4_next: surface_t;
-    signal txt_idx_4, txt_idx_4_next: std_logic_vector(TEXTURE_TYPE_RADIX - 1 downto 0);
+    signal txt_idx_4: std_logic_vector(TEXTURE_TYPE_RADIX - 1 downto 0);
     signal block_p_4, block_p_4_next: vec3i_t;
     signal block_idx_4, block_idx_4_next: std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0);
     signal uv_coord_addr_4, uv_coord_addr_4_next: int;
@@ -198,7 +198,7 @@ architecture Behavioral of pipeline_process is
     signal hit_surface_6, hit_surface_6_next: surface_t;
     signal block_p_6, block_p_6_next: vec3i_t;
     signal block_idx_6, block_idx_6_next: std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0);
-    signal color_6, color_6_next: color_t;
+    signal color_6: color_t;
     signal is_air_6, is_air_6_next: std_logic;
     signal start_block_p_6, start_block_p_6_next: vec3i_t;
     signal to_hit_p_x_6, to_hit_p_x_6_next: vec3i_t;
@@ -263,7 +263,7 @@ architecture Behavioral of pipeline_process is
     signal is_air_9, is_air_9_next: std_logic;
     signal continue_9, continue_9_next: std_logic;
     signal is_in_bound_9, is_in_bound_9_next: std_logic;
-    signal blend_color_sky_9, blend_color_sky_9_next: color_t;
+    signal is_sky_9, is_sky_9_next: std_logic;
     signal to_block_p_9, to_block_p_9_next: vec3i_t;
     signal to_dir_9, to_dir_9_next: dir_t;
     signal to_hit_p_9, to_hit_p_9_next: vec3i_t;
@@ -468,7 +468,7 @@ begin
             is_air_9 <= '0';
             continue_9 <= '0';
             is_in_bound_9 <= '0';
-            blend_color_sky_9 <= (others => 0);
+            is_sky_9 <= '0';
             to_block_p_9 <= (others => 0);
             to_dir_9 <= 3;
             to_hit_p_9 <= (others => 0);
@@ -670,7 +670,7 @@ begin
             is_air_9 <= is_air_9_next;
             continue_9 <= continue_9_next;
             is_in_bound_9 <= is_in_bound_9_next;
-            blend_color_sky_9 <= blend_color_sky_9_next;
+            is_sky_9 <= is_sky_9_next;
             to_block_p_9 <= to_block_p_9_next;
             to_dir_9 <= to_dir_9_next;
             to_hit_p_9 <= to_hit_p_9_next;
@@ -704,7 +704,7 @@ begin
         from_dir_1_next <= from_dir_0;
         block_p_1_next <= block_p_0;
         block_addr_1_next <=
-            (others => '0') when block_p_0.x < 0 or block_p_0.x >= MAPSIZE_X or block_p_0.y < 0 or block_p_0.y >= MAPSIZE_Y or block_p_0.z < 0 or block_p_0.z >= MAPSIZE_Z else
+            (others => '0') when is_in_map(block_p_0) = false else
             std_logic_vector(to_unsigned(block_p_0.x * MAPSIZE_Y * MAPSIZE_Z + block_p_0.y * MAPSIZE_Z + block_p_0.z, MAP_ADDR_RADIX));
         edges_n_1_next <= block_p_0 * TEXTURE_RES;
             -- Notice: in fact should use div_floor, however we can guarantee that block_p_0 is positive. others are similar.
@@ -910,7 +910,7 @@ begin
         block_idx_8_next <= block_idx_7;
         to_color_acc_8_next <= color_acc_7 when is_air_7 = '1' else color_acc_7 + color_mul_alpha_residue_7 / 15;
         is_air_8_next <= is_air_7;
-        is_in_bound_8_next <= '1' when dist_block_p_7 < TRACE_DIST_RAD_SQUARED else '0';
+        is_in_bound_8_next <= '1' when dist_block_p_7 < TRACE_DIST_RAD_SQUARED and is_in_map(block_p_7) = true else '0';
         blend_color_sky_8_next <= color_acc_7 + sky_color_mul_alpha_residue_7 / 15;
         to_dir_8_next <=
             0 when div_zero_7(0) = '0' and leq_xy_7 = '1' and leq_xz_7 = '1' else
@@ -949,7 +949,7 @@ begin
                     -- c. have not been opaque => to_color_sky.
             -- idle = '0' and continue = '1' <=> only offer next block.
         is_in_bound_9_next <= is_in_bound_8;
-        blend_color_sky_9_next <= blend_color_sky_8;
+        is_sky_9_next <= '1' when write_disp_buf_9_next = '1' and is_opaque(to_color_acc_8) = false else '0';
         to_block_p_9_next.x <=
             block_p_8.x + 1 when to_dir_8 = 0 and general_dir_8(0) = '1' else
             block_p_8.x - 1 when to_dir_8 = 0 and general_dir_8(0) = '0' else
@@ -1049,7 +1049,7 @@ begin
     is_air_out <= is_air_9;
     continue_out <= continue_9;
     is_in_bound_out <= is_in_bound_9;
-    blend_color_sky_out <= blend_color_sky_9;
+    is_sky_out <= is_sky_9;
     to_block_p_out <= to_block_p_9;
     to_dir_out <= to_dir_9;
     to_hit_p_out <= to_hit_p_9;

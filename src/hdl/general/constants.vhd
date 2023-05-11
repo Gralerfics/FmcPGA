@@ -22,6 +22,7 @@ package constants is
     
     -- block constants.
     constant TEXTURE_RES: int := 16;
+    constant BLOCK_TYPE: int := 24;
 
     -- map constants.
     constant MAXD: int := 160000;
@@ -29,18 +30,16 @@ package constants is
     constant MAPSIZE_X: int := 64;
     constant MAPSIZE_Y: int := 64;
     constant MAPSIZE_Z: int := 32;
+    function is_in_map(b: vec3i_t) return boolean;
 
     -- tracing constants.
     constant SKY_COLOR: color_t := color_t'(10, 14, 15, 15);
-    constant TRACE_DIST_RAD_SQUARED: int := 12 ** 2;
+    constant TRACE_DIST_RAD_SQUARED: int := 16 ** 2;
 
     -- viewport constants.
     constant LOOKAT_REL_FAC: int := 2;
-    -- constant CENTER_ADDR: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0) := "01001011010100000";
-    constant CENTER_ADDR: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0) := std_logic_vector(to_unsigned(H_REAL * V_REAL / 2 + H_REAL / 2, DISP_RAM_ADDR_RADIX));
-    -- constant EOF_ADDR: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0) := "10010101111111111";
-    constant EOF_ADDR: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0) := std_logic_vector(to_unsigned(H_REAL * V_REAL - 1, DISP_RAM_ADDR_RADIX));
-
+    constant CENTER_ADDR: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0) := std_logic_vector(to_unsigned(H_REAL * V_REAL / 2 + H_REAL / 2, DISP_RAM_ADDR_RADIX));   -- "01001011010100000"
+    constant EOF_ADDR: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0) := std_logic_vector(to_unsigned(H_REAL * V_REAL - 1, DISP_RAM_ADDR_RADIX));                   -- "10010101111111111"
 
     -- math constants.
     constant ANGLE_RADIUS: int := 225;
@@ -49,3 +48,11 @@ package constants is
     constant ANGLE_HALF: int := ANGLE_EIGHTH * 4 + 2;
     constant ANGLE_MODULO: int := ANGLE_EIGHTH * 8 + 4;
 end package;
+
+
+package body constants is
+    function is_in_map(b: vec3i_t) return boolean is
+    begin
+        return b.x >= 0 and b.x < MAPSIZE_X and b.y >= 0 and b.y < MAPSIZE_Y and b.z >= 0 and b.z < MAPSIZE_Z;
+    end function;
+end package body;

@@ -43,26 +43,25 @@ package types is
     subtype surface_t is integer range 0 to 6;
 
     -- color
-    subtype color_int is integer range 0 to 255;    -- 0 to 15, but to prevent overflow when blending
+    subtype color_int is integer range 0 to 65535;    -- 0 to 255, but to prevent overflow when blending
     type color_t is record
         r: color_int;
         g: color_int;
         b: color_int;
         a: color_int;
     end record;
-    function to_color(data: std_logic_vector(15 downto 0)) return color_t;
+    function to_color(data: std_logic_vector(31 downto 0)) return color_t;
     function "+"(c1, c2: color_t) return color_t;
     function "*"(c: color_t; s: int) return color_t;
     function "/"(c: color_t; s: int) return color_t;
     function is_opaque(c: color_t) return boolean;
 
     -- vga
-    type color_vga_t is record
+    type color_vga_t is record  -- 0 to 15
         r: std_logic_vector(3 downto 0);
         g: std_logic_vector(3 downto 0);
         b: std_logic_vector(3 downto 0);
     end record;
-    function to_color_vga(data: std_logic_vector(11 downto 0)) return color_vga_t;
 
     type vga_t is record
         hsync_n, vsync_n: std_logic;
@@ -127,13 +126,13 @@ package body types is
                         v1.x * v2.y - v1.y * v2.x);
     end function;
 
-    function to_color(data: std_logic_vector(15 downto 0)) return color_t is
+    function to_color(data: std_logic_vector(31 downto 0)) return color_t is
     begin
         return color_t'(
-            to_integer(unsigned(data(15 downto 12))),
-            to_integer(unsigned(data(11 downto 8))),
-            to_integer(unsigned(data(7 downto 4))),
-            to_integer(unsigned(data(3 downto 0)))
+            to_integer(unsigned(data(31 downto 24))),
+            to_integer(unsigned(data(23 downto 16))),
+            to_integer(unsigned(data(15 downto 8))),
+            to_integer(unsigned(data(7 downto 0)))
         );
     end function;
 
@@ -154,11 +153,6 @@ package body types is
     
     function is_opaque(c: color_t) return boolean is
     begin
-        return c.a >= 15;
-    end function;
-
-    function to_color_vga(data: std_logic_vector(11 downto 0)) return color_vga_t is
-    begin
-        return color_vga_t'(data(11 downto 8), data(7 downto 4), data(3 downto 0));
+        return c.a >= 255;
     end function;
 end package body;

@@ -16,7 +16,7 @@ entity pipeline_process is
         txt_idx_addr_out: out std_logic_vector(TEXTURE_IDX_ADDR_RADIX - 1 downto 0);
         txt_idx_in: in std_logic_vector(TEXTURE_TYPE_RADIX - 1 downto 0);
         texture_addr_out: out std_logic_vector(TEXTURE_ADDR_RADIX - 1 downto 0);
-        color_in: in std_logic_vector(15 downto 0);
+        color_in: in std_logic_vector(31 downto 0);
         -- Input Interface
         idle_in: in std_logic;
         pixel_addr_in: in std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
@@ -946,10 +946,10 @@ begin
     hit_surface_7_next <= hit_surface_6;
     block_p_7_next <= block_p_6;
     block_idx_7_next <= block_idx_6;
-    color_mul_alpha_residue_7_next <= color_6 * (15 - color_acc_6.a);
+    color_mul_alpha_residue_7_next <= color_6 * (255 - color_acc_6.a);
     is_air_7_next <= is_air_6;
     dist_block_p_7_next <= length_2(block_p_6 - start_block_p_6);
-    sky_color_mul_alpha_residue_7_next <= SKY_COLOR * (15 - color_acc_7.a);
+    sky_color_mul_alpha_residue_7_next <= SKY_COLOR * (255 - color_acc_7.a);
     to_hit_p_x_7_next <= to_hit_p_x_6;
     to_hit_p_y_7_next <= to_hit_p_y_6;
     to_hit_p_z_7_next <= to_hit_p_z_6;
@@ -968,10 +968,10 @@ begin
     hit_surface_8_next <= hit_surface_7;
     block_p_8_next <= block_p_7;
     block_idx_8_next <= block_idx_7;
-    to_color_acc_8_next <= color_acc_7 when is_air_7 = '1' else color_acc_7 * color_acc_7.a / 15 + color_mul_alpha_residue_7 / 15;
+    to_color_acc_8_next <= color_acc_7 when is_air_7 = '1' else (color_acc_7 * color_acc_7.a + color_mul_alpha_residue_7) / 255;
     is_air_8_next <= is_air_7;
     is_in_bound_8_next <= '1' when dist_block_p_7 < TRACE_DIST_RAD_SQUARED and is_in_map(block_p_7) = true else '0';
-    blend_color_sky_8_next <= color_acc_7 * color_acc_7.a / 15 + sky_color_mul_alpha_residue_7 / 15;
+    blend_color_sky_8_next <= (color_acc_7 * color_acc_7.a + sky_color_mul_alpha_residue_7) / 255;
     to_dir_8_next <=
         0 when div_zero_7(0) = '0' and leq_xy_7 = '1' and leq_xz_7 = '1' else
         1 when div_zero_7(1) = '0' and leq_xy_7 = '0' and leq_yz_7 = '1' else

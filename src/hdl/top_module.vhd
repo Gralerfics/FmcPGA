@@ -109,7 +109,7 @@ architecture Behavioral of top_module is
             txt_idx_addr_out: out std_logic_vector(TEXTURE_IDX_ADDR_RADIX - 1 downto 0);
             txt_idx_in: in std_logic_vector(TEXTURE_TYPE_RADIX - 1 downto 0);
             texture_addr_out: out std_logic_vector(TEXTURE_ADDR_RADIX - 1 downto 0);
-            color_in: in std_logic_vector(15 downto 0);
+            color_in: in std_logic_vector(31 downto 0);
             -- Input Interface
             idle_in: in std_logic;
             pixel_addr_in: in std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
@@ -165,7 +165,7 @@ architecture Behavioral of top_module is
             clka: in std_logic;
             ena: in std_logic;
             addra: in std_logic_vector(12 downto 0);
-            douta: out std_logic_vector(15 downto 0)
+            douta: out std_logic_vector(31 downto 0)
         );
     end component;
 
@@ -299,7 +299,7 @@ architecture Behavioral of top_module is
 
     signal texture_read_enable: std_logic;
     signal texture_read_addr: std_logic_vector(TEXTURE_ADDR_RADIX - 1 downto 0);
-    signal texture_read_data: std_logic_vector(15 downto 0);
+    signal texture_read_data: std_logic_vector(31 downto 0);
 
     signal txt_idx_map_read_enable: std_logic;
     signal txt_idx_map_read_addr: std_logic_vector(TEXTURE_IDX_ADDR_RADIX - 1 downto 0);
@@ -367,12 +367,12 @@ begin
         vgaout.color.b <= disp_buf_read_data(3 downto 0) when vga_pixel_valid = '1' else "0000";
         disp_buf_write_enable <= '1' when write_disp_buf_out = '1' and pipeline_enable = '1' else '0';
         disp_buf_write_addr <= pixel_addr_out;
-        disp_buf_write_data <= std_logic_vector(to_unsigned(color_pass1.r, 4)) & std_logic_vector(to_unsigned(color_pass1.g, 4)) & std_logic_vector(to_unsigned(color_pass1.b, 4));
+        disp_buf_write_data <= std_logic_vector(to_unsigned(color_pass1.r / 16, 4)) & std_logic_vector(to_unsigned(color_pass1.g / 16, 4)) & std_logic_vector(to_unsigned(color_pass1.b / 16, 4));
     
         color_pass0 <= to_color_acc_out;
         color_pass1 <=
             color_pass0 when valid_sel = '0' or block_p_out /= block_p_sel or hit_surface_out /= hit_surface_sel else
-            color_pass0 * 8 / 15 + color_t'(1, 1, 1, 1) * 7;
+            color_pass0 * 120 / 255 + color_t'(1, 1, 1, 1) * 125;
             -- If the logic get slower in the future, this should be added into the pipeline
 
     -- Player State

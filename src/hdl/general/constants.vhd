@@ -33,7 +33,7 @@ package constants is
     function is_in_map(b: vec3i_t) return boolean;
 
     -- tracing constants.
-    constant SKY_COLOR: color_t := color_t'(10, 14, 15, 15);
+    constant SKY_COLOR: color_t := color_t'(160, 224, 240, 255); -- color_t'(10, 14, 15, 15);
     constant TRACE_DIST_RAD_SQUARED: int := 16 ** 2;
 
     -- viewport constants.

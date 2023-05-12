@@ -47,6 +47,9 @@ package constants is
     constant ANGLE_QUARTER: int := ANGLE_EIGHTH * 2 + 1;
     constant ANGLE_HALF: int := ANGLE_EIGHTH * 4 + 2;
     constant ANGLE_MODULO: int := ANGLE_EIGHTH * 8 + 4;
+
+    -- time constants.
+    constant PPL_PERIOD: integer := 30000000;
 end package;
 
 

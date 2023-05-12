@@ -338,6 +338,10 @@ architecture Behavioral of top_module is
     signal ctrl_pulse: std_logic;
     signal ctrl_pos, ctrl_pos_next: vec3i_t;
     signal ctrl_angle, ctrl_angle_next: vec2i_t;
+
+    signal time_cnt, time_cnt_next: integer;
+    signal fps_cnt, fps_cnt_next: integer;
+    signal fps, fps_next: integer;
 begin
     -- Display Controller
         clk_vga_gen: clk_vga_generator
@@ -580,12 +584,12 @@ begin
         btn_down_state: debounced_button port map (clk => clk_sys, rst => rst, btn_in => btn_down_in, btn_out => btn_down);
 
         seven_segs_driver: seven_segments_display_driver port map (clk_sys => clk_sys, rst => rst, nums => bcd_nums, anodes_n => anodes_n, segs_n => segs_n);
-        bcd_nums(7) <= "0001" when btn_left = '1' else "0000";
-        bcd_nums(6) <= "0001" when btn_right = '1' else "0000";
-        bcd_nums(5) <= "0001" when valid_target = '1' else "0000";
-        bcd_nums(4) <= "0001" when valid_sel = '1' else "0000";
-        bcd_nums(3) <= "0001" when map_ram_write_enable = '1' else "0000";
-        bcd_nums(2) <= "0001" when valid_target = '1' else "0000";
+        bcd_nums(7) <= std_logic_vector(to_unsigned(fps / 10 mod 10, 4));
+        bcd_nums(6) <= std_logic_vector(to_unsigned(fps mod 10, 4));
+        bcd_nums(5) <= "0000";
+        bcd_nums(4) <= "0000";
+        bcd_nums(3) <= "0000";
+        bcd_nums(2) <= "0000";
         bcd_nums(1) <= std_logic_vector(to_unsigned(current_item / 10 mod 10, 4));
         bcd_nums(0) <= std_logic_vector(to_unsigned(current_item mod 10, 4));
 
@@ -670,18 +674,18 @@ begin
             if ctrl_mode0 = '0' and ctrl_mode1 = '0' then
                 -- Position
                 if btn_front = '1' then
-                    ctrl_pos_next.x <= ctrl_pos.x + towards_h.x * 12 / ANGLE_RADIUS;
-                    ctrl_pos_next.y <= ctrl_pos.y + towards_h.y * 12 / ANGLE_RADIUS;
+                    ctrl_pos_next.x <= ctrl_pos.x + towards_h.x * 16 / ANGLE_RADIUS;
+                    ctrl_pos_next.y <= ctrl_pos.y + towards_h.y * 16 / ANGLE_RADIUS;
                 elsif btn_back = '1' then
-                    ctrl_pos_next.x <= ctrl_pos.x - towards_h.x * 12 / ANGLE_RADIUS;
-                    ctrl_pos_next.y <= ctrl_pos.y - towards_h.y * 12 / ANGLE_RADIUS;
+                    ctrl_pos_next.x <= ctrl_pos.x - towards_h.x * 16 / ANGLE_RADIUS;
+                    ctrl_pos_next.y <= ctrl_pos.y - towards_h.y * 16 / ANGLE_RADIUS;
                 end if;
                 if btn_left = '1' then
-                    ctrl_pos_next.x <= ctrl_pos.x - towards_h.y * 12 / ANGLE_RADIUS;
-                    ctrl_pos_next.y <= ctrl_pos.y + towards_h.x * 12 / ANGLE_RADIUS;
+                    ctrl_pos_next.x <= ctrl_pos.x - towards_h.y * 16 / ANGLE_RADIUS;
+                    ctrl_pos_next.y <= ctrl_pos.y + towards_h.x * 16 / ANGLE_RADIUS;
                 elsif btn_right = '1' then
-                    ctrl_pos_next.x <= ctrl_pos.x + towards_h.y * 12 / ANGLE_RADIUS;
-                    ctrl_pos_next.y <= ctrl_pos.y - towards_h.x * 12 / ANGLE_RADIUS;
+                    ctrl_pos_next.x <= ctrl_pos.x + towards_h.y * 16 / ANGLE_RADIUS;
+                    ctrl_pos_next.y <= ctrl_pos.y - towards_h.x * 16 / ANGLE_RADIUS;
                 end if;
                 if btn_up = '1' then
                     ctrl_pos_next.z <= ctrl_pos.z + 10;
@@ -707,4 +711,26 @@ begin
                 end if;
             end if;
         end process;
+    
+    -- Monitor
+    process (clk_ppl, rst) is
+    begin
+        if rst = '1' then
+            time_cnt <= 0;
+            fps_cnt <= 0;
+            fps <= 0;
+        elsif rising_edge(clk_ppl) then
+            time_cnt <= time_cnt_next;
+            fps_cnt <= fps_cnt_next;
+            fps <= fps_next;
+        end if;
+    end process;
+    time_cnt_next <= 0 when time_cnt = PPL_PERIOD - 1 else time_cnt + 1;
+    fps_cnt_next <=
+        0 when time_cnt = PPL_PERIOD - 1 else
+        fps_cnt + 1 when end_of_frame = '1' else
+        fps_cnt;
+    fps_next <=
+        fps_cnt when time_cnt = PPL_PERIOD - 1 else
+        fps;
 end architecture;

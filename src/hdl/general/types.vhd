@@ -43,7 +43,7 @@ package types is
     subtype surface_t is integer range 0 to 6;
 
     -- color
-    subtype color_int is integer range 0 to 65535;    -- 0 to 255, but to prevent overflow when blending
+    subtype color_int is integer; -- range 0 to 65535;    -- 0 to 255, but to prevent overflow when blending
     type color_t is record
         r: color_int;
         g: color_int;
@@ -55,6 +55,7 @@ package types is
     function "*"(c: color_t; s: int) return color_t;
     function "/"(c: color_t; s: int) return color_t;
     function is_opaque(c: color_t) return boolean;
+    function blend_color(fore, back: color_t) return color_t;
 
     -- vga
     type color_vga_t is record  -- 0 to 15
@@ -121,9 +122,11 @@ package body types is
 
     function cross(v1, v2: vec3i_t) return vec3i_t is
     begin
-        return vec3i_t'(v1.y * v2.z - v1.z * v2.y,
-                        v1.z * v2.x - v1.x * v2.z,
-                        v1.x * v2.y - v1.y * v2.x);
+        return vec3i_t'(
+            v1.y * v2.z - v1.z * v2.y,
+            v1.z * v2.x - v1.x * v2.z,
+            v1.x * v2.y - v1.y * v2.x
+        );
     end function;
 
     function to_color(data: std_logic_vector(31 downto 0)) return color_t is
@@ -154,5 +157,18 @@ package body types is
     function is_opaque(c: color_t) return boolean is
     begin
         return c.a >= 255;
+    end function;
+
+    function blend_color(fore, back: color_t) return color_t is
+        variable alpha, beta: color_int;
+    begin
+        alpha := fore.a;
+        beta := 255 - fore.a;
+        return color_t'(
+            (fore.r * alpha + back.r * beta) / 255,
+            (fore.g * alpha + back.g * beta) / 255,
+            (fore.b * alpha + back.b * beta) / 255,
+            alpha + back.a * beta / 255
+        );
     end function;
 end package body;

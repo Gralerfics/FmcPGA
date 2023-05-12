@@ -224,10 +224,9 @@ architecture Behavioral of pipeline_process is
     signal hit_surface_7, hit_surface_7_next: surface_t;
     signal block_p_7, block_p_7_next: vec3i_t;
     signal block_idx_7, block_idx_7_next: std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0);
-    signal color_mul_alpha_residue_7, color_mul_alpha_residue_7_next: color_t;
+    signal color_7, color_7_next: color_t;
     signal is_air_7, is_air_7_next: std_logic;
     signal dist_block_p_7, dist_block_p_7_next: int;
-    signal sky_color_mul_alpha_residue_7, sky_color_mul_alpha_residue_7_next: color_t;
     signal to_hit_p_x_7, to_hit_p_x_7_next: vec3i_t;
     signal to_hit_p_y_7, to_hit_p_y_7_next: vec3i_t;
     signal to_hit_p_z_7, to_hit_p_z_7_next: vec3i_t;
@@ -426,10 +425,9 @@ begin
             hit_surface_7 <= 6;
             block_p_7 <= (others => 0);
             block_idx_7 <= (others => '0');
-            color_mul_alpha_residue_7 <= (others => 0);
+            color_7 <= (others => 0);
             is_air_7 <= '0';
             dist_block_p_7 <= 0;
-            sky_color_mul_alpha_residue_7 <= (others => 0);
             to_hit_p_x_7 <= (others => 0);
             to_hit_p_y_7 <= (others => 0);
             to_hit_p_z_7 <= (others => 0);
@@ -625,10 +623,9 @@ begin
             hit_surface_7 <= hit_surface_7_next;
             block_p_7 <= block_p_7_next;
             block_idx_7 <= block_idx_7_next;
-            color_mul_alpha_residue_7 <= color_mul_alpha_residue_7_next;
+            color_7 <= color_7_next;
             is_air_7 <= is_air_7_next;
             dist_block_p_7 <= dist_block_p_7_next;
-            sky_color_mul_alpha_residue_7 <= sky_color_mul_alpha_residue_7_next;
             to_hit_p_x_7 <= to_hit_p_x_7_next;
             to_hit_p_y_7 <= to_hit_p_y_7_next;
             to_hit_p_z_7 <= to_hit_p_z_7_next;
@@ -946,10 +943,9 @@ begin
     hit_surface_7_next <= hit_surface_6;
     block_p_7_next <= block_p_6;
     block_idx_7_next <= block_idx_6;
-    color_mul_alpha_residue_7_next <= color_6 * (255 - color_acc_6.a);
+    color_7_next <= color_6;
     is_air_7_next <= is_air_6;
     dist_block_p_7_next <= length_2(block_p_6 - start_block_p_6);
-    sky_color_mul_alpha_residue_7_next <= SKY_COLOR * (255 - color_acc_7.a);
     to_hit_p_x_7_next <= to_hit_p_x_6;
     to_hit_p_y_7_next <= to_hit_p_y_6;
     to_hit_p_z_7_next <= to_hit_p_z_6;
@@ -968,10 +964,10 @@ begin
     hit_surface_8_next <= hit_surface_7;
     block_p_8_next <= block_p_7;
     block_idx_8_next <= block_idx_7;
-    to_color_acc_8_next <= color_acc_7 when is_air_7 = '1' else (color_acc_7 * color_acc_7.a + color_mul_alpha_residue_7) / 255;
+    to_color_acc_8_next <= color_acc_7 when is_air_7 = '1' else blend_color(color_acc_7, color_7);
     is_air_8_next <= is_air_7;
     is_in_bound_8_next <= '1' when dist_block_p_7 < TRACE_DIST_RAD_SQUARED and is_in_map(block_p_7) = true else '0';
-    blend_color_sky_8_next <= (color_acc_7 * color_acc_7.a + sky_color_mul_alpha_residue_7) / 255;
+    blend_color_sky_8_next <= blend_color(color_acc_7, SKY_COLOR);
     to_dir_8_next <=
         0 when div_zero_7(0) = '0' and leq_xy_7 = '1' and leq_xz_7 = '1' else
         1 when div_zero_7(1) = '0' and leq_xy_7 = '0' and leq_yz_7 = '1' else

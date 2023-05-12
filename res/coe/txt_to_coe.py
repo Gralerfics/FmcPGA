@@ -1,3 +1,4 @@
+import numpy as np
 import cv2
 
 
@@ -12,7 +13,7 @@ print('memory_initialization_radix=16;\nmemory_initialization_vector=', file=f)
 
 for i in range(NUM):
     img = cv2.imread('../../doc/demo/txt/{}.png'.format(i), cv2.IMREAD_UNCHANGED)
-    # cv2.imshow('img', img // 16 * 16)
+    # cv2.imshow('img', np.repeat(np.repeat(img // 16 * 16, 10, axis=0), 10, ))
     # cv2.waitKey(0)
     for j in range(16):
         for k in range(16):

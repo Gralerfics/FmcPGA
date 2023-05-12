@@ -4,6 +4,7 @@ use IEEE.std_logic_1164.all;
 use work.types.all;
 
 
+-- This module is only used to avoid update the pose infomation during one frame.
 entity player_pose_register is
     port (
         clk, rst: in std_logic;

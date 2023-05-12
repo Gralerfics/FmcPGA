@@ -37,7 +37,7 @@ begin
         end if;
     end process;
 
-    valid_next <= '0' when block_p = block_p_next and idx = idx_next else valid_target;
+    valid_next <= '0' when valid = valid_target and block_p = block_p_target and idx = idx_target else valid_target;
     block_p_next <= block_p_target;
     idx_next <= idx_target;
 

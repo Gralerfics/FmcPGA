@@ -372,7 +372,7 @@ begin
         color_pass0 <= to_color_acc_out;
         color_pass1 <=
             color_pass0 when valid_sel = '0' or block_p_out /= block_p_sel or hit_surface_out /= hit_surface_sel else
-            color_pass0 * 10 / 15 + color_t'(1, 1, 1, 1) * 5;
+            color_pass0 * 8 / 15 + color_t'(1, 1, 1, 1) * 7;
             -- If the logic get slower in the future, this should be added into the pipeline
 
     -- Player State
@@ -519,12 +519,12 @@ begin
         btn_down_state: debounced_button port map (clk => clk_sys, rst => rst, btn_in => btn_down_in, btn_out => btn_down);
 
         seven_segs_driver: seven_segments_display_driver port map (clk_sys => clk_sys, rst => rst, nums => bcd_nums, anodes_n => anodes_n, segs_n => segs_n);
-        bcd_nums(7) <= "0001" when btn_front = '1' else "0000";
-        bcd_nums(6) <= "0001" when btn_back = '1' else "0000";
-        bcd_nums(5) <= "0001" when btn_left = '1' else "0000";
-        bcd_nums(4) <= "0001" when btn_right = '1' else "0000";
-        bcd_nums(3) <= "0001" when btn_up = '1' else "0000";
-        bcd_nums(2) <= "0001" when btn_down = '1' else "0000";
+        bcd_nums(7) <= "0001" when btn_left = '1' else "0000";
+        bcd_nums(6) <= "0001" when btn_right = '1' else "0000";
+        bcd_nums(5) <= "0001" when valid_target = '1' else "0000";
+        bcd_nums(4) <= "0001" when valid_sel = '1' else "0000";
+        bcd_nums(3) <= "0001" when map_ram_write_enable = '1' else "0000";
+        bcd_nums(2) <= "0001" when valid_target = '1' else "0000";
         bcd_nums(1) <= std_logic_vector(to_unsigned(current_item / 10 mod 10, 4));
         bcd_nums(0) <= std_logic_vector(to_unsigned(current_item mod 10, 4));
 
@@ -546,17 +546,17 @@ begin
 
         mani_freq_div: frequency_divider
             generic map (
-                PERIOD => 18000000
+                PERIOD => 1800000
             )
             port map (
-                clk => clk_sys,
+                clk => clk_ppl,
                 rst => rst,
                 pulse => mani_pulse
             );
         
         ity_reg: inventory_register
             port map (
-                clk => clk_sys,
+                clk => clk_ppl,
                 rst => rst,
                 enable => ity_change_enable,
                 last_item => btn_back,
@@ -577,9 +577,10 @@ begin
                 write_data => map_ram_write_data
             );
         valid_target <= valid_sel and (btn_left or btn_right) and ctrl_mode0 and ctrl_mode1;
-        block_p_target <= block_p_sel when btn_left = '1' else block_p_inc;
-        idx_target <= 0 when btn_left = '1' else current_item;
-    
+        -- 问题原因：map_modifier 中为了不重复写，判断如果两次写入相同则不写入，非有效情况也被判断为重复，导致有效写入时也被忽略，解决：判重处加入有效性判断
+        block_p_target <= block_p_inc when btn_right = '1' else block_p_sel;
+        idx_target <= current_item when btn_right = '1' else 0;
+
     -- Control
         ctrl_freq_div: frequency_divider
             generic map (

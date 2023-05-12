@@ -26,6 +26,7 @@ begin
             cnt_reg <= cnt_next;
         end if;
     end process;
+    
     cnt_next <= 0 when cnt_reg = PERIOD - 1 else cnt_reg + 1;
     pulse <= '1' when cnt_reg = PERIOD - 1 else '0';
 end architecture;

@@ -1,5 +1,6 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
+use IEEE.std_logic_unsigned.all;
 use IEEE.numeric_std.all;
 
 use work.constants.all;
@@ -251,7 +252,20 @@ architecture Behavioral of top_module is
     signal disp_buf_read_tick: std_logic;
     signal disp_buf_read_addr: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
     signal disp_buf_read_data: std_logic_vector(11 downto 0);
-    signal color_pass0, color_pass1: color_t;
+    
+    signal bake_ppl_enable: std_logic;
+    signal color_pass_0: color_t;
+    signal color_pass_1, color_pass_1_next: color_t;
+    signal color_pass_2, color_pass_2_next: color_t;
+    signal color_baked: color_t;
+    signal write_enable_0: std_logic;
+    signal write_enable_1, write_enable_1_next: std_logic;
+    signal write_enable_2, write_enable_2_next: std_logic;
+    signal write_enable_baked: std_logic;
+    signal write_addr_0: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
+    signal write_addr_1, write_addr_1_next: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
+    signal write_addr_2, write_addr_2_next: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
+    signal write_addr_baked: std_logic_vector(DISP_RAM_ADDR_RADIX - 1 downto 0);
 
     signal p_pos_raw, p_pos: vec3i_t;
     signal p_angle: vec2i_t;
@@ -365,15 +379,62 @@ begin
         vgaout.color.r <= disp_buf_read_data(11 downto 8) when vga_pixel_valid = '1' else "0000";
         vgaout.color.g <= disp_buf_read_data(7 downto 4) when vga_pixel_valid = '1' else "0000";
         vgaout.color.b <= disp_buf_read_data(3 downto 0) when vga_pixel_valid = '1' else "0000";
-        disp_buf_write_enable <= '1' when write_disp_buf_out = '1' and pipeline_enable = '1' else '0';
-        disp_buf_write_addr <= pixel_addr_out;
-        disp_buf_write_data <= std_logic_vector(to_unsigned(color_pass1.r / 16, 4)) & std_logic_vector(to_unsigned(color_pass1.g / 16, 4)) & std_logic_vector(to_unsigned(color_pass1.b / 16, 4));
-    
-        color_pass0 <= to_color_acc_out;
-        color_pass1 <=
-            color_pass0 when valid_sel = '0' or block_p_out /= block_p_sel or hit_surface_out /= hit_surface_sel else
-            color_pass0 * 120 / 255 + color_t'(1, 1, 1, 1) * 125;
-            -- If the logic get slower in the future, this should be added into the pipeline
+
+        disp_buf_write_enable <= write_enable_baked;
+        disp_buf_write_addr <= write_addr_baked;
+        disp_buf_write_data <= std_logic_vector(to_unsigned(color_baked.r / 16, 4)) & std_logic_vector(to_unsigned(color_baked.g / 16, 4)) & std_logic_vector(to_unsigned(color_baked.b / 16, 4));
+
+    -- Post-tracing pipeline
+        process (clk_ppl, rst) is
+        begin
+            if rst = '1' then
+                color_pass_1 <= (others => 0);
+                color_pass_2 <= (others => 0);
+                write_enable_1 <= '0';
+                write_enable_2 <= '0';
+                write_addr_1 <= (others => '0');
+                write_addr_2 <= (others => '0');
+            elsif rising_edge(clk_ppl) and bake_ppl_enable = '1' then
+                color_pass_1 <= color_pass_1_next;
+                color_pass_2 <= color_pass_2_next;
+                write_enable_1 <= write_enable_1_next;
+                write_enable_2 <= write_enable_2_next;
+                write_addr_1 <= write_addr_1_next;
+                write_addr_2 <= write_addr_2_next;
+            end if;
+        end process;
+        bake_ppl_enable <= pipeline_enable;
+
+        -- Stage 0
+        color_pass_0 <= to_color_acc_out;
+        write_enable_0 <= '1' when write_disp_buf_out = '1' and pipeline_enable = '1' else '0';
+        write_addr_0 <= pixel_addr_out;
+
+        -- Stage 1: select mask
+        color_pass_1_next <=
+            color_pass_0 when valid_sel = '0' or block_p_out /= block_p_sel or hit_surface_out /= hit_surface_sel else
+            color_pass_0 * 120 / 255 + color_t'(1, 1, 1, 1) * 125;
+        write_enable_1_next <= write_enable_0;
+        write_addr_1_next <= write_addr_0;
+
+        -- Stage 2: crosshair inverse
+        color_pass_2_next <=
+            color_t'(255, 255, 255, 255) - color_pass_1 when
+                (write_addr_1 >= CENTER_ADDR - 3 and write_addr_1 <= CENTER_ADDR + 3) or
+                (write_addr_1 = CENTER_ADDR - 3 * H_REAL) or
+                (write_addr_1 = CENTER_ADDR - 2 * H_REAL) or
+                (write_addr_1 = CENTER_ADDR - 1 * H_REAL) or
+                (write_addr_1 = CENTER_ADDR + 1 * H_REAL) or
+                (write_addr_1 = CENTER_ADDR + 2 * H_REAL) or
+                (write_addr_1 = CENTER_ADDR + 3 * H_REAL)
+            else color_pass_1;
+        write_enable_2_next <= write_enable_1;
+        write_addr_2_next <= write_addr_1;
+        
+        -- Output Stage
+        color_baked <= color_pass_2;
+        write_enable_baked <= write_enable_2;
+        write_addr_baked <= write_addr_2;
 
     -- Player State
         p_pose_reg: player_pose_register
@@ -381,8 +442,8 @@ begin
                 clk => clk_sys,
                 rst => rst,
                 update_sync => end_of_frame,
-                p_pos_in => ctrl_pos, -- (470 * 16, 470 * 16, 280 * 16),
-                p_angle_in => ctrl_angle, -- (30, -120),
+                p_pos_in => ctrl_pos,
+                p_angle_in => ctrl_angle,
                 p_pos => p_pos_raw,
                 p_angle => p_angle
             );
@@ -477,7 +538,7 @@ begin
     -- Storage
         mp_ram: map_ram
             port map (
-                clka => clk_ppl,            -- write (todo)
+                clka => clk_ppl,            -- write
                 ena => map_ram_write_enable,
                 wea => "1",
                 addra => map_ram_write_addr,
@@ -577,7 +638,6 @@ begin
                 write_data => map_ram_write_data
             );
         valid_target <= valid_sel and (btn_left or btn_right) and ctrl_mode0 and ctrl_mode1;
-        -- 问题原因：map_modifier 中为了不重复写，判断如果两次写入相同则不写入，非有效情况也被判断为重复，导致有效写入时也被忽略，解决：判重处加入有效性判断
         block_p_target <= block_p_inc when btn_right = '1' else block_p_sel;
         idx_target <= current_item when btn_right = '1' else 0;
 
@@ -610,23 +670,23 @@ begin
             if ctrl_mode0 = '0' and ctrl_mode1 = '0' then
                 -- Position
                 if btn_front = '1' then
-                    ctrl_pos_next.x <= ctrl_pos.x + towards_h.x * 8 / ANGLE_RADIUS;
-                    ctrl_pos_next.y <= ctrl_pos.y + towards_h.y * 8 / ANGLE_RADIUS;
+                    ctrl_pos_next.x <= ctrl_pos.x + towards_h.x * 12 / ANGLE_RADIUS;
+                    ctrl_pos_next.y <= ctrl_pos.y + towards_h.y * 12 / ANGLE_RADIUS;
                 elsif btn_back = '1' then
-                    ctrl_pos_next.x <= ctrl_pos.x - towards_h.x * 8 / ANGLE_RADIUS;
-                    ctrl_pos_next.y <= ctrl_pos.y - towards_h.y * 8 / ANGLE_RADIUS;
+                    ctrl_pos_next.x <= ctrl_pos.x - towards_h.x * 12 / ANGLE_RADIUS;
+                    ctrl_pos_next.y <= ctrl_pos.y - towards_h.y * 12 / ANGLE_RADIUS;
                 end if;
                 if btn_left = '1' then
-                    ctrl_pos_next.x <= ctrl_pos.x - towards_h.y * 8 / ANGLE_RADIUS;
-                    ctrl_pos_next.y <= ctrl_pos.y + towards_h.x * 8 / ANGLE_RADIUS;
+                    ctrl_pos_next.x <= ctrl_pos.x - towards_h.y * 12 / ANGLE_RADIUS;
+                    ctrl_pos_next.y <= ctrl_pos.y + towards_h.x * 12 / ANGLE_RADIUS;
                 elsif btn_right = '1' then
-                    ctrl_pos_next.x <= ctrl_pos.x + towards_h.y * 8 / ANGLE_RADIUS;
-                    ctrl_pos_next.y <= ctrl_pos.y - towards_h.x * 8 / ANGLE_RADIUS;
+                    ctrl_pos_next.x <= ctrl_pos.x + towards_h.y * 12 / ANGLE_RADIUS;
+                    ctrl_pos_next.y <= ctrl_pos.y - towards_h.x * 12 / ANGLE_RADIUS;
                 end if;
                 if btn_up = '1' then
-                    ctrl_pos_next.z <= ctrl_pos.z + 8;
+                    ctrl_pos_next.z <= ctrl_pos.z + 10;
                 elsif btn_down = '1' then
-                    ctrl_pos_next.z <= ctrl_pos.z - 8;
+                    ctrl_pos_next.z <= ctrl_pos.z - 10;
                 end if;
             elsif ctrl_mode0 = '0' and ctrl_mode1 = '1' then
                 -- Angle
@@ -641,9 +701,9 @@ begin
                     ctrl_angle_next.x <= ctrl_angle.x - 3;
                 end if;
                 if btn_up = '1' then
-                    ctrl_pos_next.z <= ctrl_pos.z + 8;
+                    ctrl_pos_next.z <= ctrl_pos.z + 10;
                 elsif btn_down = '1' then
-                    ctrl_pos_next.z <= ctrl_pos.z - 8;
+                    ctrl_pos_next.z <= ctrl_pos.z - 10;
                 end if;
             end if;
         end process;

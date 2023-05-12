@@ -52,6 +52,7 @@ package types is
     end record;
     function to_color(data: std_logic_vector(31 downto 0)) return color_t;
     function "+"(c1, c2: color_t) return color_t;
+    function "-"(c1, c2: color_t) return color_t;
     function "*"(c: color_t; s: int) return color_t;
     function "/"(c: color_t; s: int) return color_t;
     function is_opaque(c: color_t) return boolean;
@@ -142,6 +143,11 @@ package body types is
     function "+"(c1, c2: color_t) return color_t is
     begin
         return color_t'(c1.r + c2.r, c1.g + c2.g, c1.b + c2.b, c1.a + c2.a);
+    end function;
+
+    function "-"(c1, c2: color_t) return color_t is
+    begin
+        return color_t'(c1.r - c2.r, c1.g - c2.g, c1.b - c2.b, c1.a - c2.a);
     end function;
 
     function "*"(c: color_t; s: int) return color_t is

@@ -48,8 +48,14 @@ package constants is
     constant ANGLE_HALF: int := ANGLE_EIGHTH * 4 + 2;
     constant ANGLE_MODULO: int := ANGLE_EIGHTH * 8 + 4;
 
+    -- control constants.
+    constant STICK_RES: int := 256;
+    constant STICK_MIDDLE: int := 128;
+    constant POS_STEP: int := 16;
+    constant ANGLE_STEP: int := 3;
+
     -- time constants.
-    constant PPL_PERIOD: integer := 30000000;
+    constant PPL_FREQ: integer := 30000000;
 end package;
 
 

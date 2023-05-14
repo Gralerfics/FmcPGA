@@ -53,17 +53,6 @@ architecture Behavioral of top_module is
         );
     end component;
 
-    component player_pose_register is
-        port (
-            clk, rst: in std_logic;
-            update_sync: in std_logic;
-            p_pos_in: in vec3i_t;
-            p_angle_in: in vec2i_t;
-            p_pos: out vec3i_t;
-            p_angle: out vec2i_t
-        );
-    end component;
-
     component clk_ppl_generator is
         port (
             clk_sys, reset: in std_logic;
@@ -179,6 +168,17 @@ architecture Behavioral of top_module is
         );
     end component;
 
+    component player_pose_register is
+        port (
+            clk, rst: in std_logic;
+            update_sync: in std_logic;
+            p_pos_in: in vec3i_t;
+            p_angle_in: in vec2i_t;
+            p_pos: out vec3i_t;
+            p_angle: out vec2i_t
+        );
+    end component;
+
     component crosshair_object_register is
         port (
         clk, rst: in std_logic;
@@ -193,14 +193,6 @@ architecture Behavioral of top_module is
         );
     end component;
 
-    component inventory_register is
-        port (
-            clk, rst, enable: in std_logic;
-            last_item, next_item: in std_logic;
-            current_item: out int
-        );
-    end component;
-
     component map_modifier is
         port (
             clk, rst: in std_logic;
@@ -210,16 +202,6 @@ architecture Behavioral of top_module is
             write_enable: out std_logic;
             write_addr: out std_logic_vector(MAP_ADDR_RADIX - 1 downto 0);
             write_data: out std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0)
-        );
-    end component;
-
-    component frequency_divider is
-        generic (
-            PERIOD: integer := 100000
-        );
-        port (
-            clk, rst: in std_logic;
-            pulse: out std_logic
         );
     end component;
 
@@ -240,6 +222,27 @@ architecture Behavioral of top_module is
             nums: in bcd_array_t(7 downto 0);
             anodes_n: out std_logic_vector(7 downto 0);
             segs_n: out std_logic_vector(0 to 7)
+        );
+    end component;
+
+    component player_state_updater is
+        port (
+            clk, rst: in std_logic;
+            ctrl_mode0, ctrl_mode1: in std_logic;   -- to be removed
+            -- Manipulation
+            left_click, right_click: in std_logic;
+            block_p_sel, block_p_inc: in vec3i_t;
+            mani_enable: out std_logic;
+            block_p_target: out vec3i_t;
+            idx_target: out int;
+            -- Inventory
+            last_item_click, next_item_click: in std_logic;
+            current_item: out int;
+            -- Movement
+            move_lr_offset, move_fb_offset, move_ud_offset: in int;
+            towards_h: in vec2i_t;
+            current_pos: out vec3i_t;
+            current_angle: out vec2i_t
         );
     end component;
 
@@ -304,6 +307,11 @@ architecture Behavioral of top_module is
     signal is_behind_out: std_logic;
     signal to_is_behind_out: std_logic;
 
+    signal obj_sel_update: std_logic;
+    signal valid_sel: std_logic;
+    signal block_p_sel, block_p_inc: vec3i_t;
+    signal hit_surface_sel: surface_t;
+
     signal map_ram_write_enable: std_logic;
     signal map_ram_write_addr: std_logic_vector(MAP_ADDR_RADIX - 1 downto 0);
     signal map_ram_write_data: std_logic_vector(BLOCK_TYPE_RADIX - 1 downto 0);
@@ -319,29 +327,22 @@ architecture Behavioral of top_module is
     signal txt_idx_map_read_addr: std_logic_vector(TEXTURE_IDX_ADDR_RADIX - 1 downto 0);
     signal txt_idx_map_read_data: std_logic_vector(TEXTURE_TYPE_RADIX - 1 downto 0);
 
+    signal time_cnt, time_cnt_next: integer;
+    signal fps_cnt, fps_cnt_next: integer;
+    signal fps, fps_next: integer;
+
     signal btn_front, btn_back, btn_left, btn_right, btn_up, btn_down: std_logic;
     signal bcd_nums: bcd_array_t(7 downto 0);
-
-    signal mani_pulse: std_logic;
-    signal ity_change_enable: std_logic;
-    signal current_item: int;
-    --
-    signal obj_sel_update: std_logic;
-    signal valid_sel: std_logic;
-    signal block_p_sel, block_p_inc: vec3i_t;
-    signal hit_surface_sel: surface_t;
-    --
+    
+    signal mani_lr_valid: std_logic;
     signal valid_target: std_logic;
     signal block_p_target: vec3i_t;
     signal idx_target: int;
 
-    signal ctrl_pulse: std_logic;
-    signal ctrl_pos, ctrl_pos_next: vec3i_t;
-    signal ctrl_angle, ctrl_angle_next: vec2i_t;
-
-    signal time_cnt, time_cnt_next: integer;
-    signal fps_cnt, fps_cnt_next: integer;
-    signal fps, fps_next: integer;
+    signal current_pos: vec3i_t;
+    signal current_angle: vec2i_t;
+    signal current_item: int;
+    signal move_lr_offset, move_fb_offset, move_ud_offset: int;
 begin
     -- Display Controller
         clk_vga_gen: clk_vga_generator
@@ -387,6 +388,19 @@ begin
         disp_buf_write_enable <= write_enable_baked;
         disp_buf_write_addr <= write_addr_baked;
         disp_buf_write_data <= std_logic_vector(to_unsigned(color_baked.r / 16, 4)) & std_logic_vector(to_unsigned(color_baked.g / 16, 4)) & std_logic_vector(to_unsigned(color_baked.b / 16, 4));
+        
+    -- Player pose synchronization
+        p_pose_reg: player_pose_register
+            port map (
+                clk => clk_sys,
+                rst => rst,
+                update_sync => end_of_frame,
+                p_pos_in => current_pos,
+                p_angle_in => current_angle,
+                p_pos => p_pos_raw,
+                p_angle => p_angle
+            );
+        p_pos <= p_pos_raw / 16;
 
     -- Post-tracing pipeline
         process (clk_ppl, rst) is
@@ -439,19 +453,6 @@ begin
         color_baked <= color_pass_2;
         write_enable_baked <= write_enable_2;
         write_addr_baked <= write_addr_2;
-
-    -- Player State
-        p_pose_reg: player_pose_register
-            port map (
-                clk => clk_sys,
-                rst => rst,
-                update_sync => end_of_frame,
-                p_pos_in => ctrl_pos,
-                p_angle_in => ctrl_angle,
-                p_pos => p_pos_raw,
-                p_angle => p_angle
-            );
-        p_pos <= p_pos_raw / 16;
 
     -- Pipeline
         clk_ppl_gen: clk_ppl_generator
@@ -539,6 +540,34 @@ begin
                 to_is_behind_out => to_is_behind_out
             );
 
+        ch_obj_reg: crosshair_object_register
+            port map (
+                clk => clk_ppl,
+                rst => rst,
+                update_sync => obj_sel_update,
+                valid_in => not is_sky_out,
+                block_p_sel_in => block_p_out,
+                hit_surface_sel_in => hit_surface_out,
+                valid_sel => valid_sel,
+                block_p_sel => block_p_sel,
+                hit_surface_sel => hit_surface_sel,
+                block_p_inc => block_p_inc
+            );
+        obj_sel_update <= '1' when is_crosshair_out = '1' and ((is_air_out = '0' and is_behind_out = '0') or is_sky_out = '1') else '0';
+        
+        map_mod: map_modifier
+            port map (
+                clk => clk_ppl,
+                rst => rst,
+                valid_target => valid_target,
+                block_p_target => block_p_target,
+                idx_target => idx_target,
+                write_enable => map_ram_write_enable,
+                write_addr => map_ram_write_addr,
+                write_data => map_ram_write_data
+            );
+        valid_target <= valid_sel and mani_lr_valid;
+
     -- Storage
         mp_ram: map_ram
             port map (
@@ -574,6 +603,28 @@ begin
                 douta => txt_idx_map_read_data
             );
         txt_idx_map_read_enable <= '1';
+    
+    -- Monitoring
+        process (clk_ppl, rst) is
+        begin
+            if rst = '1' then
+                time_cnt <= 0;
+                fps_cnt <= 0;
+                fps <= 0;
+            elsif rising_edge(clk_ppl) then
+                time_cnt <= time_cnt_next;
+                fps_cnt <= fps_cnt_next;
+                fps <= fps_next;
+            end if;
+        end process;
+        time_cnt_next <= 0 when time_cnt = PPL_FREQ - 1 else time_cnt + 1;
+        fps_cnt_next <=
+            0 when time_cnt = PPL_FREQ - 1 else
+            fps_cnt + 1 when end_of_frame = '1' else
+            fps_cnt;
+        fps_next <=
+            fps_cnt when time_cnt = PPL_FREQ - 1 else
+            fps;
 
     -- Peripherals
         btn_front_state: debounced_button port map (clk => clk_sys, rst => rst, btn_in => btn_front_in, btn_out => btn_front);
@@ -593,144 +644,43 @@ begin
         bcd_nums(1) <= std_logic_vector(to_unsigned(current_item / 10 mod 10, 4));
         bcd_nums(0) <= std_logic_vector(to_unsigned(current_item mod 10, 4));
 
-    -- Manipulation
-        ch_obj_reg: crosshair_object_register
+    -- Controlling
+        p_state_update: player_state_updater
             port map (
                 clk => clk_ppl,
                 rst => rst,
-                update_sync => obj_sel_update,
-                valid_in => not is_sky_out,
-                block_p_sel_in => block_p_out,
-                hit_surface_sel_in => hit_surface_out,
-                valid_sel => valid_sel,
+                ctrl_mode0 => ctrl_mode0,
+                ctrl_mode1 => ctrl_mode1,
+                -- Manipulation
+                left_click => btn_left,     -- to be changed to joysticks
+                right_click => btn_right,   -- to be changed to joysticks
                 block_p_sel => block_p_sel,
-                hit_surface_sel => hit_surface_sel,
-                block_p_inc => block_p_inc
-            );
-        obj_sel_update <= '1' when is_crosshair_out = '1' and ((is_air_out = '0' and is_behind_out = '0') or is_sky_out = '1') else '0';
-
-        mani_freq_div: frequency_divider
-            generic map (
-                PERIOD => 1800000
-            )
-            port map (
-                clk => clk_ppl,
-                rst => rst,
-                pulse => mani_pulse
-            );
-        
-        ity_reg: inventory_register
-            port map (
-                clk => clk_ppl,
-                rst => rst,
-                enable => ity_change_enable,
-                last_item => btn_back,
-                next_item => btn_front,
-                current_item => current_item
-            );
-        ity_change_enable <= mani_pulse and ctrl_mode0 and ctrl_mode1;
-        
-        map_mod: map_modifier
-            port map (
-                clk => clk_ppl,
-                rst => rst,
-                valid_target => valid_target,
+                block_p_inc => block_p_inc,
+                mani_enable => mani_lr_valid,
                 block_p_target => block_p_target,
                 idx_target => idx_target,
-                write_enable => map_ram_write_enable,
-                write_addr => map_ram_write_addr,
-                write_data => map_ram_write_data
+                -- Inventory
+                last_item_click => btn_back,
+                next_item_click => btn_front,
+                current_item => current_item,
+                -- Movement
+                move_lr_offset => move_lr_offset,
+                move_fb_offset => move_fb_offset,
+                move_ud_offset => move_ud_offset,
+                towards_h => towards_h,
+                current_pos => current_pos,
+                current_angle => current_angle
             );
-        valid_target <= valid_sel and (btn_left or btn_right) and ctrl_mode0 and ctrl_mode1;
-        block_p_target <= block_p_inc when btn_right = '1' else block_p_sel;
-        idx_target <= current_item when btn_right = '1' else 0;
-
-    -- Control
-        ctrl_freq_div: frequency_divider
-            generic map (
-                PERIOD => 1250000
-            )
-            port map (
-                clk => clk_sys,
-                rst => rst,
-                pulse => ctrl_pulse
-            );
-
-        process (clk_sys, rst) is
-        begin
-            if rst = '1' then
-                ctrl_pos <= (470 * 16, 470 * 16, 280 * 16);
-                ctrl_angle <= (30, -120);
-            elsif rising_edge(clk_sys) and ctrl_pulse = '1' then
-                ctrl_pos <= ctrl_pos_next;
-                ctrl_angle <= ctrl_angle_next;
-            end if;
-        end process;
-
-        process (clk_sys, rst) is
-        begin
-            ctrl_pos_next <= ctrl_pos;
-            ctrl_angle_next <= ctrl_angle;
-            if ctrl_mode0 = '0' and ctrl_mode1 = '0' then
-                -- Position
-                if btn_front = '1' then
-                    ctrl_pos_next.x <= ctrl_pos.x + towards_h.x * 16 / ANGLE_RADIUS;
-                    ctrl_pos_next.y <= ctrl_pos.y + towards_h.y * 16 / ANGLE_RADIUS;
-                elsif btn_back = '1' then
-                    ctrl_pos_next.x <= ctrl_pos.x - towards_h.x * 16 / ANGLE_RADIUS;
-                    ctrl_pos_next.y <= ctrl_pos.y - towards_h.y * 16 / ANGLE_RADIUS;
-                end if;
-                if btn_left = '1' then
-                    ctrl_pos_next.x <= ctrl_pos.x - towards_h.y * 16 / ANGLE_RADIUS;
-                    ctrl_pos_next.y <= ctrl_pos.y + towards_h.x * 16 / ANGLE_RADIUS;
-                elsif btn_right = '1' then
-                    ctrl_pos_next.x <= ctrl_pos.x + towards_h.y * 16 / ANGLE_RADIUS;
-                    ctrl_pos_next.y <= ctrl_pos.y - towards_h.x * 16 / ANGLE_RADIUS;
-                end if;
-                if btn_up = '1' then
-                    ctrl_pos_next.z <= ctrl_pos.z + 10;
-                elsif btn_down = '1' then
-                    ctrl_pos_next.z <= ctrl_pos.z - 10;
-                end if;
-            elsif ctrl_mode0 = '0' and ctrl_mode1 = '1' then
-                -- Angle
-                if btn_front = '1' then
-                    ctrl_angle_next.y <= ctrl_angle.y + 3;
-                elsif btn_back = '1' then
-                    ctrl_angle_next.y <= ctrl_angle.y - 3;
-                end if;
-                if btn_left = '1' then
-                    ctrl_angle_next.x <= ctrl_angle.x + 3;
-                elsif btn_right = '1' then
-                    ctrl_angle_next.x <= ctrl_angle.x - 3;
-                end if;
-                if btn_up = '1' then
-                    ctrl_pos_next.z <= ctrl_pos.z + 10;
-                elsif btn_down = '1' then
-                    ctrl_pos_next.z <= ctrl_pos.z - 10;
-                end if;
-            end if;
-        end process;
-    
-    -- Monitor
-    process (clk_ppl, rst) is
-    begin
-        if rst = '1' then
-            time_cnt <= 0;
-            fps_cnt <= 0;
-            fps <= 0;
-        elsif rising_edge(clk_ppl) then
-            time_cnt <= time_cnt_next;
-            fps_cnt <= fps_cnt_next;
-            fps <= fps_next;
-        end if;
-    end process;
-    time_cnt_next <= 0 when time_cnt = PPL_PERIOD - 1 else time_cnt + 1;
-    fps_cnt_next <=
-        0 when time_cnt = PPL_PERIOD - 1 else
-        fps_cnt + 1 when end_of_frame = '1' else
-        fps_cnt;
-    fps_next <=
-        fps_cnt when time_cnt = PPL_PERIOD - 1 else
-        fps;
+        move_lr_offset <=
+            -128 when btn_left = '1' else
+            128 when btn_right = '1' else
+            0;
+        move_fb_offset <=
+            128 when btn_front = '1' else
+            -128 when btn_back = '1' else
+            0;
+        move_ud_offset <=
+            128 when btn_up = '1' else
+            -128 when btn_down = '1' else
+            0;
 end architecture;

@@ -8,8 +8,7 @@ use work.constants.all;
 -- This module is used to accept resolved peripheral inputs and update the player state at a appropriate frequency.
 entity player_state_updater is
     port (
-        clk, rst: in std_logic;
-        ctrl_mode0, ctrl_mode1: in std_logic;   -- to be removed
+        clk, rst, enable: in std_logic;
         -- Manipulation
         left_click, right_click: in std_logic;
         block_p_sel, block_p_inc: in vec3i_t;
@@ -21,6 +20,7 @@ entity player_state_updater is
         current_item: out int;
         -- Movement
         move_lr_offset, move_fb_offset, move_ud_offset: in int;
+        angle_lr_offset, angle_ud_offset: in int;
         towards_h: in vec2i_t;
         current_pos: out vec3i_t;
         current_angle: out vec2i_t
@@ -35,6 +35,7 @@ architecture Behavioral of player_state_updater is
         );
         port (
             clk, rst: in std_logic;
+            en: in std_logic;
             pulse: out std_logic
         );
     end component;
@@ -66,6 +67,7 @@ begin
         port map (
             clk => clk,
             rst => rst,
+            en => enable,
             pulse => btn_pulse
         );
 
@@ -76,11 +78,12 @@ begin
         port map (
             clk => clk,
             rst => rst,
+            en => enable,
             pulse => ctrl_pulse
         );
 
     -- Manipulation
-    mani_enable <= btn_pulse and (left_click or right_click) and (ctrl_mode0 and ctrl_mode1);
+    mani_enable <= btn_pulse and (left_click or right_click);
     block_p_target <= block_p_inc when right_click = '1' else block_p_sel;
     idx_target <= current_item when right_click = '1' else 0;
 
@@ -89,7 +92,7 @@ begin
         port map (
             clk => clk,
             rst => rst,
-            enable => btn_pulse and (ctrl_mode0 and ctrl_mode1),
+            enable => btn_pulse,
             last_item => last_item_click,
             next_item => next_item_click,
             current_item => current_item_reg
@@ -112,16 +115,9 @@ begin
     right_vec <= vec3i_t'(towards_h.y, -towards_h.x, 0);
     process (clk, rst) is
     begin
-        current_pos_next <= current_pos_reg;
-        current_angle_next <= current_angle_reg;
-        if ctrl_mode0 = '0' and ctrl_mode1 = '0' then
-            -- Position
-            current_pos_next <= current_pos + front_vec * move_fb_offset * POS_STEP / STICK_MIDDLE / ANGLE_RADIUS + right_vec * move_lr_offset * POS_STEP / STICK_MIDDLE / ANGLE_RADIUS + vec3i_t'(0, 0, move_ud_offset * POS_STEP / STICK_MIDDLE);
-        elsif ctrl_mode0 = '0' and ctrl_mode1 = '1' then
-            -- Angle
-            current_angle_next.x <= current_angle.x - move_lr_offset * ANGLE_STEP / STICK_MIDDLE;
-            current_angle_next.y <= current_angle.y + move_fb_offset * ANGLE_STEP / STICK_MIDDLE;
-        end if;
+        current_pos_next <= current_pos + front_vec * move_fb_offset * POS_STEP / PSS_MIDDLE / ANGLE_RADIUS + right_vec * move_lr_offset * POS_STEP / PSS_MIDDLE / ANGLE_RADIUS + vec3i_t'(0, 0, move_ud_offset * POS_STEP / PSS_MIDDLE);
+        current_angle_next.x <= current_angle.x - angle_lr_offset * ANGLE_STEP / PSS_MIDDLE;
+        current_angle_next.y <= current_angle.y + angle_ud_offset * ANGLE_STEP / PSS_MIDDLE;
     end process;
     current_pos <= current_pos_reg;
     current_angle <= current_angle_reg;

@@ -10,6 +10,7 @@ entity frequency_divider is
     );
     port (
         clk, rst: in std_logic;
+        en: in std_logic;
         pulse: out std_logic
     );
 end entity;
@@ -22,7 +23,7 @@ begin
     begin
         if rst = '1' then
             cnt_reg <= 0;
-        elsif rising_edge(clk) then
+        elsif rising_edge(clk) and en = '1' then
             cnt_reg <= cnt_next;
         end if;
     end process;

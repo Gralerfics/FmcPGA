@@ -10,8 +10,12 @@ use work.types.all;
 entity top_module is
     port (
         clk_sys, rst: in std_logic;
-        ctrl_mode0, ctrl_mode1: in std_logic;
+
         btn_front_in, btn_back_in, btn_left_in, btn_right_in, btn_up_in, btn_down_in: in std_logic;
+
+        spi_cs, spi_clk, spi_mosi: out std_logic;
+        spi_miso: in std_logic;
+
         vgaout: out vga_t;
         anodes_n: out std_logic_vector(7 downto 0);
         segs_n: out std_logic_vector(0 to 7)
@@ -216,6 +220,18 @@ architecture Behavioral of top_module is
         );
     end component;
 
+    component gamepad is
+        port (
+            clk, rst: in std_logic;
+            spi_cs: out std_logic;
+            spi_clk: out std_logic;
+            spi_mosi: out std_logic;
+            spi_miso: in std_logic;
+            data_valid: out std_logic;
+            data_out: out gamepad_data_t
+        );
+    end component;
+
     component seven_segments_display_driver is
         port (
             clk_sys, rst: in std_logic;
@@ -227,8 +243,7 @@ architecture Behavioral of top_module is
 
     component player_state_updater is
         port (
-            clk, rst: in std_logic;
-            ctrl_mode0, ctrl_mode1: in std_logic;   -- to be removed
+            clk, rst, enable: in std_logic;
             -- Manipulation
             left_click, right_click: in std_logic;
             block_p_sel, block_p_inc: in vec3i_t;
@@ -240,6 +255,7 @@ architecture Behavioral of top_module is
             current_item: out int;
             -- Movement
             move_lr_offset, move_fb_offset, move_ud_offset: in int;
+            angle_lr_offset, angle_ud_offset: in int;
             towards_h: in vec2i_t;
             current_pos: out vec3i_t;
             current_angle: out vec2i_t
@@ -332,6 +348,8 @@ architecture Behavioral of top_module is
     signal fps, fps_next: integer;
 
     signal btn_front, btn_back, btn_left, btn_right, btn_up, btn_down: std_logic;
+    signal gp_data_valid: std_logic;
+    signal gp_data_out: gamepad_data_t;
     signal bcd_nums: bcd_array_t(7 downto 0);
     
     signal mani_lr_valid: std_logic;
@@ -342,7 +360,8 @@ architecture Behavioral of top_module is
     signal current_pos: vec3i_t;
     signal current_angle: vec2i_t;
     signal current_item: int;
-    signal move_lr_offset, move_fb_offset, move_ud_offset: int;
+    -- signal move_lr_offset, move_fb_offset, move_ud_offset: int;
+    signal move_ud_offset: int;
 begin
     -- Display Controller
         clk_vga_gen: clk_vga_generator
@@ -634,6 +653,18 @@ begin
         btn_up_state: debounced_button port map (clk => clk_sys, rst => rst, btn_in => btn_up_in, btn_out => btn_up);
         btn_down_state: debounced_button port map (clk => clk_sys, rst => rst, btn_in => btn_down_in, btn_out => btn_down);
 
+        gp_ps2: gamepad
+            port map (
+                clk => clk_sys,
+                rst => rst,
+                spi_cs => spi_cs,
+                spi_clk => spi_clk,
+                spi_mosi => spi_mosi,
+                spi_miso => spi_miso,
+                data_valid => gp_data_valid,
+                data_out => gp_data_out
+            );
+
         seven_segs_driver: seven_segments_display_driver port map (clk_sys => clk_sys, rst => rst, nums => bcd_nums, anodes_n => anodes_n, segs_n => segs_n);
         bcd_nums(7) <= std_logic_vector(to_unsigned(fps / 10 mod 10, 4));
         bcd_nums(6) <= std_logic_vector(to_unsigned(fps mod 10, 4));
@@ -649,38 +680,31 @@ begin
             port map (
                 clk => clk_ppl,
                 rst => rst,
-                ctrl_mode0 => ctrl_mode0,
-                ctrl_mode1 => ctrl_mode1,
+                enable => gp_data_valid,
                 -- Manipulation
-                left_click => btn_left,     -- to be changed to joysticks
-                right_click => btn_right,   -- to be changed to joysticks
+                left_click => gp_data_out.R2,
+                right_click => gp_data_out.L2,
                 block_p_sel => block_p_sel,
                 block_p_inc => block_p_inc,
                 mani_enable => mani_lr_valid,
                 block_p_target => block_p_target,
                 idx_target => idx_target,
                 -- Inventory
-                last_item_click => btn_back,
-                next_item_click => btn_front,
+                last_item_click => gp_data_out.L1,
+                next_item_click => gp_data_out.R1,
                 current_item => current_item,
                 -- Movement
-                move_lr_offset => move_lr_offset,
-                move_fb_offset => move_fb_offset,
+                move_lr_offset => gp_data_out.pss_lx,
+                move_fb_offset => gp_data_out.pss_ly,
                 move_ud_offset => move_ud_offset,
+                angle_lr_offset => gp_data_out.pss_rx,
+                angle_ud_offset => gp_data_out.pss_ry,
                 towards_h => towards_h,
                 current_pos => current_pos,
                 current_angle => current_angle
             );
-        move_lr_offset <=
-            -128 when btn_left = '1' else
-            128 when btn_right = '1' else
-            0;
-        move_fb_offset <=
-            128 when btn_front = '1' else
-            -128 when btn_back = '1' else
-            0;
         move_ud_offset <=
-            128 when btn_up = '1' else
-            -128 when btn_down = '1' else
+            128 when gp_data_out.cross = '1' else
+            -128 when gp_data_out.circle = '1' else
             0;
 end architecture;

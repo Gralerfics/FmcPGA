@@ -24,6 +24,7 @@ architecture Behavioral of seven_segments_display_driver is
         );
         port (
             clk, rst: in std_logic;
+            en: in std_logic;
             pulse: out std_logic
         );
     end component;
@@ -52,7 +53,9 @@ begin
             period => 100000
         )
         port map (
-            clk => clk_sys, rst => rst,
+            clk => clk_sys,
+            rst => rst,
+            en => '1',
             pulse => enable
         );
 

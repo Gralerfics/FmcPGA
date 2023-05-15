@@ -33,7 +33,6 @@ package types is
     function "-"(v1, v2: vec3i_t) return vec3i_t;
     function "*"(v: vec3i_t; s: int) return vec3i_t;
     function "/"(v: vec3i_t; s: int) return vec3i_t;
-    -- function div_floor(l: int; r: int) return int;
     function length_2(v: vec3i_t) return int;
     function length_mht(v: vec3i_t) return int;
     function cross(v1, v2: vec3i_t) return vec3i_t;
@@ -70,6 +69,17 @@ package types is
         color: color_vga_t;
     end record;
 
+    -- gamepad
+    type gamepad_data_t is record
+        id: std_logic_vector(7 downto 0);
+        f_select, L3, R3, f_start, up, right, down, left: std_logic;
+        L2, R2, L1, R1, triangle, circle, cross, square: std_logic;
+        pss_rx, pss_ry, pss_lx, pss_ly: integer;
+    end record;
+    constant PSS_RES: int := 256;
+    constant PSS_MIDDLE: int := 128;
+    constant PSS_DEADZONE_RADIUS: int := 16;
+
     -- bcd
     subtype bcd_t is std_logic_vector(3 downto 0);
     type bcd_array_t is array (natural range <>) of bcd_t;
@@ -101,15 +111,6 @@ package body types is
     begin
         return vec3i_t'(v.x / s, v.y / s, v.z / s);
     end function;
-
-    -- function div_floor(l: int; r: int) return int is
-    -- begin
-    --     if ((l < 0 and r > 0) or (l > 0 and r < 0)) and (l mod r /= 0) then
-    --         return l / r - 1;
-    --     else
-    --         return l / r;
-    --     end if;
-    -- end function;
 
     function length_2(v: vec3i_t) return int is
     begin

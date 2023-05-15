@@ -97,6 +97,10 @@ begin
             byte_cnt <= 0;
             bit_cnt <= 0;
             data_signals <= (others => (others => '0'));
+            data_signals(5) <= std_logic_vector(to_unsigned(PSS_MIDDLE, 8));
+            data_signals(6) <= std_logic_vector(to_unsigned(PSS_MIDDLE, 8));
+            data_signals(7) <= std_logic_vector(to_unsigned(PSS_MIDDLE, 8));
+            data_signals(8) <= std_logic_vector(to_unsigned(PSS_MIDDLE, 8));
         elsif rising_edge(clk) and spi_clk_pulse = '1' then
             if spi_pkg_pulse = '1' then
                 cs_reg <= '0';  -- !
@@ -105,6 +109,10 @@ begin
                 byte_cnt <= 0;
                 bit_cnt <= 0;
                 data_signals <= (others => (others => '0'));
+                data_signals(5) <= std_logic_vector(to_unsigned(PSS_MIDDLE, 8));
+                data_signals(6) <= std_logic_vector(to_unsigned(PSS_MIDDLE, 8));
+                data_signals(7) <= std_logic_vector(to_unsigned(PSS_MIDDLE, 8));
+                data_signals(8) <= std_logic_vector(to_unsigned(PSS_MIDDLE, 8));
             else
                 cs_reg <= cs_next;
                 clk_reg <= clk_next;

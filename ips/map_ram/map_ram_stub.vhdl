@@ -1,7 +1,7 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2022.2 (lin64) Build 3671981 Fri Oct 14 04:59:54 MDT 2022
--- Date        : Wed May 10 12:08:03 2023
+-- Date        : Mon May 15 13:46:45 2023
 -- Host        : gralerfics-HP-ZHAN-66-Pro-G1-MT running 64-bit Ubuntu 20.04.6 LTS
 -- Command     : write_vhdl -force -mode synth_stub /home/gralerfics/MyFiles/Workspace/FmcPGA/ips/map_ram/map_ram_stub.vhdl
 -- Design      : map_ram

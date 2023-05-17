@@ -48,8 +48,8 @@ architecture Behavioral of player_state_updater is
         );
     end component;
 
-    constant BTN_UPDATE_FREQ: integer := 6;
-    constant CONT_UPDATE_FREQ: integer := 50;
+    constant BTN_UPDATE_FREQ: integer := 8;
+    constant CONT_UPDATE_FREQ: integer := 75;
 
     signal btn_pulse: std_logic;
     signal ctrl_pulse: std_logic;

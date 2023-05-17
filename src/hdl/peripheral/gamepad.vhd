@@ -159,7 +159,7 @@ begin
         '0';
 
     -- Data Outputs
-    data_valid <= '1' when cs_reg = '1' and (data_out.id = x"72" or data_out.id = x"41") and data_signals(2) = x"5A" else '0';
+    data_valid <= '1' when cs_reg = '1' and (data_out.id = x"73" or data_out.id = x"41") and data_signals(2) = x"5A" else '0';
 
     data_out.id <= data_signals(1);
     

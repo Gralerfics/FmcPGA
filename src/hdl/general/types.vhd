@@ -11,7 +11,7 @@ package types is
     constant TEXTURE_IDX_ADDR_RADIX: natural := 8;
     constant TEXTURE_TYPE_RADIX: natural := 5;
     constant MAP_ADDR_RADIX: natural := 17;
-    constant INT_RADIX: natural := 20;
+    constant INT_RADIX: natural := 22;
 
     -- int
     subtype int is integer range -2 ** (INT_RADIX - 1) to 2 ** (INT_RADIX - 1) - 1;
@@ -78,7 +78,7 @@ package types is
     end record;
     constant PSS_RES: int := 256;
     constant PSS_MIDDLE: int := 128;
-    constant PSS_DEADZONE_RADIUS: int := 16;
+    constant PSS_DEADZONE_RADIUS: int := 2;
 
     -- bcd
     subtype bcd_t is std_logic_vector(3 downto 0);

@@ -34,7 +34,7 @@ package constants is
 
     -- tracing constants.
     constant SKY_COLOR: color_t := color_t'(160, 224, 240, 255); -- color_t'(10, 14, 15, 15);
-    constant TRACE_DIST_RAD_SQUARED: int := 16 ** 2;
+    constant TRACE_DIST_RAD_SQUARED: int := 25 ** 2;
 
     -- viewport constants.
     constant LOOKAT_REL_FAC: int := 2;
@@ -49,11 +49,11 @@ package constants is
     constant ANGLE_MODULO: int := ANGLE_EIGHTH * 8 + 4;
 
     -- control constants.
-    constant POS_STEP: int := 16;
-    constant ANGLE_STEP: int := 3;
+    constant POS_STEP: int := 32;
+    constant ANGLE_STEP: int := 5;
 
     -- time constants.
-    constant PPL_FREQ: integer := 30000000;
+    constant PPL_FREQ: integer := 50000000;
 end package;
 
 

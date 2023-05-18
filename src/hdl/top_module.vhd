@@ -665,14 +665,12 @@ begin
             );
         
         seven_segs_driver: seven_segments_display_driver port map (clk_sys => clk_sys, rst => rst, nums => bcd_nums, anodes_n => anodes_n, segs_n => segs_n);
-        -- bcd_nums(7) <= std_logic_vector(to_unsigned(fps / 10 mod 10, 4));
-        -- bcd_nums(6) <= std_logic_vector(to_unsigned(fps mod 10, 4);
-        bcd_nums(7) <= std_logic_vector(to_unsigned((gp_data_out.pss_lx + PSS_MIDDLE) / 100 mod 10, 4));
-        bcd_nums(6) <= std_logic_vector(to_unsigned((gp_data_out.pss_lx + PSS_MIDDLE) / 10 mod 10, 4));
-        bcd_nums(5) <= std_logic_vector(to_unsigned((gp_data_out.pss_lx + PSS_MIDDLE) mod 10, 4));
-        bcd_nums(4) <= std_logic_vector(to_unsigned((gp_data_out.pss_ly + PSS_MIDDLE) / 100 mod 10, 4));
-        bcd_nums(3) <= std_logic_vector(to_unsigned((gp_data_out.pss_ly + PSS_MIDDLE) / 10 mod 10, 4));
-        bcd_nums(2) <= std_logic_vector(to_unsigned((gp_data_out.pss_ly + PSS_MIDDLE) mod 10, 4));
+        bcd_nums(7) <= std_logic_vector(to_unsigned(fps / 100 mod 10, 4));
+        bcd_nums(6) <= std_logic_vector(to_unsigned(fps / 10 mod 10, 4));
+        bcd_nums(5) <= std_logic_vector(to_unsigned(fps mod 10, 4));
+        bcd_nums(4) <= "0000";
+        bcd_nums(3) <= "0000";
+        bcd_nums(2) <= "0000";
         bcd_nums(1) <= std_logic_vector(to_unsigned(current_item / 10 mod 10, 4));
         bcd_nums(0) <= std_logic_vector(to_unsigned(current_item mod 10, 4));
 

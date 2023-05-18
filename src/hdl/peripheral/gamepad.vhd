@@ -33,7 +33,7 @@ architecture Behavioral of gamepad is
     end component;
 
     constant SPI_CLK_PERIOD: integer := 1200;
-    constant SPI_PKG_PERIOD: integer := 1000;
+    constant SPI_PKG_PERIOD: integer := 800;
 
     constant BYTE_TICKS: integer := 10;
 

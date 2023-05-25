@@ -8,7 +8,7 @@ Wang Zhuoyang$^1$, Shu Zihe$^2$
 
 ## Introduction
 This project is a simple 3D voxel game renderer built entirely using VHDL, based on a pipelined architecture. Here is a screenshot of the final result in action:
-<div align="center"><img src="doc/img/items.jpg" /></div>
+<div align="center"><img src="img/items.jpg" /></div>
 
 ### Inspiration
 VHDL, as a hardware description language, is well-suited for handling computationally intensive parallel problems, which aligns perfectly with the requirements of three-dimensional rendering applications.
@@ -17,19 +17,19 @@ VHDL, as a hardware description language, is well-suited for handling computatio
 After conducting a preliminary search, it was found that there are few projects directly implementing 3D rendering on FPGA. Furthermore, those projects that do exist are relatively simple and may encounter performance issues. Some projects have achieved true rasterization rendering; however, they are not open-source, and the specific implementation details remain unclear. Here are a few typical related projects listed below:
 
 1. [3D Game Prototype on an FPGA](https://www.youtube.com/watch?v=5LNa3Jv2uXE), a pseudo 3d game demo, not a real 3D engine.
-<div align="center"><img src="doc/img/pseudo3d.png" height="250" /></div>
+<div align="center"><img src="img/pseudo3d.png" height="250" /></div>
 
 2. [首次在FPGA上实现3D填色图像生成](https://www.bilibili.com/video/BV1S7411B79h), a mesh renderer, and is not open-sourced.
-<div align="center"><img src="doc/img/teapot.png" height="250" /></div>
+<div align="center"><img src="img/teapot.png" height="250" /></div>
 
 3. [FPGA and ARM based 3D solid mesh renderer](https://www.youtube.com/watch?v=qO_uCHN8zQM), a solid mesh renderer, but seems to be not in pure hardware implementation (with ARM cores).
-<div align="center"><img src="doc/img/model.png" height="250" /></div>
+<div align="center"><img src="img/model.png" height="250" /></div>
 
 4. [3D engine on FPGA home made](https://www.youtube.com/watch?v=jDzPfAbHLFI), a nice 3D engine.
-<div align="center"><img src="doc/img/3dengine.png" height="250" /></div>
+<div align="center"><img src="img/3dengine.png" height="250" /></div>
 
 5. [nickmqb/fpga_craft](https://github.com/nickmqb/fpga_craft), a very wonderful and open-sourced Minecraft clone, but is implemented in the author's own HDL, and is a entire system including CPU and GPU, which can not be taken as our reference.
-<div align="center"><img src="doc/img/fpgacraft.png" height="250" /></div>
+<div align="center"><img src="img/fpgacraft.png" height="250" /></div>
 
 6. *...... (more examples are omitted)*
 
@@ -62,7 +62,7 @@ We utilized `Vivado 2022.2` on `Ubuntu 20.04` as the synthesis and implementatio
 ## Overview
 ### System Architecture
 First, let's present the overall structure of the system. Due to its complexity, a more abstract block diagram is used for illustration. This diagram represents the RTL (Register Transfer Level) block diagram of the system, but it may not necessarily match the module divisions in the code. The code modules are further broken down into smaller components. Here is the diagram:
-<div align="center"><img src="doc/img/arch.jpg" /></div>
+<div align="center"><img src="img/arch.jpg" /></div>
 
 From the diagram, several important components can be identified. Here's a brief introduction to them, with detailed explanations provided in the following sections:
 1. First, we have the **Rendering Pipeline** and its associated input/output processing structures. It is primarily responsible for performing high-speed collision detection between the line of sight and objects, as well as conducting color calculations for rendering.
@@ -91,10 +91,10 @@ As mentioned earlier, the main functions of the Rendering Pipeline are to **calc
 > To render a three-dimensional scene on a two-dimensional plane, a common approach is to assume a point where the viewer's eye is located and connect the eye to each pixel on the screen with a ray called a "ray". Clearly, for each ray emitted from a pixel, the color of the object it intersects as it travels backward is the color that should be displayed at that point on the screen, which is known as simple perspective projection. This involves calculating the intersection of each ray with various objects in the scene. Implementing this using traditional rasterization methods can be complex in terms of hardware implementation.
 >
 > Taking into consideration the characteristics of the Minecraft game, where the scene is composed of **blocks** and each face is parallel to the coordinate axes, and the rays pass through a certain number of blocks during their traversal, it becomes simpler and more straightforward compared to calculating each face separately. Therefore, we employ the so-called "ray marching" algorithm. Each ray starts from the block where the viewer's eye is located, and at each step, we only need to calculate which direction (x, y, or z) the ray will intersect with a block face first based on its current direction. This allows us to determine which block the ray enters after passing through the current block. Additionally, if a block is not an air block, we can obtain the coordinates of the hit point and perform texture mapping to calculate the corresponding color value, thereby concluding the propagation of that ray. Take the situation in 2-D space as an example:
-> <div align="center"><img src="doc/img/raymarching.jpg" height="300" /></div>
+> <div align="center"><img src="img/raymarching.jpg" height="300" /></div>
 >
 > Following this approach, we can add support for **transparent blocks**. We keep track of the alpha channel of the ray's color and blend it with each block it passes through until the accumulated opacity reaches 100%, at which point we stop the propagation of that ray. If the ray reaches a block beyond the set view distance, we blend it with the color of the sky to obtain the final color and stop the propagation of the ray. Here's an example of a ray passing through a water block:
-> <div align="center"><img src="doc/img/water.jpg" height="350" /></div>
+> <div align="center"><img src="img/water.jpg" height="350" /></div>
 > 
 > It can be observed that the parts passing through the water are blended with the appropriate color of the water. Please ignore the color overlapping when passing through multiple transparent blocks, as this can be addressed by adding pipeline registers and some simple conditional logic.
 > 
@@ -105,7 +105,7 @@ Given the known information, this computation is actually **a large combinatoria
 2. Determining which block the ray will enter next after passing through the current block.
 
 So here is the pipeline structure we designed:
-<div align="center"><img src="doc/img/pipeline.jpg" /></div>
+<div align="center"><img src="img/pipeline.jpg" /></div>
 
 Excluding the output stage (writing to the display buffer) and the post-processing stage (highlighting selected blocks, gamma correction, etc.), the pipeline consists of a total of `10` stages. Each stage strives to include a minimal number of multiplication and addition operations to ensure a high achievable frequency. The performance bottleneck primarily lies in the 4th stage, which involves division operations. In this case, we utilize the division IP core provided by Vivado, which offers fast computation speed. The entire pipeline can still operate reliably at a clock frequency of `50MHz`.
 
@@ -242,10 +242,10 @@ disp_buf_write_data <= std_logic_vector(to_unsigned(color_baked.r / 16, 4)) & st
 
 ### Display Control
 The display control consists of two main parts: the VGA output controller, which generates the synchronization signal timing required for the `VGA` protocol, and the display buffer management, also known as the double-buffering structure mentioned earlier, which facilitates read/write separation to prevent conflicts and frame misalignment. For example, the diagram below shows the output of an older version during the development process. It does not utilize the double-buffering structure, resulting in periodic stripes caused by read/write conflicts. Additionally, a misalignment of two frames can be observed in the middle section of the screen:
-<div align="center"><img src="doc/img/nobuffer.jpg" height="250" /></div>
+<div align="center"><img src="img/nobuffer.jpg" height="250" /></div>
 
 The implementation of the double-buffering structure is straightforward. For convenience, we use on-chip BRAM as the RAM storage, which is theoretically the fastest RAM resource for read and write operations. We instantiate two identical RAM blocks that match the resolution (set to `320x240`) and add control logic to keep track of the current state (which buffer is the front buffer). By utilizing this state, we control a multiplexer to route the inputs and outputs of the module to the corresponding RAM ports. Additionally, a synchronous input signal called `swap_sync` is included to indicate the swapping of buffers. Once encapsulated in this manner, the entire module can be used as a single RAM. The timing and reasons for swapping buffers have been discussed in the previous analysis and will not be reiterated here. The following is a simplified structural diagram intended for conceptual representation, without full elaboration:
-<div align="center"><img src="doc/img/buffers.jpg" height="300" /></div>
+<div align="center"><img src="img/buffers.jpg" height="300" /></div>
 
 The VHDL implementation is as follows and other details are omitted:
 ```vhdl {.line-numbers}
@@ -321,10 +321,10 @@ For more details please refer to the source code (in `player_state_update.vhd`).
 Due to various operations involved, including character movement, perspective changes, placing, breaking, item switching, and more, relying solely on the onboard buttons is highly inconvenient. The mouse can be conveniently used for perspective movement, and the keyboard can be utilized for other functions. However, there is only one `HID` to `PS/2` protocol chip on the board, connected to the sole `USB-TypeA` port, making it impossible to simultaneously use both the keyboard and mouse (without considering external adapter modules).
 
 Therefore, we directly opted for the popular **PlayStation 2 gamepad**, which communicates via the SPI protocol. We utilized the wireless version and connected the receiver to the FPGA through an adapter board:
-<div align="center"><img src="doc/img/gamepad.jpg" height="250" /></div>
+<div align="center"><img src="img/gamepad.jpg" height="250" /></div>
 
 The PS2 controller uses the `SPI` protocol to communicate, where in the red light mode, it sends `8` bytes of data to the master device with information about the device mode, start signal, button triggers, and four channels of analog joystick sample values. The `SPI` protocol used by the controller is falling edge triggered, and the button states are represented by low signals. The timing diagram is roughly as follows (the `MOSI` and `MISO` signals in the diagram are for illustration purposes and are not related to actual data):
-<div align="center"><img src="doc/img/gamepadtim.png" /></div>
+<div align="center"><img src="img/gamepadtim.png" /></div>
 
 We generate the timing using a state machine, running at twice the frequency of the SPI clock. It generates three output signals and captures the required information from the input signals. The VHDL code of the next logic for the driver is roughly as follows (check the source code `gamepad.vhd` for more details):
 ```vhdl {.line-numbers}
@@ -367,9 +367,9 @@ end process;
 ## Performance & Analysis
 ### Screenshots
 As a game project, the running results are represented by actual in-game screenshots. Below are some showcased game screenshots:
-<div align="center"><img src="doc/img/crosshair.jpg" width="600" /></div>
+<div align="center"><img src="img/crosshair.jpg" width="600" /></div>
 <p></p>
-<div align="center"><img src="doc/img/building.jpg" width="600" /></div>
+<div align="center"><img src="img/building.jpg" width="600" /></div>
 
 ### Specifications
 #### Frames Per Second

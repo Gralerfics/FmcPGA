@@ -1,10 +1,10 @@
 # FmcPGA - Pipelined Minecraft-like 3D Game Rendering
 <!-- [![GitHub license](https://img.shields.io/github/license/gralerfics/FmcPGA.svg)](https://github.com/gralerfics/FmcPGA/blob/master/LICENSE) [![GitHub forks](https://img.shields.io/github/forks/gralerfics/FmcPGA.svg)](https://github.com/gralerfics/FmcPGA/network) [![GitHub stars](https://img.shields.io/github/stars/gralerfics/FmcPGA.svg)](https://github.com/gralerfics/FmcPGA/stargazers) -->
 
-Wang Zhuoyang$^1$, Shu Zihe$^2$
+<!-- Wang Zhuoyang$^1$, Shu Zihe$^2$ -->
 
-<font size=2>$^1$12112907, Department of Electrical and Electronic Engineering, SUSTech. Email: glverfer@outlook.com</font>
-<font size=2>$^2$12111727, Department of Electrical and Electronic Engineering, SUSTech. Email: 12111727@mail.sustech.edu.cn</font>
+<!-- <font size=2>$^1$12112907, Department of Electrical and Electronic Engineering, SUSTech. Email: glverfer@outlook.com</font>
+<font size=2>$^2$12111727, Department of Electrical and Electronic Engineering, SUSTech. Email: 12111727@mail.sustech.edu.cn</font> -->
 
 ## Introduction
 This project is a simple 3D voxel game renderer built entirely using VHDL, based on a pipelined architecture. Here is a screenshot of the final result in action:

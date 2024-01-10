@@ -358,12 +358,6 @@ end process;
 ...
 ```
 
-#### Mouse
-...
-
-#### Keyboard
-...
-
 ## Performance & Analysis
 ### Screenshots
 As a game project, the running results are represented by actual in-game screenshots. Below are some showcased game screenshots:
